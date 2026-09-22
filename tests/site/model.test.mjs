@@ -3,10 +3,28 @@ import assert from 'node:assert/strict';
 import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
-import {labels,rate,scope,movement,searchRows,terminal} from '../../website/assets/model.js';
+import {labels,rate,scope,movement,searchRows,terminal,entityKeys,periodLabel,waterfallSteps} from '../../website/assets/model.js';
 const root=new URL('../../website/',import.meta.url),load=n=>JSON.parse(readFileSync(new URL(`data/${n}.json`,root),'utf8'));
 const recommendations=load('recommendations'),snapshots=load('snapshots'),reports=load('reports');
 const data={recommendations,snapshots,reports,byId:new Map(recommendations.map(r=>[r.id,r]))};
+test('PKO display and individual entity filters preserve distinct joint recommendations',()=>{
+ assert.equal(periodLabel(2020,'II'),'2019-20');assert.equal(periodLabel(2023,'II'),'2022-23');
+ const fixture={byId:new Map([['a',{id:'a',volume:'II'}]]),snapshots:{2020:[],2021:[{id:'a',entities:['DMSPC'],offices:[{entity:'DMSPC',office:'BTAD'},{entity:'DMSPC',office:'OPPFB'}],responsibility:'Joint',status:'under_implementation'}]}};
+ assert.deepEqual(entityKeys(fixture.snapshots[2021][0]),['DMSPC']);assert.equal(scope(fixture,2021,'all','DMSPC',2021,'Joint').length,1);assert.equal(scope(fixture,2021,'all','DMSPC/BTAD',2021,'Joint').length,0);
+ assert.equal(scope(fixture,2021,'all','all',2021,'Individual').length,0);
+ assert.equal(movement(fixture,2021,'II','DMSPC',2021,'Joint').issued,1);
+ for(const year of load('metadata').years){
+  const all=scope(data,year);assert.equal(['Joint','Individual','Unknown'].reduce((n,k)=>n+scope(data,year,'all','all',year,k).length,0),all.length);
+  for(const kind of ['Joint','Individual','Unknown'])for(const volume of ['all','I','II']){
+   let previous;
+   for(const y of load('metadata').years.filter(y=>y<=year)){
+    const m=movement(data,y,volume,'all',year,kind);
+    assert.equal(m.opening+m.issued+m.reopened-m.implemented-m.other,m.closing);
+    if(previous)assert.equal(previous.closing,m.opening);previous=m;
+   }
+  }
+ }
+});
 test('Stable IDs, snapshots, evidence references and source checksums',()=>{
  assert.equal(data.byId.size,recommendations.length);
  const historyIds=new Set();let comments=0,unverified=0;
@@ -17,7 +35,7 @@ test('Stable IDs, snapshots, evidence references and source checksums',()=>{
 });
 test('Waterfall balances for every year, volume and observed entity; trends reconcile across years',()=>{
  for(const anchor of load('metadata').years)for(const volume of ['all','I','II']){
-  const entities=['all',...new Set(scope(data,anchor,volume).map(s=>s.entity))];
+  const entities=['all',...new Set(scope(data,anchor,volume).flatMap(entityKeys))];
   for(const entity of entities){let last;for(const year of load('metadata').years.filter(y=>y<=anchor)){
    const m=movement(data,year,volume,entity,anchor);assert.equal(m.opening+m.issued+m.reopened-m.implemented-m.other,m.closing,JSON.stringify({year,volume,entity,anchor,m}));
    if(last)assert.equal(last.closing,m.opening);last=m;
@@ -35,6 +53,12 @@ test('A continuing implemented assessment is not a new implemented transition',(
 });
 test('Filtering is exact for volume and entities; search includes stable IDs and symbols',()=>{
  const all=scope(data,2024);assert.equal(scope(data,2024,'I').length+scope(data,2024,'II').length,all.length);
- const e=all.find(s=>s.entity!=='Entity not extracted').entity;assert(scope(data,2024,'all',e).every(s=>s.entity===e));assert.equal(scope(data,2024,'all','nonexistent').length,0);
+ const e=all.flatMap(entityKeys).find(e=>e!=='Unmapped / not reported');assert(scope(data,2024,'all',e).every(s=>entityKeys(s).includes(e)));assert(scope(data,2024,'all',e).length>0);assert.equal(scope(data,2024,'all','nonexistent').length,0);
  const id=all[0].id;assert.equal(searchRows(data,all,id,'all')[0].id,id);assert(searchRows(data,all,'','implemented').every(s=>s.status==='implemented'));assert.equal(searchRows(data,all,'xxxxxxxx-no-match','all').length,0);
+});
+
+test('Waterfall hides a zero reopening step without changing balances or connectors',()=>{
+ const zero={opening:100,issued:20,reopened:0,implemented:30,other:5,closing:85};
+ const steps=waterfallSteps(zero);assert.equal(steps.length,5);assert(!steps.some(s=>s.label==='Reopened / review'));assert.equal(steps.at(-2).end,85);
+ const reopened=waterfallSteps({...zero,reopened:4,closing:89});assert.equal(reopened.length,6);assert.equal(reopened[2].value,'+4');assert.equal(reopened.at(-2).end,89);
 });

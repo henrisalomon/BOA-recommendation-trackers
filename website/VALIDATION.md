@@ -19,3 +19,6 @@ The frozen export contains 1,334 recommendations, 6,890 observations, 52 reports
 ## Reproduce
 
 See README.md for export/build and test commands. Detailed browser results and screenshots are stored locally in tmp/site/; tests are checked in under tests/site/. The workflow performs model, base-path, browser and accessibility tests before creating a Pages artifact, and only deploys on an explicitly requested manual run with publish enabled.
+
+
+Entity/PKO update — 22 September 2026: 20 Python regression tests, 6 site model tests, 8 browser accessibility audits and filter/URL/mobile checks passed. Database replay is idempotent; 8,276 original source rows are unchanged; 373,776 workbook data cells match the export. DMSPC offices count separately for Joint/Individual while recommendation totals remain distinct. Publication was not performed.

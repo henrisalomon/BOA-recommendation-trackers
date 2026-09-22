@@ -261,3 +261,11 @@ Evidence: {"file": "catalogue_recheck.json"}
 - TECH-08: Matched within explicitly cited origin; all pre-existing resolved links preserved.
 - TECH-12: Original wording recovered and source continuation checked.
 - TECH-13: Original wording recovered and source continuation checked.
+
+
+## Entity / office review — 22 September 2026
+
+The PKO period and responsibility changes are documented in [ENTITY_PERIOD_REVIEW.md](ENTITY_PERIOD_REVIEW.md). Historical entities are retained separately as instructed. See [the detailed mapping review](entity_mapping_review.csv) for History IDs and source reports. Add entity decisions below, naming the History ID or exact source wording; existing HUM/TECH comments above are unchanged.
+
+Reviewer comments:
+

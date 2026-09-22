@@ -88,3 +88,12 @@ The conflicting Board narrative is preserved in History; affected observations a
 
 **History:** `history_id`, `recommendation_id`, `report_id`, `source_type`, `kind`, `annex`, `row_number`, `source_paragraph`, `pdf_page`, `pdf_pages_json`, `printed_page`, `status_raw`, `status_group`, `status_as_of`, `status_as_of_basis`, `recommendation_text`, `reference_raw`, `entities_raw`, `assignment_raw`, `area_raw`, `priority_raw`, `initial_target_raw`, `target_raw`, `revised_target_raw`, `administration_response`, `board_assessment`, `sg_progress`, `actual_completion_date_raw`, `status_marks_json`, `review_status`, `review_issues`, `reviewer_notes`, `field_pdf_pages_json`, `extraction_evidence_json`, `reviewed_status`, `reviewed_status_group`, `review_case_id`, `review_decision_json`.
 
+
+
+## PKO periods and responsible entities — 22 September 2026
+
+`Reports.audit_period` and `Recommendations.audit_period` display Volume II as a PKO fiscal period (2019-20). `audit_year` remains the numeric end year for calculations. Workbook year columns now use the period label.
+
+`EntityOffices` holds the supplied list, with UNDCO merged into DCO. `HistoryEntities` stores one row per observation and distinct responsible entity/office. An empty office means the source names only the parent. `History.entities_json` and `offices_json` expose the same mapping; `entities_raw` preserves the original extraction. `responsibility_type` is Joint, Individual or Unknown. Multiple offices of one entity count as Joint; repeated mentions of one unit count once. `entity_mapping_status`, `unmatched_entity_text` and `entity_mapping_evidence` keep unresolved mappings and source-based corrections visible. Historical entities missing from the supplied list remain separate and flagged.
+
+See [entity and period review](ENTITY_PERIOD_REVIEW.md) for the decisions and remaining cases. The normalized assignments are in `entity_assignments.csv`; overall counts must use distinct recommendation IDs. Website snapshots use only eligible observations through the selected period.

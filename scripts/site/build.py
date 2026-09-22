@@ -21,10 +21,12 @@ def main():
  out.mkdir(parents=True,exist_ok=True)
  for name in ['assets','data','reports']:
   shutil.copytree(ROOT/'website'/name,out/name,dirs_exist_ok=True)
- for name in ['index.html','DATA_GAPS.md']:
+ for name in ['index.html','methodology.html','DATA_GAPS.md']:
   shutil.copyfile(ROOT/'website'/name,out/name)
- index=(out/'index.html').read_text().replace('<base href="./">','<base href="'+html.escape(base,quote=True)+'">')
- (out/'index.html').write_text(index);(out/'.nojekyll').touch()
+ for page in ['index.html','methodology.html']:
+  index=(out/page).read_text().replace('<base href="./">','<base href="'+html.escape(base,quote=True)+'">')
+  (out/page).write_text(index)
+ (out/'.nojekyll').touch()
  (out/'build-info.json').write_text(json.dumps({'basePath':base,'source':'website','publication':'Not performed by build script'},indent=2)+'\n')
  print(f'Built {out} with base path {base}; no publication performed.')
 if __name__=='__main__':main()

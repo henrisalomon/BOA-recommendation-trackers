@@ -1,0 +1,2 @@
+const container=document.querySelector('#gaps');
+async function load(){try{const response=await fetch('data/metadata.json');if(!response.ok)throw Error('Data unavailable');const metadata=await response.json();const list=document.createElement('ul');for(const gap of metadata.gaps){const item=document.createElement('li');item.textContent=gap;list.append(item)}container.replaceChildren(list)}catch{container.textContent='Could not load the data notes. ';const retry=document.createElement('button');retry.textContent='Retry';retry.onclick=load;container.append(retry)}}load();
