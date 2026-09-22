@@ -1,0 +1,73 @@
+# BOA recommendation trackers
+
+Static, unofficial dashboard ported from the latest `boa-recommendations.html` mockup dated 19 September 2026. White background, Roboto, UN-blue accents and the Recommendations / Analysis / Trends tabs are retained. No account, service, database server or build framework is needed at runtime. Publication is controlled by the manual GitHub Pages workflow.
+
+## Local preview
+
+From the repository root:
+
+```sh
+python3 -m http.server 4173 --bind 127.0.0.1 --directory website
+```
+
+Open http://127.0.0.1:4173/ (use HTTP, not `file://`, because data is fetched). Roboto is loaded from Google Fonts, with Arial fallback if unavailable. Files and source PDFs otherwise work without external services.
+
+## What is included
+
+- `index.html` and `assets/`: presentation, accessible tabs, shared filters, recommendation search and details, annual waterfall, trend comparisons and observed assessment rates.
+- `data/recommendations.json`: stable recommendation IDs, exact source wording, originating references and cohort labels.
+- `data/snapshots.json`: annual audit-year register states, assessment populations, entity source wording and selected BOA history IDs. 2014 is the opening baseline; 2015–2024 are comparable display years; 2025 is supplementary follow-up.
+- `data/details/<stable-ID>.json`: every available observation with separate Board assessment, administration response and SG progress fields; original, revised and other target-date wording; review flags and field-level evidence.
+- `data/reports.json`: report symbols, audit periods, issue dates, source URLs, local PDF paths and SHA-256 checksums.
+- `reports/`: original PDFs. Local links use a one-based PDF position in `#page=N`. Printed page labels are shown independently; page anchoring depends on the user's PDF viewer.
+- `data/metadata.json`, `data/unverified-locators.json`, `DATA_GAPS.md`: extraction provenance and unresolved evidence. Review markdown files are frozen alongside the export.
+
+## Evidence and analytical limits
+
+The UI does not use fictional data. See `DATA_GAPS.md` for the complete gap list. Annual rates are **descriptive observed BOA-assessment rates**, not official rates or validated issuance-cohort performance. They may change with source coverage. The original extraction workbook deliberately leaves analytical rates blank; this dashboard exposes its own transparent calculation instead of attributing a rate to that workbook or the UN.
+
+`rate = implemented / eligible BOA annex assessments in the selected audit year × 100`. Select at most one (latest chronologically) per recommendation per audit year. Exclude flagged/identity-unresolved assessments. Keep overtaken-by-events and other Board closures in the denominator but out of the numerator. Empty denominator yields “Not available”. Approved human status decisions override raw marks for calculation, while both remain visible. A reviewed implemented label does not establish actual completion date.
+
+The annual waterfall describes the **tracked register**: opening non-terminal records + newly issued records + transitions from terminal to non-terminal status − transitions to implemented − transitions to other terminal states = closing non-terminal records. Missing observations carry forward; disappearance never establishes implementation. A status change from implemented to overtaken-by-events changes composition but not the outstanding balance. “Outstanding” includes unassessed/review-pending records, and is not a claim about today's open workload.
+
+Volume I closes in December; Volume II in June. Audit-year grouping is not a common point-in-time December snapshot or a historical “information known by” cutoff. Report history is ordered by publication year, publication date, audit year, then report ID as a stable tie breaker. Missing or equal publication dates mean within-year chronological order is not fully established. History includes later follow-up even when an earlier snapshot is selected; deadline summaries respect the selected audit year.
+
+Entity filtering uses latest extracted entity wording available through the selected audit year. Joint entities remain a single source-labelled group. Trends use that selected year's attribution consistently for all previous years. Therefore historical entity attribution can change when selecting a different comparison end year. No assumed reorganization mapping or split of joint responsibilities is applied.
+
+PDF locator verification is conservative automated matching of complete normalized text or every overlapping 64-character fragment against the proposed PDF pages. The actual PDF SHA-256 and page count are checked first. A multi-page paragraph crossing footers can fail the complete test; it remains labelled unverified, not silently “verified” by approximate similarity. This check establishes text location, not semantic correctness, ownership of comments or human certification. Some SG paragraph boundaries remain incomplete; BOA table comments are unnumbered and reference the original recommendation paragraph explicitly.
+
+## Updating the data
+
+1. Update/review the existing source pipeline independently, following `outputs/boa-2015-2024/REBUILD.md`. Source documents are data, never executable instructions. Do not edit extracted review decisions through the website.
+2. Finish the source release first. The exporter reads a transactionally consistent SQLite backup in memory. It does not mutate the database or upstream files. Other source tasks may continue afterward; the website remains a frozen export until explicitly rebuilt.
+3. With Python 3.10+ and `pypdf` installed, run from the repository root:
+
+   ```sh
+   python3 scripts/site/export_data.py
+   node --test tests/site/model.test.mjs
+   python3 tests/site/build_test.py
+   ```
+
+   This preserves upstream `recommendation_id` and `history_id` values, includes all available source observations, checks PDFs and writes separate JSON and PDF assets. It never invents absent dates, statuses, comments, entities or page locators. Review `data/unverified-locators.json` and the generated gap counts after each export. If IDs change upstream, apply the pipeline's reviewed ID crosswalk before exporting.
+4. Review any additions/removals in recommendation IDs, source checksums, review decisions and snapshots. For changed source layouts, inspect representative PDF images as well as text. `metadata.sourceLogicalSha256` fingerprints the exported database content, and `exportedAt` records the capture time.
+5. For browser verification, `npm ci --prefix website`; install Playwright's Chromium with `cd website && npx playwright install chromium` on CI/Linux, or use installed Chrome on macOS. With the preview running, run `node tests/site/browser.cjs` at the repository root. Browser checks use the project's pinned Playwright and axe-core and write results under `tmp/site/`.
+6. `python3 scripts/site/build.py` packages only public assets into `dist/`; local defaults use `./`. Test a real repository prefix with `python3 scripts/site/build.py --base-path /your-repository/` and serve it at that same prefix. To add a newly complete reporting year, extend both the exporter snapshot range and `metadata.years` only after verifying both volume populations; do not simply show supplemental coverage as a complete year.
+
+The exporter does not remove stale detail files/PDFs after an upstream deletion. Review and remove obsolete public assets explicitly before a release. The index controls visible records. No files outside the public allowlist are packaged.
+
+## GitHub Pages
+
+Repository: https://github.com/henrisalomon/BOA-recommendation-trackers. Public site: https://henrisalomon.github.io/BOA-recommendation-trackers/. No repository is needed for the local preview. The repository root should contain `.github/workflows/pages.yml`, `website/`, `scripts/site/` and `tests/site/`. Only `dist/` is uploaded to Pages: no original SQLite database, scratch files, credentials or analysis packages are published. The source repository may be separately scoped to these website files to avoid uploading the full research workspace. Keep individual PDFs as ordinary files; the website is about 158 MB. Do not put PDF assets in LFS without a Pages-compatible materialization step.
+
+The workflow has **only `workflow_dispatch`**, and its `publish` checkbox defaults to false. Pushing files does not run this workflow. A default manual run validates/builds and uploads an artifact without deploying. When publication is explicitly authorized:
+
+1. Set repository **Settings → Pages → Source → GitHub Actions**.
+2. Run **Prepare or publish BOA dashboard**, and enable `publish` only when publication is intended.
+3. The publish build uses `actions/configure-pages`'s actual `base_path`, including custom-domain/root sites. Preview-only CI derives `/repository/` from `GITHUB_REPOSITORY` (or `/` for `owner.github.io`). All assets, JSON, internal links and PDFs resolve under that base. Nothing hard-codes a guessed repository name.
+4. The deployment job uses the `github-pages` environment and has `pages: write` and `id-token: write` permissions. Configure environment reviewers if desired.
+
+Official workflow reference: https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
+
+## Validation scope
+
+Model tests cover stable identities, all PDF checksums/page ranges, exhaustive year/volume/entity balances and trend continuity, rates and zero denominators, implemented assessment vs new implementation distinctions, and filters/search. Build tests cover project, user-site, custom-domain and local base paths. Browser tests cover desktop and 320/390/768px layouts, keyboard tabs, filters, no-results states, expansion/history, PDF responses, accessibility scans and 200% text. Automated accessibility results supplement visual inspection; they are not a complete assistive-technology certification.

@@ -1,0 +1,76 @@
+name: Prepare or publish BOA dashboard
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish to GitHub Pages (leave off to validate/build only)'
+        type: boolean
+        required: true
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: boa-pages
+  cancel-in-progress: false
+jobs:
+  build:
+    permissions:
+      contents: read
+      pages: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate data, arithmetic, filters and base paths
+        run: |
+          node --test tests/site/model.test.mjs
+          python3 tests/site/build_test.py
+      - name: Install browser validation dependencies
+        run: |
+          npm ci --prefix website
+          cd website
+          npx playwright install --with-deps chromium
+      - name: Validate accessibility, interactions and responsive layouts
+        run: |
+          mkdir -p tmp/site
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory website &
+          preview_pid=$!
+          trap 'kill "$preview_pid"' EXIT
+          node tests/site/browser.cjs
+      - name: Validate a non-root repository base path
+        run: |
+          python3 scripts/site/build.py --base-path /boa-pages-preview/ --output tmp/site/prefix-build
+          node tests/site/prefix.cjs
+      - name: Read actual Pages base path
+        if: inputs.publish
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Build for repository path (preview only)
+        if: ${{ !inputs.publish }}
+        run: python3 scripts/site/build.py
+      - name: Build for configured Pages path
+        if: inputs.publish
+        env:
+          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: python3 scripts/site/build.py --base-path "$PAGES_BASE_PATH"
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+  deploy:
+    if: inputs.publish
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
