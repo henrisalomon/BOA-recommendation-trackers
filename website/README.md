@@ -75,3 +75,9 @@ Model tests cover stable identities, all PDF checksums/page ranges, exhaustive y
 ## Dashboard presentation update
 
 Entity choices use individual canonical entities. A joint recommendation matches each responsible entity but remains a single recommendation in overall totals; entity breakdowns overlap. Original entity wording and stable IDs remain in the downloadable data. Recommendation details show original/revised dates and chronological BOA/administration comments with compact report/paragraph/PDF citations; extraction metadata is retained in data files. Data gaps and calculation explanations live on `methodology.html`. Analysis omits a zero reopened/review step; Trends has a “Show values on bars” checkbox.
+
+### Uniform status display
+
+The dashboard labels `overtaken_by_events` as “Closed — overtaken by events” and `closed_other` as “Closed — other Board decision”. Both remain separate terminal states and neither counts as implemented. Status filters and status/assessment bars show only categories present in the selected scope; “Not implemented” therefore stays hidden when its count is zero and reappears if future source observations use it. If a shared filter removes the selected status, the list returns to “All statuses”.
+
+The extractor and database retain the original BOA categories and source wording, including “Not implemented”. No re-scraping or recategorisation is required for these display changes.

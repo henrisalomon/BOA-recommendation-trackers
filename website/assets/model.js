@@ -1,4 +1,6 @@
-export const labels={under_implementation:'Under implementation',not_implemented:'Not implemented',implemented:'Implemented',overtaken_by_events:'Overtaken by events',closed_other:'Closed by the Board',unassessed:'No BOA assessment',needs_review:'Review pending'};
+export const labels={under_implementation:'Under implementation',not_implemented:'Not implemented',implemented:'Implemented',overtaken_by_events:'Closed — overtaken by events',closed_other:'Closed — other Board decision',unassessed:'No BOA assessment',needs_review:'Review pending'};
+// Display only categories present in the selected population; retain all source codes.
+export const presentStatuses=(rows,field='status')=>Object.entries(labels).filter(([key])=>rows.some(row=>row[field]===key));
 export const terminal=s=>['implemented','overtaken_by_events','closed_other'].includes(s);
 export function rate(rows){const assessed=rows.filter(s=>s.assessment&&labels[s.assessment]);const implemented=assessed.filter(s=>s.assessment==='implemented').length;return {implemented,denominator:assessed.length,value:assessed.length?implemented/assessed.length*100:null,excluded:rows.filter(s=>s.hasAssessment&&!s.assessment).length};}
 // Canonical individual entities; joint recommendations match each entity once.
