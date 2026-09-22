@@ -1,4 +1,4 @@
-export const labels={under_implementation:'Under implementation',not_implemented:'Not implemented',implemented:'Implemented',overtaken_by_events:'Closed',closed_other:'Closed',unassessed:'No BOA assessment',needs_review:'Review pending'};
+export const labels={under_implementation:'Under implementation',not_implemented:'Not implemented',implemented:'Implemented',overtaken_by_events:'Closed',closed_other:'Closed',unassessed:'No assessment in data',needs_review:'Review pending'};
 // Display only categories present in the selected population; retain all source codes.
 export const displayStatus=status=>['overtaken_by_events','closed_other'].includes(status)?'closed':status;
 export const presentStatuses=(rows,field='status')=>Object.entries({...labels,closed:'Closed'}).filter(([key])=>!['overtaken_by_events','closed_other'].includes(key)&&rows.some(row=>displayStatus(row[field])===key));
