@@ -26,7 +26,7 @@ const axePath=require.resolve('../../website/node_modules/axe-core/axe.min.js');
  await page.fill('#search','R_454bc57cfe25e6fdfa');await page.locator('.recommendation summary').click();await page.waitForSelector('.recommendation[data-loaded=true]');
  const detail=await page.locator('.detail').innerText();assert(detail.includes('Original target date'));assert(detail.includes('Revised target date'));assert(detail.includes('BOA comments'));assert(detail.includes('Administration comments'));assert(detail.includes('PDF page'));assert(detail.includes('printed'));assert(!detail.includes('Stable ID:'));assert(!detail.includes('wording basis'));assert(!detail.includes('cohort 2015'));assert(!detail.includes('Locator matched against source PDF'));
  const years=await page.locator('.comment-year h4').allTextContents();assert.deepEqual(years,[...years].sort());
- const href=await page.locator('.detail a[href*="#page="]').first().getAttribute('href');const response=await page.request.get(new URL(href,base).href.split('#')[0]);assert.equal(response.status(),200);assert(response.headers()['content-type'].includes('pdf'));
+ const href=await page.locator('.detail a[href*="#page="]').first().getAttribute('href');const links=await page.locator('.detail a[href*="#page="]').evaluateAll(nodes=>nodes.map(a=>({href:a.href,text:a.textContent})));for(const link of links){const url=new URL(link.href);assert.equal(url.origin,"https://documents.un.org");assert.equal(url.searchParams.get("t"),"pdf");assert.equal(url.hash,"#page="+link.text.match(/PDF page (\d+)/)[1]);}
  await audit('expanded evidence');await shot('details');
  await page.click('#reset');
  await page.fill('#search','R_f893baf30707e83a8c');await page.locator('.recommendation summary').click();await page.waitForSelector('.recommendation[data-loaded=true]');assert(await page.locator('.comment-year').count()>=8);assert(!(await page.locator('.detail dl dd').nth(0).innerText()).includes('Not extracted'));assert(!(await page.locator('.detail dl dd').nth(1).innerText()).includes('Not extracted'));
@@ -41,6 +41,6 @@ const axePath=require.resolve('../../website/node_modules/axe-core/axe.min.js');
  await page.click('a[href="methodology.html"]');await page.waitForSelector('#gaps li');assert(await page.locator('h1').innerText().then(s=>s.includes('Data gaps')));await audit('methodology');await page.click('a[href="index.html"]');await page.waitForSelector('.recommendation');
  assert.equal(errors.length,0,errors.join('\n'));
  fs.writeFileSync('tmp/site/browser-results.json',JSON.stringify({results,consoleErrors:errors,pdfLink:href,viewports:[1440,768,390,320],textZoom:'200%',passed:true},null,2));
- console.log('Browser checks passed:',results.length,'accessibility audits; filters, keyboard tabs, evidence, PDF response, mobile overflow, 200% text, zero JS errors.');
+ console.log('Browser checks passed:',results.length,'accessibility audits; filters, keyboard tabs, evidence, UN PDF page links, mobile overflow, 200% text, zero JS errors.');
  await browser.close();
 })().catch(e=>{console.error(e);process.exit(1)});

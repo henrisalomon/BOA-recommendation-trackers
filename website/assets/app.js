@@ -13,7 +13,7 @@ function citation(h,field){
  if(!ev?.pages?.length)return '<span class="source">PDF page unverified</span>';
  const rec=data.byId.get(h.recommendation_id);
  const locator=h.kind==='issuance'?`para. ${h.source_paragraph||rec?.paragraph||'unverified'}`:h.kind==='annex'?`${h.annex||'Annex'} · rec. para. ${rec?.paragraph||'unverified'}`:ev.paragraphs.length?`para. ${ev.paragraphs.join(', ')}`:`section para. ${h.source_paragraph||'unverified'}`;
- return `<span class="source">${esc(r.source_type==='BOA'?'BOA':'Secretary-General')} · ${esc(r.symbol)} · ${esc(locator)}<br>${ev.pages.map(p=>`<a href="${encodeURI(r.local_path)}#page=${p}" target="_blank" rel="noopener">PDF page ${p} ↗</a><span>(printed ${ev.printedPages[p]??'unverified'})</span>`).join(' · ')}${ev.verified?'':' · <span class="citation-warning">Page match unverified</span>'}</span>`;
+ return `<span class="source">${esc(r.source_type==='BOA'?'BOA':'Secretary-General')} · ${esc(r.symbol)} · ${esc(locator)}<br>${ev.pages.map(p=>`<a href="${esc(r.download_url.split("#")[0])}#page=${p}" target="_blank" rel="noopener">PDF page ${p} ↗</a><span>(printed ${ev.printedPages[p]??'unverified'})</span>`).join(' · ')}${ev.verified?'':' · <span class="citation-warning">Page match unverified</span>'}</span>`;
 }
 async function loadDetail(el){
  try{
