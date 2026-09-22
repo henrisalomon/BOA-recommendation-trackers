@@ -78,6 +78,6 @@ Entity choices use individual canonical entities. A joint recommendation matches
 
 ### Uniform status display
 
-The dashboard labels `overtaken_by_events` as “Closed — overtaken by events” and `closed_other` as “Closed — other Board decision”. Both remain separate terminal states and neither counts as implemented. Status filters and status/assessment bars show only categories present in the selected scope; “Not implemented” therefore stays hidden when its count is zero and reappears if future source observations use it. If a shared filter removes the selected status, the list returns to “All statuses”.
+The dashboard combines `overtaken_by_events` and `closed_other` under “Closed” in filters, badges and charts. Both remain separate terminal states in the source data and neither counts as implemented. Volume I is selected by default; users select one volume at a time before the reporting year. Available year choices follow the selected volume, using calendar years for Volume I and fiscal periods for Volume II. Reset returns to Volume I and its latest year. Status filters and status/assessment bars show only categories present in the selected scope; “Not implemented” therefore stays hidden when its count is zero and reappears if future source observations use it. If a shared filter removes the selected status, the list returns to “All statuses”.
 
 The extractor and database retain the original BOA categories and source wording, including “Not implemented”. No re-scraping or recategorisation is required for these display changes.
