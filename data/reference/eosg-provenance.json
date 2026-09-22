@@ -1,0 +1,28 @@
+{
+  "retrieved": "2026-09-22",
+  "entities": {
+    "url": "https://github.com/UN-EOSG-Analytics/un-system-chart-navigator/blob/0873af1d3f9f89b12ffd60a3a9e9fd2a16a149c4/public/un-entities.json",
+    "sha256": "90c39df0d458aac6b873389e355c2477944daec78427933f221c2052fca8b7d8",
+    "count": 169
+  },
+  "abbreviations": {
+    "url": "https://github.com/UN-EOSG-Analytics/un80-actions/blob/6f7ec245626c60fc289c34cbee403cce09b2b970/src/constants/abbreviations.ts"
+  },
+  "mapping_decisions": {
+    "RCS": {
+      "decision": "Keep RCS separate from DCO; do not apply upstream alias.",
+      "authority": "Explicit user instruction, 2026-09-22"
+    },
+    "UNMSIL": {
+      "canonical": "UNSMIL",
+      "basis": "Official mission website establishes UNSMIL; official UN reporting also spells United Nations Support Mission in Libya as UNMSIL. Normalize the spelling in derived fields only.",
+      "sources": [
+        "https://unsmil.unmissions.org/en",
+        "https://dppa.dfs.un.org/en/uniting-female-activists-across-libya-to-combat-online-violence-and-harassment",
+        "https://documents.un.org/api/symbol/access?l=en&s=A%2F79%2F328&t=pdf"
+      ],
+      "affected_history_id": "H_e643c01d45c686e7726e",
+      "verified_on": "2026-09-22"
+    }
+  }
+}

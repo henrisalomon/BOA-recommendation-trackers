@@ -1,0 +1,222 @@
+{
+  "source_filename": "entity.xlsx",
+  "sha256": "73eeaab883957021406fa68dec87920b5cdf32c95aa6e42b6ee8bd50ae892175",
+  "pairs": [
+    {
+      "entity": "DMSPC",
+      "office": "OHR"
+    },
+    {
+      "entity": "DOS",
+      "office": "DOS"
+    },
+    {
+      "entity": "DMSPC",
+      "office": "BTAD"
+    },
+    {
+      "entity": "MINURSO",
+      "office": "MINURSO"
+    },
+    {
+      "entity": "MINUSCA",
+      "office": "MINUSCA"
+    },
+    {
+      "entity": "MONUSCO",
+      "office": "MONUSCO"
+    },
+    {
+      "entity": "UNDOF",
+      "office": "UNDOF"
+    },
+    {
+      "entity": "UNFICYP",
+      "office": "UNFICYP"
+    },
+    {
+      "entity": "UNIFIL",
+      "office": "UNIFIL"
+    },
+    {
+      "entity": "UNISFA",
+      "office": "UNISFA"
+    },
+    {
+      "entity": "UNMIK",
+      "office": "UNMIK"
+    },
+    {
+      "entity": "UNMISS",
+      "office": "UNMISS"
+    },
+    {
+      "entity": "UNMOGIP",
+      "office": "UNMOGIP"
+    },
+    {
+      "entity": "UNSOS",
+      "office": "UNSOS"
+    },
+    {
+      "entity": "UNTSO",
+      "office": "UNTSO"
+    },
+    {
+      "entity": "DPO",
+      "office": "DPO"
+    },
+    {
+      "entity": "ERPSD",
+      "office": "ERPSD"
+    },
+    {
+      "entity": "DMSPC",
+      "office": "OPPFB"
+    },
+    {
+      "entity": "DOS",
+      "office": "OSCM"
+    },
+    {
+      "entity": "OICT",
+      "office": "OICT"
+    },
+    {
+      "entity": "UNDCO",
+      "office": "UNDCO"
+    },
+    {
+      "entity": "DCO",
+      "office": "DCO"
+    },
+    {
+      "entity": "DPPA",
+      "office": "DPPA"
+    },
+    {
+      "entity": "DMSPC",
+      "office": "OUSG"
+    },
+    {
+      "entity": "OCHA",
+      "office": "OCHA"
+    },
+    {
+      "entity": "DGACM",
+      "office": "DGACM"
+    },
+    {
+      "entity": "BINUH",
+      "office": "BINUH"
+    },
+    {
+      "entity": "ODA",
+      "office": "ODA"
+    },
+    {
+      "entity": "OSESG",
+      "office": "Great Lakes Region"
+    },
+    {
+      "entity": "OSESG",
+      "office": "Syria"
+    },
+    {
+      "entity": "UNAMA",
+      "office": "UNAMA"
+    },
+    {
+      "entity": "UNOWAS",
+      "office": "UNOWAS"
+    },
+    {
+      "entity": "UNSMIL",
+      "office": "UNSMIL"
+    },
+    {
+      "entity": "UNOG",
+      "office": "UNOG"
+    },
+    {
+      "entity": "UNON",
+      "office": "UNON"
+    },
+    {
+      "entity": "ECA",
+      "office": "ECA"
+    },
+    {
+      "entity": "ESCWA",
+      "office": "ESCWA"
+    },
+    {
+      "entity": "DSS",
+      "office": "DSS"
+    },
+    {
+      "entity": "UNOCA",
+      "office": "UNOCA"
+    },
+    {
+      "entity": "ESCAP",
+      "office": "ESCAP"
+    },
+    {
+      "entity": "OAJ",
+      "office": "OAJ"
+    },
+    {
+      "entity": "OSESGY",
+      "office": "OSESGY"
+    },
+    {
+      "entity": "OHCHR",
+      "office": "OHCHR"
+    },
+    {
+      "entity": "DGC",
+      "office": "DGC"
+    },
+    {
+      "entity": "DESA",
+      "office": "DESA"
+    },
+    {
+      "entity": "OHRLLS",
+      "office": "OHRLLS"
+    },
+    {
+      "entity": "CEB",
+      "office": "CEB"
+    },
+    {
+      "entity": "DOS",
+      "office": "UCSD"
+    },
+    {
+      "entity": "UNLB",
+      "office": "UNLB"
+    },
+    {
+      "entity": "UNOP",
+      "office": "UNOP"
+    },
+    {
+      "entity": "DMSPC",
+      "office": "HCC"
+    },
+    {
+      "entity": "UNOV",
+      "office": "UNOV"
+    },
+    {
+      "entity": "UNAMI",
+      "office": "UNAMI"
+    },
+    {
+      "entity": "EOSG",
+      "office": "EOSG"
+    }
+  ]
+}

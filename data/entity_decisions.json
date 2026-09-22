@@ -1,0 +1,11 @@
+{
+  "decision_date": "2026-09-22",
+  "authority": "User instructions in this task",
+  "dco": "Merge DCO and UNDCO as DCO.",
+  "responsibility": "Distinct entity/office pairs count as separate responsible units. DMSPC/BTAD and DMSPC/OPPFB are Joint. A recommendation counts once in global totals.",
+  "historical_entities": "Retain separately and flag for review; do not map to successors.",
+  "unspecified_offices": "Do not assign a department to an office unless the source names that office.",
+  "collective_names": "Plural peacekeeping missions or regional commissions establish Joint responsibility, but no specific members are inferred. Entity mapping remains review-required.",
+  "rcs": "Keep RCS separate from DCO (explicit user instruction, 2026-09-22).",
+  "unmsil": "Normalize UNMSIL to UNSMIL based on official UN web evidence; preserve raw wording. See data/reference/eosg-provenance.json."
+}
