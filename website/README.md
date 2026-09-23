@@ -10,7 +10,7 @@ From the repository root:
 python3 -m http.server 4173 --bind 127.0.0.1 --directory website
 ```
 
-Open http://127.0.0.1:4173/ (use HTTP, not `file://`, because data is fetched). Roboto is loaded from Google Fonts, with Arial fallback if unavailable. Files and source PDFs otherwise work without external services.
+Open http://127.0.0.1:4173/ (use HTTP, not `file://`, because data is fetched). Roboto is loaded from Google Fonts, with Arial fallback if unavailable. Dashboard data and bundled PDF copies are served locally. Citation links open official PDFs on `documents.un.org` and require internet access.
 
 ## What is included
 
@@ -19,7 +19,7 @@ Open http://127.0.0.1:4173/ (use HTTP, not `file://`, because data is fetched). 
 - `data/snapshots.json`: annual audit-year register states, assessment populations, entity source wording and selected BOA history IDs. 2014 is the opening baseline; 2015–2024 are comparable display years; 2025 is supplementary follow-up.
 - `data/details/<stable-ID>.json`: every available observation with separate Board assessment, administration response and SG progress fields; original, revised and other target-date wording; review flags and field-level evidence.
 - `data/reports.json`: report symbols, audit periods, issue dates, source URLs, local PDF paths and SHA-256 checksums.
-- `reports/`: original PDFs. Local links use a one-based PDF position in `#page=N`. Printed page labels are shown independently; page anchoring depends on the user's PDF viewer.
+- `reports/`: bundled original PDFs used for checksum and locator verification. Dashboard citations open each report's official `download_url` on `documents.un.org`, with a one-based PDF position in `#page=N`. Printed page labels are shown independently; page anchoring depends on the user's PDF viewer. Bundled copies remain available at the `local_path` values in `data/reports.json`; the UI does not automatically fall back to them.
 - `data/metadata.json`, `data/unverified-locators.json`, `DATA_GAPS.md`: extraction provenance and unresolved evidence. Review markdown files are frozen alongside the export.
 
 ## Evidence and analytical limits
@@ -49,7 +49,7 @@ PDF locator verification is conservative automated matching of complete normaliz
    ```
 
    This preserves upstream `recommendation_id` and `history_id` values, includes all available source observations, checks PDFs and writes separate JSON and PDF assets. It never invents absent dates, statuses, comments, entities or page locators. Review `data/unverified-locators.json` and the generated gap counts after each export. If IDs change upstream, apply the pipeline's reviewed ID crosswalk before exporting.
-4. Review any additions/removals in recommendation IDs, source checksums, review decisions and snapshots. For changed source layouts, inspect representative PDF images as well as text. `metadata.sourceLogicalSha256` fingerprints the exported database content, and `exportedAt` records the capture time.
+4. Review any additions/removals in recommendation IDs, source checksums, review decisions and snapshots. For changed source layouts, inspect representative PDF images as well as text. `metadata.sourceLogicalSha256` fingerprints the exported database content, and `exportedAt` records the capture time. Refresh `VALIDATION.md` from the new metadata and actual test results; keep its export timestamp and counts aligned with the release.
 5. For browser verification, `npm ci --prefix website`; install Playwright's Chromium with `cd website && npx playwright install chromium` on CI/Linux, or use installed Chrome on macOS. With the preview running, run `node tests/site/browser.cjs` at the repository root. Browser checks use the project's pinned Playwright and axe-core and write results under `tmp/site/`.
 6. `python3 scripts/site/build.py` packages only public assets into `dist/`; local defaults use `./`. Test a real repository prefix with `python3 scripts/site/build.py --base-path /your-repository/` and serve it at that same prefix. To add a newly complete reporting year, extend both the exporter snapshot range and `metadata.years` only after verifying both volume populations; do not simply show supplemental coverage as a complete year.
 
@@ -63,14 +63,14 @@ The workflow has **only `workflow_dispatch`**, and its `publish` checkbox defaul
 
 1. Set repository **Settings → Pages → Source → GitHub Actions**.
 2. Run **Prepare or publish BOA dashboard**, and enable `publish` only when publication is intended.
-3. The publish build uses `actions/configure-pages`'s actual `base_path`, including custom-domain/root sites. Preview-only CI derives `/repository/` from `GITHUB_REPOSITORY` (or `/` for `owner.github.io`). All assets, JSON, internal links and PDFs resolve under that base. Nothing hard-codes a guessed repository name.
+3. The publish build uses `actions/configure-pages`'s actual `base_path`, including custom-domain/root sites. Preview-only CI derives `/repository/` from `GITHUB_REPOSITORY` (or `/` for `owner.github.io`). Site assets, JSON, internal links and bundled PDF paths resolve under that base. Citation links use absolute official UN URLs. Nothing hard-codes a guessed repository name.
 4. The deployment job uses the `github-pages` environment and has `pages: write` and `id-token: write` permissions. Configure environment reviewers if desired.
 
 Official workflow reference: https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
 
 ## Validation scope
 
-Model tests cover stable identities, all PDF checksums/page ranges, exhaustive year/volume/entity balances and trend continuity, rates and zero denominators, implemented assessment vs new implementation distinctions, and filters/search. Build tests cover project, user-site, custom-domain and local base paths. Browser tests cover desktop and 320/390/768px layouts, keyboard tabs, filters, no-results states, expansion/history, PDF responses, accessibility scans and 200% text. Automated accessibility results supplement visual inspection; they are not a complete assistive-technology certification.
+Model tests cover stable identities, all PDF checksums/page ranges, exhaustive year/volume/entity balances and trend continuity, rates and zero denominators, implemented assessment vs new implementation distinctions, and filters/search. Build tests cover project, user-site, custom-domain and local base paths. Browser tests cover desktop and 320/390/768px layouts, keyboard tabs, filters, no-results states, expansion/history, official UN PDF URL and page-fragment construction, accessibility scans and 200% text. They do not download every external PDF or verify how each viewer handles the page fragment. Automated accessibility results supplement visual inspection; they are not a complete assistive-technology certification. See `VALIDATION.md` for the dated results and dataset counts.
 
 ## Dashboard presentation update
 
