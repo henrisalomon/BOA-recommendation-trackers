@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
-import {labels,rate,scope,movement,trendMovement,searchRows,terminal,entityKeys,periodLabel,waterfallSteps} from '../../website/assets/model.js';
+import {labels,rate,scope,movement,trendMovement,searchRows,terminal,entityKeys,periodLabel,waterfallSteps,targetDates} from '../../website/assets/model.js';
 const root=new URL('../../website/',import.meta.url),load=n=>JSON.parse(readFileSync(new URL(`data/${n}.json`,root),'utf8'));
 const recommendations=load('recommendations'),snapshots=load('snapshots'),reports=load('reports');
 const data={recommendations,snapshots,reports,byId:new Map(recommendations.map(r=>[r.id,r]))};
@@ -110,3 +110,10 @@ test('All dashboard views exclude SHP records; HUM-06 remains implemented',()=>{
 });
 
 test('Approved HUM-02 reconciles 2015–16 assessments without inventing a later closure',()=>{const m=movement(data,2016,'II');assert.equal(m.implementedRate,39);assert.equal(m.implementedClosedRate,46);assert.equal(m.denominator,63);assert.equal(movement(data,2017,'II').opening,72);assert.equal(movement(data,2024,'II').opening,54);});
+
+test('target dates preserve earliest fallback, explicit original precedence and latest revision',()=>{
+ const a={source_type:'SG',target_raw:'2020'},b={source_type:'SG',target_raw:'2022'},c={source_type:'SG',initial_target_raw:'2019',revised_target_raw:'2023'},d={source_type:'SG',initial_target_raw:'2021',revised_target_raw:'2025'};
+ assert.deepEqual(targetDates([a,b]),{original:{history:a,field:'target_raw'},revised:null});
+ assert.deepEqual(targetDates([a,b,c,d]),{original:{history:c,field:'initial_target_raw'},revised:{history:d,field:'revised_target_raw'}});
+ assert.deepEqual(targetDates([{source_type:'BOA',target_raw:'2018'}]),{original:null,revised:null});
+});

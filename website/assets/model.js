@@ -24,3 +24,12 @@ export function waterfallSteps(m){
 
 // All views use the same population, already scoped in the database.
 export const trendMovement=movement;
+
+// History is exported in report chronology. Preserve the source field for citations.
+export function targetDates(history){
+ const sg=history.filter(h=>h.source_type==='SG');
+ const explicit=sg.find(h=>h.initial_target_raw);
+ const original=explicit||sg.find(h=>h.target_raw);
+ const revised=sg.filter(h=>h.revised_target_raw).at(-1);
+ return {original:original?{history:original,field:explicit?'initial_target_raw':'target_raw'}:null,revised:revised?{history:revised,field:'revised_target_raw'}:null};
+}
