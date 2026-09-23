@@ -83,3 +83,15 @@ The dashboard combines `overtaken_by_events` and `closed_other` under “Closed�
 The extractor and database retain the original BOA categories and source wording, including “Not implemented”. No re-scraping or recategorisation is required for these display changes.
 
 The Analysis tab also shows the shared recommendation list beneath its charts, including search, status filtering, pagination and source details. Switching tabs preserves list filters. Chart values retain screen-reader tables without a visible table toggle.
+
+### Main status and SG updates
+
+The main status uses the latest available BOA follow-up assessment through the selected reporting year. Recommendations issued in that year without a BOA follow-up assessment are labelled “Newly issued”; this does not imply an implementation status. Details show the latest available SG-reported status and the full report history, including later follow-up. SG updates do not replace the main BOA status, and “Closure requested” does not mean the Board has confirmed closure. Implementation rates use eligible BOA assessments only; newly issued recommendations without an assessment are excluded.
+
+Older records without a BOA follow-up assessment retain “No assessment in data”; identity and assessment review flags remain visible. “Newly issued” applies to the selected issuance year in historical snapshots as well as the latest year. It remains non-terminal in register counts.
+
+### Trends: Implemented/Closed
+
+Trends combines `implemented`, `overtaken_by_events` and `closed_other` under “Implemented/Closed”. Its bars count transitions from outstanding to any of these terminal states. Its annual rate uses all eligible current-year assessments in these three states, so a continuing terminal assessment affects the rate but does not create another transition. Other implementation-only metrics and the underlying source statuses retain their existing definitions. Opening/closing bars track the extracted register, including unresolved carry-forwards, and do not necessarily match BOA published assessment totals.
+
+Strategic Heritage Plan recommendations and all their BOA/SG history are excluded at database build time by `scripts/study_scope.py`. This scope applies to every dashboard view, balance, rate, filter, detail and Excel/CSV export. Source PDFs and raw extraction caches remain intact. Stale detail assets for excluded IDs are removed during export. Excel reconciles published issuance totals to the scoped totals with a separate SHP deduction. HUM-06 remains approved as Implemented; HUM-02 is approved as Under implementation.

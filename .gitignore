@@ -5,3 +5,6 @@ __pycache__/
 /dist/
 /tmp/
 # Website exports are committed; source-analysis files remain outside deployment.
+
+# Local compressed historical material; never publish.
+/archives/

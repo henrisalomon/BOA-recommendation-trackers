@@ -1,0 +1,742 @@
+[
+  {
+    "report_id": "BOA_2015_Vol_I",
+    "annex": "Annex I",
+    "stream": "UN",
+    "pdf_page": 136,
+    "values": {
+      "reference": "",
+      "recommendation_text": "Total",
+      "administration_response": "",
+      "board_assessment": "",
+      "Fully implemented": "6",
+      "Under implementation": "22",
+      "Not implemented": "32",
+      "Overtaken by events": "1",
+      "Closed by the Board": "2"
+    },
+    "text": "Total 6 22 32 1 2"
+  },
+  {
+    "report_id": "BOA_2015_Vol_I",
+    "annex": "Annex II",
+    "stream": "ICT",
+    "pdf_page": 148,
+    "values": {
+      "reference": "",
+      "recommendation_text": "Total",
+      "administration_response": "",
+      "board_assessment": "",
+      "Fully implemented": "0",
+      "Under implementation": "21",
+      "Not implemented": "0",
+      "Overtaken by events": "0",
+      "Closed by the Board": "0"
+    },
+    "text": "Total 0 21 0 0 0"
+  },
+  {
+    "report_id": "BOA_2015_Vol_II",
+    "annex": "Annex II",
+    "stream": "UNPKO",
+    "pdf_page": 150,
+    "values": {
+      "recommendation_text": "Total",
+      "reference": "",
+      "administration_response": "",
+      "board_assessment": "",
+      "Implemented": "45",
+      "Under implementation": "30",
+      "Not implemented": "2",
+      "Overtaken by events": "3"
+    },
+    "text": "Total 45 30 2 3"
+  },
+  {
+    "report_id": "BOA_2016_Vol_I",
+    "annex": "Annex I",
+    "stream": "UN",
+    "pdf_page": 137,
+    "values": {
+      "row_number": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "",
+      "Fully implemented": "17",
+      "Under implementation": "66",
+      "Not implemented": "10",
+      "Overtaken by events": "5"
+    },
+    "text": "Total 17 66 10 5"
+  },
+  {
+    "report_id": "BOA_2016_Vol_II",
+    "annex": "Annex II",
+    "stream": "UNPKO",
+    "pdf_page": 142,
+    "values": {
+      "recommendation_text": "Total",
+      "reference": "",
+      "administration_response": "",
+      "board_assessment": "",
+      "Implemented": "39",
+      "Under implementation": "16",
+      "Not implemented": "1",
+      "Overtaken by events": "7"
+    },
+    "text": "Total 39 16 1 7"
+  },
+  {
+    "report_id": "BOA_2017_Vol_I",
+    "annex": "",
+    "stream": "UN",
+    "pdf_page": 149,
+    "values": {
+      "row_number": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "",
+      "Fully implemented": "31",
+      "Under implementation": "84",
+      "Not implemented": "12",
+      "Overtaken by events": "2"
+    },
+    "text": "Total 31 84 12 2"
+  },
+  {
+    "report_id": "BOA_2017_Vol_II",
+    "annex": "Annex II",
+    "stream": "UNPKO",
+    "pdf_page": 159,
+    "values": {
+      "recommendation_text": "Total",
+      "reference": "",
+      "administration_response": "",
+      "board_assessment": "",
+      "Implemented": "34",
+      "Under implementation": "33",
+      "Not implemented": "2",
+      "Overtaken by events": "2"
+    },
+    "text": "Total 34 33 2 2"
+  },
+  {
+    "report_id": "BOA_2018_Vol_I",
+    "annex": "Annex I",
+    "stream": "UN",
+    "pdf_page": 190,
+    "values": {
+      "row_number": "Total",
+      "audit_year_raw": "",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "",
+      "Implemented": "13",
+      "Under implementation": "149",
+      "Not implemented": "4",
+      "Overtaken by events": "1"
+    },
+    "text": "Total 13 149 4 1"
+  },
+  {
+    "report_id": "BOA_2018_Vol_I",
+    "annex": "Annex II",
+    "stream": "Strategic heritage plan",
+    "pdf_page": 203,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total",
+      "reference": "",
+      "recommendation_text": "43",
+      "administration_response": "",
+      "board_assessment": "",
+      "Implemented": "26",
+      "Under implementation": "15",
+      "Not implemented": "\u2013",
+      "Overtaken by events": "2"
+    },
+    "text": "Total 43 26 15 \u2013 2"
+  },
+  {
+    "report_id": "BOA_2018_Vol_I",
+    "annex": "Annex III",
+    "stream": "Capital master plan",
+    "pdf_page": 212,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total",
+      "reference": "",
+      "recommendation_text": "20",
+      "administration_response": "",
+      "board_assessment": "",
+      "Implemented": "5",
+      "Under implementation": "15",
+      "Not implemented": "\u2013",
+      "Overtaken by events": "\u2013"
+    },
+    "text": "Total 20 5 15 \u2013 \u2013"
+  },
+  {
+    "report_id": "BOA_2018_Vol_II",
+    "annex": "Annex II",
+    "stream": "UNPKO",
+    "pdf_page": 144,
+    "values": {
+      "recommendation_text": "Total, 110 recommendations",
+      "reference": "",
+      "administration_response": "",
+      "board_assessment": "",
+      "Implemented": "56",
+      "Under implementation": "49",
+      "Not implemented": "2",
+      "Overtaken by events": "3"
+    },
+    "text": "Total, 110 recommendations 56 49 2 3"
+  },
+  {
+    "report_id": "BOA_2019_Vol_I",
+    "annex": "Annex I",
+    "stream": "UN",
+    "pdf_page": 231,
+    "values": {
+      "row_number": "Total",
+      "audit_year_raw": "",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "224",
+      "Implemented": "49",
+      "Under implementation": "153",
+      "Not implemented": "13",
+      "Overtaken by events": "9"
+    },
+    "text": "Total 224 49 153 13 9"
+  },
+  {
+    "report_id": "BOA_2019_Vol_I",
+    "annex": "Annex II",
+    "stream": "Capital master plan",
+    "pdf_page": 237,
+    "values": {
+      "row_number": "Total",
+      "audit_year_raw": "",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "15",
+      "Implemented": "13",
+      "Under implementation": "2",
+      "Not implemented": "\u2013",
+      "Overtaken by events": "\u2013"
+    },
+    "text": "Total 15 13 2 \u2013 \u2013"
+  },
+  {
+    "report_id": "BOA_2019_Vol_II",
+    "annex": "Annex II",
+    "stream": "UNPKO",
+    "pdf_page": 124,
+    "values": {
+      "recommendation_text": "Total, 103 recommendations",
+      "reference": "",
+      "administration_response": "",
+      "board_assessment": "",
+      "Implemented": "24",
+      "Under implementation": "59",
+      "Not implemented": "14",
+      "Overtaken by events": "6"
+    },
+    "text": "Total, 103 recommendations 24 59 14 6"
+  },
+  {
+    "report_id": "BOA_2020_Vol_I",
+    "annex": "Annex I",
+    "stream": "UN",
+    "pdf_page": 241,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "279",
+      "Implemented": "96",
+      "Under implementation": "150",
+      "Not implemented": "2",
+      "Overtaken by events": "31"
+    },
+    "text": "Total 279 96 150 2 31"
+  },
+  {
+    "report_id": "BOA_2020_Vol_I",
+    "annex": "Annex II",
+    "stream": "ICT",
+    "pdf_page": 277,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "68",
+      "Implemented": "28",
+      "Under implementation": "32",
+      "Not implemented": "0",
+      "Overtaken by events": "8"
+    },
+    "text": "Total 68 28 32 0 8"
+  },
+  {
+    "report_id": "BOA_2020_Vol_I",
+    "annex": "Annex III",
+    "stream": "Strategic heritage plan",
+    "pdf_page": 286,
+    "values": {
+      "row_number": "Total",
+      "audit_year_raw": "",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "28",
+      "Implemented": "13",
+      "Under implementation": "15",
+      "Not implemented": "0",
+      "Overtaken by events": "0"
+    },
+    "text": "Total 28 13 15 0 0"
+  },
+  {
+    "report_id": "BOA_2020_Vol_I",
+    "annex": "Annex IV",
+    "stream": "Capital master plan",
+    "pdf_page": 287,
+    "values": {
+      "row_number": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "2",
+      "Implemented": "0",
+      "Under implementation": "2",
+      "Not implemented": "0",
+      "Overtaken by events": "0"
+    },
+    "text": "Total 2 0 2 0 0"
+  },
+  {
+    "report_id": "BOA_2020_Vol_II",
+    "annex": "",
+    "stream": "UNPKO",
+    "pdf_page": 124,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "",
+      "reference": "Total, 116 recommendations",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "",
+      "Implemented": "42",
+      "Under implementation": "52",
+      "Not implemented": "7",
+      "Overtaken by events": "15"
+    },
+    "text": "Total, 116 recommendations 42 52 7 15"
+  },
+  {
+    "report_id": "BOA_2021_Vol_I",
+    "annex": "Annex I",
+    "stream": "UN",
+    "pdf_page": 244,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "278",
+      "Implemented": "98",
+      "Under implementation": "160",
+      "Not implemented": "0",
+      "Overtaken by events": "20"
+    },
+    "text": "Total 278 98 160 0 20"
+  },
+  {
+    "report_id": "BOA_2021_Vol_I",
+    "annex": "Annex II",
+    "stream": "ICT",
+    "pdf_page": 256,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "32",
+      "Implemented": "7",
+      "Under implementation": "16",
+      "Not implemented": "0",
+      "Overtaken by events": "9"
+    },
+    "text": "Total 32 7 16 0 9"
+  },
+  {
+    "report_id": "BOA_2021_Vol_I",
+    "annex": "Annex III",
+    "stream": "Capital master plan",
+    "pdf_page": 257,
+    "values": {
+      "row_number": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "2",
+      "Implemented": "0",
+      "Under implementation": "2",
+      "Not implemented": "0",
+      "Overtaken by events": "0"
+    },
+    "text": "Total 2 0 2 0 0"
+  },
+  {
+    "report_id": "BOA_2021_Vol_II",
+    "annex": "Annex II",
+    "stream": "UNPKO",
+    "pdf_page": 97,
+    "values": {
+      "recommendation_text": "Total, 89 recommendations",
+      "reference": "",
+      "administration_response": "",
+      "board_assessment": "",
+      "Implemented": "53",
+      "Under implementation": "22",
+      "Not implemented": "9",
+      "Overtaken by events": "5"
+    },
+    "text": "Total, 89 recommendations 53 22 9 5"
+  },
+  {
+    "report_id": "BOA_2022_Vol_I",
+    "annex": "Annex I",
+    "stream": "UN",
+    "pdf_page": 225,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "262",
+      "Implemented": "111",
+      "Under implementation": "140",
+      "Not implemented": "0",
+      "Overtaken by events": "11"
+    },
+    "text": "Total 262 111 140 0 11"
+  },
+  {
+    "report_id": "BOA_2022_Vol_I",
+    "annex": "Annex II",
+    "stream": "Umoja",
+    "pdf_page": 240,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "37",
+      "Implemented": "19",
+      "Under implementation": "17",
+      "Not implemented": "0",
+      "Overtaken by events": "1"
+    },
+    "text": "Total 37 19 17 0 1"
+  },
+  {
+    "report_id": "BOA_2022_Vol_I",
+    "annex": "Annex III",
+    "stream": "Strategic heritage plan",
+    "pdf_page": 262,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "29",
+      "Implemented": "17",
+      "Under implementation": "9",
+      "Not implemented": "1",
+      "Overtaken by events": "2"
+    },
+    "text": "Total 29 17 9 1 2"
+  },
+  {
+    "report_id": "BOA_2022_Vol_I",
+    "annex": "Annex IV",
+    "stream": "ICT",
+    "pdf_page": 267,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "16",
+      "Implemented": "2",
+      "Under implementation": "13",
+      "Not implemented": "0",
+      "Overtaken by events": "1"
+    },
+    "text": "Total 16 2 13 0 1"
+  },
+  {
+    "report_id": "BOA_2022_Vol_I",
+    "annex": "Annex V",
+    "stream": "Capital master plan",
+    "pdf_page": 268,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "2",
+      "Implemented": "1",
+      "Under implementation": "1",
+      "Not implemented": "0",
+      "Overtaken by events": "0"
+    },
+    "text": "Total 2 1 1 0 0"
+  },
+  {
+    "report_id": "BOA_2022_Vol_II",
+    "annex": "",
+    "stream": "UNPKO",
+    "pdf_page": 111,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total number",
+      "reference": "of recommendations",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "41",
+      "Implemented": "19",
+      "Under implementation": "21",
+      "Not implemented": "0",
+      "Overtaken by events": "1"
+    },
+    "text": "Total number of recommendations 41 19 21 0 1"
+  },
+  {
+    "report_id": "BOA_2023_Vol_I",
+    "annex": "Annex I",
+    "stream": "UN",
+    "pdf_page": 203,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "",
+      "reference": "Total",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "220",
+      "Implemented": "88",
+      "Under implementation": "115",
+      "Not implemented": "0",
+      "Overtaken by events": "17"
+    },
+    "text": "Total 220 88 115 0 17"
+  },
+  {
+    "report_id": "BOA_2023_Vol_I",
+    "annex": "Annex II",
+    "stream": "Umoja",
+    "pdf_page": 211,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "",
+      "reference": "Total",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "17",
+      "Implemented": "8",
+      "Under implementation": "6",
+      "Not implemented": "0",
+      "Overtaken by events": "3"
+    },
+    "text": "Total 17 8 6 0 3"
+  },
+  {
+    "report_id": "BOA_2023_Vol_I",
+    "annex": "Annex III",
+    "stream": "ICT",
+    "pdf_page": 216,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "13",
+      "Implemented": "8",
+      "Under implementation": "4",
+      "Not implemented": "0",
+      "Overtaken by events": "1"
+    },
+    "text": "Total 13 8 4 0 1"
+  },
+  {
+    "report_id": "BOA_2023_Vol_I",
+    "annex": "Annex IV",
+    "stream": "Capital master plan",
+    "pdf_page": 217,
+    "values": {
+      "row_number": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "1",
+      "Implemented": "0",
+      "Under implementation": "1",
+      "Not implemented": "0",
+      "Overtaken by events": "0"
+    },
+    "text": "Total 1 0 1 0 0"
+  },
+  {
+    "report_id": "BOA_2023_Vol_II",
+    "annex": "Annex II",
+    "stream": "UNPKO",
+    "pdf_page": 148,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total number",
+      "reference": "of recommendations",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "41",
+      "Implemented": "13",
+      "Under implementation": "27",
+      "Not implemented": "0",
+      "Overtaken by events": "1"
+    },
+    "text": "Total number of recommendations 41 13 27 0 1"
+  },
+  {
+    "report_id": "BOA_2024_Vol_I",
+    "annex": "Annex I",
+    "stream": "UN",
+    "pdf_page": 179,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "187",
+      "Implemented": "84",
+      "Under implementation": "86",
+      "Not implemented": "\u2013",
+      "Overtaken by events": "17"
+    },
+    "text": "Total 187 84 86 \u2013 17"
+  },
+  {
+    "report_id": "BOA_2024_Vol_I",
+    "annex": "Annex II",
+    "stream": "Umoja",
+    "pdf_page": 188,
+    "values": {
+      "row_number": "Total",
+      "audit_year_raw": "",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "17",
+      "Implemented": "12",
+      "Under implementation": "2",
+      "Not implemented": "\u2013",
+      "Overtaken by events": "3"
+    },
+    "text": "Total 17 12 2 \u2013 3"
+  },
+  {
+    "report_id": "BOA_2024_Vol_I",
+    "annex": "Annex III",
+    "stream": "ICT",
+    "pdf_page": 193,
+    "values": {
+      "row_number": "Total",
+      "audit_year_raw": "",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "13",
+      "Implemented": "9",
+      "Under implementation": "\u2013",
+      "Not implemented": "\u2013",
+      "Overtaken by events": "4"
+    },
+    "text": "Total 13 9 \u2013 \u2013 4"
+  },
+  {
+    "report_id": "BOA_2024_Vol_I",
+    "annex": "Annex IV",
+    "stream": "Capital master plan",
+    "pdf_page": 194,
+    "values": {
+      "row_number": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "1",
+      "Implemented": "1",
+      "Under implementation": "\u2013",
+      "Not implemented": "\u2013",
+      "Overtaken by events": "\u2013"
+    },
+    "text": "Total 1 1 \u2013 \u2013 \u2013"
+  },
+  {
+    "report_id": "BOA_2024_Vol_II",
+    "annex": "Annex II",
+    "stream": "UNPKO",
+    "pdf_page": 158,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total number",
+      "reference": "of recommendations",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "53",
+      "Implemented": "14",
+      "Under implementation": "38",
+      "Not implemented": "0",
+      "Overtaken by events": "1"
+    },
+    "text": "Total number of recommendations 53 14 38 0 1"
+  },
+  {
+    "report_id": "BOA_A_80_5_VolII",
+    "annex": "Annex II",
+    "stream": "UNPKO",
+    "pdf_page": 137,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total number",
+      "reference": "of recommendations",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "73",
+      "Implemented": "36",
+      "Under implementation": "36",
+      "Not implemented": "0",
+      "Overtaken by events": "1"
+    },
+    "text": "Total number of recommendations 73 36 36 0 1"
+  }
+]

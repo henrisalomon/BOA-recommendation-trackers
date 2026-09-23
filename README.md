@@ -18,3 +18,12 @@ Repository: https://github.com/henrisalomon/BOA-recommendation-trackers
 GitHub Pages: https://henrisalomon.github.io/BOA-recommendation-trackers/
 
 Publication uses the manual workflow with `publish` enabled; pushes alone do not deploy.
+
+## Review and local archives
+
+- [Pending human review](outputs/boa-2015-2024/HUMAN_REVIEW_REGISTER.md)
+- [Review follow-up and evidence](outputs/boa-2015-2024/HUMAN_REVIEW_FOLLOWUP.md)
+- [Entity-mapping review](outputs/boa-2015-2024/entity_mapping_review.csv)
+- [Cleanup archive and restore instructions](archives/cleanup-2026-09-22/README.md)
+
+Active review material remains unpacked. Historical staging copies and diagnostics are compressed under `archives/`; validation baselines stay at their original paths.

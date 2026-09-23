@@ -5,6 +5,8 @@ from pathlib import Path
 from datetime import datetime, timezone
 from pypdf import PdfReader
 from locators import printed_page
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from study_scope import SCOPE_NOTE
 ROOT=Path(__file__).resolve().parents[2]
 OUT=ROOT/'website/data'
 DB=ROOT/'outputs/boa-2015-2024/boa_recommendations.sqlite'
@@ -23,6 +25,7 @@ def main():
  byreport=collections.defaultdict(list);byrec=collections.defaultdict(list)
  for h in histories:byreport[h['report_id']].append(h);byrec[h['recommendation_id']].append(h)
  stats=collections.Counter();verification=[]
+ assessment_streams={(c['report_id'],c['annex']):c['stream'] for c in json.loads((ROOT/'data/controls.json').read_text())}
  for rid,r in reports.items():
   path=ROOT/r['local_path'];actual=hashlib.sha256(path.read_bytes()).hexdigest()
   if actual!=r['sha256']:raise ValueError('Source checksum mismatch: '+rid)
@@ -75,18 +78,19 @@ def main():
    eligible=[h for h in hist if (reports[h['report_id']]['audit_year'] or 9999)<=year]
    boa=[h for h in eligible if h['source_type']=='BOA' and h['kind']=='annex']
    last=boa[-1] if boa else None
-   status=(last['reviewed_status_group'] or last['status_group']) if last else 'unassessed'
+   status=(last['reviewed_status_group'] or last['status_group']) if last else ('newly_issued' if rec['audit_year']==year else 'unassessed')
    if rec['identity_review'] or (last and last['review_status']=='needs_review'):status='needs_review'
    entities=[h for h in eligible if h['entities_raw']]
    current=[h for h in boa if reports[h['report_id']]['audit_year']==year]
    assessment=current[-1] if current else None
    rate_status=(assessment['reviewed_status_group'] or assessment['status_group']) if assessment and assessment['review_status']!='needs_review' and not rec['identity_review'] else None
-   snapshots[str(year)].append({'id':rid,'status':status or 'unassessed','observationYear':reports[last['report_id']]['audit_year'] if last else None,'entity':entities[-1]['entities_raw'] if entities else 'Entity not extracted','assessment':rate_status,'hasAssessment':bool(assessment),'historyId':last['history_id'] if last else None})
+   snapshots[str(year)].append({'id':rid,'status':status or 'unassessed','observationYear':reports[last['report_id']]['audit_year'] if last else None,'entity':entities[-1]['entities_raw'] if entities else 'Entity not extracted','assessment':rate_status,'hasAssessment':bool(assessment),'assessmentStream':assessment_streams.get((assessment['report_id'],assessment['annex'])) if assessment else None,'historyId':last['history_id'] if last else None})
    assignment=entities[-1] if entities else {}
    snapshots[str(year)][-1].update(entities=json.loads(assignment.get('entities_json') or '[]'),offices=json.loads(assignment.get('offices_json') or '[]'),responsibility=assignment.get('responsibility_type','Unknown'),entityMappingStatus=assignment.get('entity_mapping_status','not_reported'),entityHistoryId=assignment.get('history_id'))
  stats['missingOriginalTargets']=sum(not any(h['initial_target_raw'] for h in byrec[r['recommendation_id']]) for r in recs)
  stats['missingRevisedTargets']=sum(not any(h['revised_target_raw'] for h in byrec[r['recommendation_id']]) for r in recs)
  gaptexts=[
+  SCOPE_NOTE,
   f"{sum(not r['publication_date'] for r in reports.values())} reports lack an exact publication date; {sum(not r['publication_year'] for r in reports.values())} also lack a publication year. Those histories are grouped by audit year with an explicit warning; exact chronological order is unverified where dates are missing.",
   'This is an extracted register, not a certified complete population or an official implementation measure. Carried-forward statuses are the last observed BOA assessment, not evidence of current status.',
   'Volume I uses calendar years; Volume II displays PKO fiscal periods, for example 2019-20 (1 July 2019 to 30 June 2020). Numeric end years are retained for calculations. These are not a common 31 December snapshot.',
@@ -99,7 +103,10 @@ def main():
   f"{sum(h['review_status']=='needs_review' for h in histories)} observations require review. Status conflicts remain visible and are excluded from assessment-rate denominators.",
   'The source review documentation records three raw printed-total discrepancies and pending human decisions. Arithmetic validation does not resolve those source discrepancies.'
  ]
- meta={'schemaVersion':2,'exporterVersion':'2026-09-22-entity-period-v2','exportedAt':datetime.now(timezone.utc).isoformat(),'source':'outputs/boa-2015-2024/boa_recommendations.sqlite','sourceLogicalSha256':hashlib.sha256(json.dumps([recs,[{k:v for k,v in h.items() if k!='evidence'} for h in histories],reports],sort_keys=True).encode()).hexdigest(),'years':list(range(2015,2025)),'counts':dict(stats,recommendations=len(recs),reports=len(reports)),'gaps':gaptexts}
+ meta={'schemaVersion':2,'exporterVersion':'2026-09-23-global-scope-v4','exportedAt':datetime.now(timezone.utc).isoformat(),'source':'outputs/boa-2015-2024/boa_recommendations.sqlite','sourceLogicalSha256':hashlib.sha256(json.dumps([recs,[{k:v for k,v in h.items() if k!='evidence'} for h in histories],reports],sort_keys=True).encode()).hexdigest(),'years':list(range(2015,2025)),'counts':dict(stats,recommendations=len(recs),reports=len(reports)),'gaps':gaptexts}
+ # Remove only explicitly excluded detail assets so old URLs cannot expose active out-of-scope records.
+ for excluded in json.loads((ROOT/'data/study_scope_exclusions.json').read_text()):
+  (OUT/'details'/f"{excluded['recommendation_id']}.json").unlink(missing_ok=True)
  dump(OUT/'recommendations.json',index);dump(OUT/'snapshots.json',snapshots);dump(OUT/'reports.json',reports);dump(OUT/'metadata.json',meta);dump(OUT/'unverified-locators.json',verification)
  for name in ['DATA_DICTIONARY.md','HUMAN_REVIEW_REGISTER.md','HUMAN_REVIEW_FOLLOWUP.md']:
   shutil.copyfile(DB.parent/name,OUT/name)

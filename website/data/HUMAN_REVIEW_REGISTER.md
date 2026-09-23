@@ -31,7 +31,7 @@ Supporting source or reference:BOA Report 2015 vol 2
 
 ## HUM-02 — A/71/5 (Vol. II): origin A/70/5 (Vol. II), paragraph 342
 
-**Status:** Investigation complete — awaiting final human decision
+**Status:** Resolved — Henri decision applied
 
 **Decision needed:** If no authoritative correction resolves the contradiction, what analytical treatment should be approved for the conflicting printed status and Board narrative?
 
@@ -55,6 +55,13 @@ Supporting source or reference:
 
 **Investigation complete; your decision remains open.** Page 142's printed subtotal is 15 Implemented / 10 Under implementation / 1 Not implemented / 5 Overtaken. Individual marks give 16 / 9 / 1 / 5. Treating paragraph 342 as Under implementation would reconcile both this subtotal and the full total (39 / 16 / 1 / 7). The Board narrative says Under implementation, and SG A/71/801 paragraph 165 (PDF page 33) says In progress. No matching origin paragraph 342 is found in the following BOA A/72/5. That absence does not establish completion. The corroborating evidence favours Under implementation; I have not changed it because you explicitly said “We'll decide”. TECH-09 is linked to this pending decision.
 <!-- /agent-followup:HUM-02 -->
+
+
+### Decision applied — 23 September 2026
+
+ok, yes HUM-02 should be in under implementation.
+
+Henri approves Under implementation in accordance with the Board narrative and SG progress. This reconciles the printed originating-report subtotal and full 2015/16 annex status totals. The original Implemented mark is retained. No later closure is inferred from disappearance.
 
 ## HUM-03 — A/72/5 (Vol. II): origin A/68/5 (Vol. II), paragraph 93
 
@@ -141,7 +148,7 @@ Supporting source or reference:
 
 ## TECH-09 — Printed totals differ: A/71/5 (Vol. II), Annex II
 
-**Status:** Human review required — independent recount agrees with extracted marks; printed totals disagree
+**Status:** Resolved — reviewed counts reconcile through HUM-02
 
 **Decision needed:** If a complete independent row/column recount still disagrees with the printed totals, which documented denominator/status treatment is acceptable for the proposed analysis?
 
@@ -156,6 +163,13 @@ Evidence: {"source_symbol": "A/71/5 (Vol. II)", "source_pdf": "reports/BOA/BOA_A
 
 Linked to HUM-02. Reclassifying that single mark from Implemented to Under implementation would reconcile both the origin subtotal and full total; Board and SG narratives support that proposal. Awaiting Henri's decision; printed mark and raw recount remain unchanged.
 <!-- /agent-followup:TECH-09 -->
+
+
+### Decision applied — 23 September 2026
+
+ok, yes HUM-02 should be in under implementation.
+
+Henri approves Under implementation in accordance with the Board narrative and SG progress. This reconciles the printed originating-report subtotal and full 2015/16 annex status totals. The original Implemented mark is retained. No later closure is inferred from disappearance.
 
 ## TECH-10 — Printed totals differ: A/72/5 (Vol. II), Annex II
 
@@ -225,19 +239,28 @@ Evidence: {"reference": "MITIGATION_PLAN.md, release gates 1–7"}
 
 ## HUM-06 — A/70/5 (Vol. II), row 57: assessment says As above
 
-**Status:** Open — not adjudicated
+**Status:** Resolved — Henri decision applied
 
 **Decision needed:** Confirm how the As above assessment inherits the contradictory preceding row 56; decide whether implementation, closure/reissue or unresolved is supported by authoritative evidence.
 
-**Until resolved:** Retain Implemented and As above exactly; exclude this row from qualifying confirmation.
+**Until resolved:** Decision applied as Implemented; printed evidence retained.
 
 Full-row PDF image and column alignment checked; raw source retained. Collected corrigenda and subsequent collected observations do not resolve the contradiction.
 
-Evidence: {"history_id": "H_2454d779376535dff63e", "recommendation_id": "R_090f16c406e66a69f9", "source_symbol": "A/70/5 (Vol. II)", "source_pdf": "reports/BOA/BOA_A_70_5_2015_Vol_II.pdf", "pdf_pages": [145], "printed_status": "Implemented", "eligible_for_confirmation": false, "current_qualifying_confirmation": {}}
+Evidence: {"history_id": "H_2454d779376535dff63e", "recommendation_id": "R_090f16c406e66a69f9", "source_symbol": "A/70/5 (Vol. II)", "source_pdf": "reports/BOA/BOA_A_70_5_2015_Vol_II.pdf", "pdf_pages": [145], "printed_status": "Implemented", "eligible_for_confirmation": true, "current_qualifying_confirmation": {}}
 
 [Source page image](review_evidence/HUM-01-page-145.png)
 
 Board narrative as ingested: As above
+
+
+### Human decision — 23 September 2026
+
+Reviewer: Henri
+
+para reco 376 should be marked as implemented (same like 373).
+
+Henri explicitly confirms that As above inherits paragraph 373’s management response and Board assessment, including reiterated in the current report and treated as closed here. Apply Implemented as marked, preserving As above and the closure/reiteration qualification.
 
 ## COV-01 — Confirm official catalogue and corrigendum coverage at release cutoff
 

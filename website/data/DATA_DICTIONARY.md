@@ -2,12 +2,14 @@
 
 Collection cutoff: **22 September 2026**. This is a populated research and review dataset, not a certified implementation-rate study. The full acceptance criteria have **not** yet passed.
 
+Strategic Heritage Plan recommendations and all linked BOA/SG history are excluded from the analytical database, dashboard and Excel/CSV exports. Original PDFs and extraction caches are retained as source evidence.
+
 ## Delivered evidence and coverage
 
 - 52 catalogued documents; 52 downloaded PDFs. All **20 core BOA PDFs** for financial periods ending 2015–2024 have validated symbols and periods.
-- 1,334 provisional recommendation identities and 6,890 source observations. These counts describe the extraction, not an independently certified population of recommendations.
-- 0 observations lack a resolved recommendation identity; 4 history observations require review. These are overlapping populations. 0 recommendation identities also have potential lineage ambiguity.
-- 20 of 23 extracted annex populations match their captured printed status totals. Matching a total does not validate every identity, wording, or status mark.
+- 1,303 provisional recommendation identities and 6,822 source observations. These counts describe the extraction, not an independently certified population of recommendations.
+- 0 observations lack a resolved recommendation identity; 2 history observations require review. These are overlapping populations. 0 recommendation identities also have potential lineage ambiguity.
+- 18 of 21 extracted annex populations match their captured printed status totals. Matching a total does not validate every identity, wording, or status mark.
 - Latest collected core follow-up: Volume I **A/80/5 (Vol. I), financial year 2024**, SG **A/80/353**; Volume II **A/80/5 (Vol. II), financial year 2025**, SG **A/80/629**. Nineteen new 2025 SG recommendation entries are excluded from the study cohort.
 - Scope is restricted to recommendations originating in **Volume I or Volume II** and their BOA/SG volume-specific follow-up reports. Stand-alone special-stream reports and recommendations originating in other volumes are excluded. At the user’s request, 26 out-of-scope PDFs and their extracted caches were deleted.
 - Original reference workbook `BOA rec.xlsx` is preserved unchanged in the workspace.
@@ -20,7 +22,11 @@ Catalogue starting points: [BOA reports](https://www.un.org/en/united-nations-bo
 
 Excel does not write back into SQLite. The staged pipeline captures reviewer notes by stable IDs before rebuilding and migrates unique source locators; ambiguous migrations are quarantined in data/reviewer_state.json. Long source narratives remain complete in cell values, SQLite and CSV; some exceed Excel's maximum displayed row height and should be read in the formula bar or source PDF.
 
-## Three tables
+## Core tables and responsibility relations
+
+`audit_period` displays Volume II as its PKO fiscal period, for example 2019-20 for A/75/5 (Vol. II), and Volume I as a calendar year. Numeric `audit_year` remains the ending year for calculations. Workbook audit-year columns use the period label.
+
+`EntityOffices` holds the supplied Entity/Office list with UNDCO merged into DCO. `HistoryEntities` holds distinct responsible entity/office pairs per observation. `History.entities_json` and `offices_json` expose the same mapping; `entities_raw` is preserved. `responsibility_type` is Joint, Individual or Unknown. DMSPC/BTAD and DMSPC/OPPFB count as Joint, but overall totals count that recommendation once. Missing office information is not inferred. `entity_mapping_status`, `unmatched_entity_text` and `entity_mapping_evidence` retain review flags and source-based corrections. Historical entities absent from the list remain separate and flagged. See ENTITY_PERIOD_REVIEW.md, entity_assignments.csv and entity_mapping_review.csv.
 
 **Reports:** one document, including separately catalogued corrigenda. `report_id` is the internal key; `symbol` is unique. `source_type` is BOA or SG. `volume`, `stream`, and `scope_role` describe coverage. `audit_year` is the financial-period end year for core reports; the originating report and the update report retain separate years. `period_start` and `period_end` are explicit financial-period dates where validated. `publication_date`, `publication_year`, and `publication_date_basis` preserve the documented issue date/year; a missing date is blank, not estimated. `related_boa_symbol` links SG reports where catalogued. URL, local path, checksum, page count, collection cutoff, download/validation/extraction status, and history/review counts provide provenance.
 
@@ -62,7 +68,7 @@ Open-backlog age uses the last documented open BOA assessment's audit year minus
 4. Retain only Volume I/II and their volume-specific SG sources. Four collected corrigenda were read and do not change recommendation wording or implementation statuses.
 5. Validate source locators, SG section matching, explicit as-of dates and actual completion dates before using them analytically. “Validated PDF” means identity/period validated, not that every extracted field was reviewed.
 
-Database integrity, foreign keys, repeat-import stability, all 20 core PDFs and the critical status rules are tested in `rule_validation.json`. Workbook counts are checked against SQLite. Full manual review and methodology approval remain pending. See IMPLEMENTATION_REPORT.md, HUMAN_REVIEW_REGISTER.md and mitigation_validation.json for the completed corrections and remaining gates. Four source-dependent history rows remain excluded from qualifying confirmation; three raw printed-total discrepancies remain visible; TECH-10 is reconciled by Henri’s reviewed HUM-03 treatment.
+Database integrity, foreign keys, repeat-import stability, all 20 core PDFs and the critical status rules are tested in `rule_validation.json`. Workbook counts are checked against SQLite. Full manual review and methodology approval remain pending. See IMPLEMENTATION_REPORT.md, HUMAN_REVIEW_REGISTER.md and mitigation_validation.json for the completed corrections and remaining gates. 2 source-dependent history rows remain excluded from qualifying confirmation; three raw printed-total discrepancies remain visible; TECH-10 is reconciled by Henri’s reviewed HUM-03 treatment.
 
 ### Missing originating documents
 
@@ -82,18 +88,8 @@ The conflicting Board narrative is preserved in History; affected observations a
 
 ## SQLite field inventory
 
-**Reports:** `report_id`, `symbol`, `source_type`, `volume`, `stream`, `audit_year`, `period_start`, `period_end`, `publication_date`, `publication_year`, `publication_date_basis`, `scope_role`, `related_boa_symbol`, `catalogue_url`, `download_url`, `local_path`, `sha256`, `page_count`, `download_status`, `validation_status`, `extraction_status`, `history_count`, `unresolved_history_count`, `collection_cutoff`.
+**Reports:** `report_id`, `symbol`, `source_type`, `volume`, `stream`, `audit_year`, `period_start`, `period_end`, `publication_date`, `publication_year`, `publication_date_basis`, `scope_role`, `related_boa_symbol`, `catalogue_url`, `download_url`, `local_path`, `sha256`, `page_count`, `download_status`, `validation_status`, `extraction_status`, `history_count`, `unresolved_history_count`, `collection_cutoff`, `audit_period`.
 
-**Recommendations:** `recommendation_id`, `original_report_id`, `original_report_symbol`, `chapter`, `paragraph`, `original_text`, `original_text_basis`, `audit_year`, `stream`, `population`, `identity_review`, `linked_references_json`.
+**Recommendations:** `recommendation_id`, `original_report_id`, `original_report_symbol`, `chapter`, `paragraph`, `original_text`, `original_text_basis`, `audit_year`, `stream`, `population`, `identity_review`, `linked_references_json`, `audit_period`.
 
-**History:** `history_id`, `recommendation_id`, `report_id`, `source_type`, `kind`, `annex`, `row_number`, `source_paragraph`, `pdf_page`, `pdf_pages_json`, `printed_page`, `status_raw`, `status_group`, `status_as_of`, `status_as_of_basis`, `recommendation_text`, `reference_raw`, `entities_raw`, `assignment_raw`, `area_raw`, `priority_raw`, `initial_target_raw`, `target_raw`, `revised_target_raw`, `administration_response`, `board_assessment`, `sg_progress`, `actual_completion_date_raw`, `status_marks_json`, `review_status`, `review_issues`, `reviewer_notes`, `field_pdf_pages_json`, `extraction_evidence_json`, `reviewed_status`, `reviewed_status_group`, `review_case_id`, `review_decision_json`.
-
-
-
-## PKO periods and responsible entities — 22 September 2026
-
-`Reports.audit_period` and `Recommendations.audit_period` display Volume II as a PKO fiscal period (2019-20). `audit_year` remains the numeric end year for calculations. Workbook year columns now use the period label.
-
-`EntityOffices` holds the supplied list, with UNDCO merged into DCO. `HistoryEntities` stores one row per observation and distinct responsible entity/office. An empty office means the source names only the parent. `History.entities_json` and `offices_json` expose the same mapping; `entities_raw` preserves the original extraction. `responsibility_type` is Joint, Individual or Unknown. Multiple offices of one entity count as Joint; repeated mentions of one unit count once. `entity_mapping_status`, `unmatched_entity_text` and `entity_mapping_evidence` keep unresolved mappings and source-based corrections visible. Historical entities missing from the supplied list remain separate and flagged.
-
-See [entity and period review](ENTITY_PERIOD_REVIEW.md) for the decisions and remaining cases. The normalized assignments are in `entity_assignments.csv`; overall counts must use distinct recommendation IDs. Website snapshots use only eligible observations through the selected period.
+**History:** `history_id`, `recommendation_id`, `report_id`, `source_type`, `kind`, `annex`, `row_number`, `source_paragraph`, `pdf_page`, `pdf_pages_json`, `printed_page`, `status_raw`, `status_group`, `status_as_of`, `status_as_of_basis`, `recommendation_text`, `reference_raw`, `entities_raw`, `assignment_raw`, `area_raw`, `priority_raw`, `initial_target_raw`, `target_raw`, `revised_target_raw`, `administration_response`, `board_assessment`, `sg_progress`, `actual_completion_date_raw`, `status_marks_json`, `review_status`, `review_issues`, `reviewer_notes`, `field_pdf_pages_json`, `extraction_evidence_json`, `reviewed_status`, `reviewed_status_group`, `review_case_id`, `review_decision_json`, `entities_json`, `offices_json`, `responsibility_type`, `entity_mapping_status`, `unmatched_entity_text`, `entity_mapping_evidence`.

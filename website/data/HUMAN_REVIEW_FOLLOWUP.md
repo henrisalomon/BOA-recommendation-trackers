@@ -1,5 +1,7 @@
 # Follow-up on Henri’s review — 22 September 2026
 
+> Update, 23 September 2026: Henri approved HUM-02 as Under implementation and HUM-06 as Implemented. The dated investigation notes below describe earlier pending decisions; those two cases are now resolved. No subsequent closure is inferred for HUM-02.
+
 All source statuses and narratives remain available. Reviewed treatments are separately identified. Year in the renamed filenames means the audit/financial-period end year; SG volume identifies the corresponding BOA volume.
 
 ## HUM-01

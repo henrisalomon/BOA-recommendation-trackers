@@ -1,5 +1,7 @@
 # Data gaps and interpretation
 
+- Strategic Heritage Plan recommendations and all linked BOA/SG history are excluded from the analytical database, dashboard and Excel/CSV exports. Original PDFs and extraction caches are retained as source evidence.
+
 - 5 reports lack an exact publication date; 2 also lack a publication year. Those histories are grouped by audit year with an explicit warning; exact chronological order is unverified where dates are missing.
 
 - This is an extracted register, not a certified complete population or an official implementation measure. Carried-forward statuses are the last observed BOA assessment, not evidence of current status.
@@ -8,7 +10,7 @@
 
 - 2025 coverage is supplementary Volume II follow-up only, so comparable annual charts stop at 2024. Full available history remains visible in details.
 
-- 939 recommendations have no explicitly extracted original target date; 944 have no explicitly extracted revised target date. Original and revised target dates are shown only when explicitly extracted under those labels. An earliest observed target is not an original deadline. Blank fields mean not extracted, not not-applicable.
+- 908 recommendations have no explicitly extracted original target date; 913 have no explicitly extracted revised target date. Original and revised target dates are shown only when explicitly extracted under those labels. An earliest observed target is not an original deadline. Blank fields mean not extracted, not not-applicable.
 
 - Entities are matched conservatively to the supplied Entity/Office list. Original wording is retained. Unmatched names require review; no historical successor is inferred. Joint means more than one responsible entity/office pair; DMSPC/BTAD and DMSPC/OPPFB therefore count as Joint. DCO and UNDCO are merged as DCO. Historical entities absent from the supplied list are retained separately and flagged for review. Incomplete single-unit matches remain Unknown. Entity breakdowns overlap for joint recommendations; their counts must not be added. Trend comparisons hold selected-year entity and responsibility attribution fixed.
 
@@ -16,8 +18,8 @@
 
 - Unnumbered annex comments cite their annex and originating recommendation paragraph. SG source paragraphs may anchor the recommendation section; exact comment paragraphs are marked unverified where not recovered.
 
-- 1161 of 8307 comments do not pass complete PDF text-fragment verification; their proposed pages are labelled unverified. Even a matched PDF locator is not a human certification of extraction or attribution.
+- 1159 of 8265 comments do not pass complete PDF text-fragment verification; their proposed pages are labelled unverified. Even a matched PDF locator is not a human certification of extraction or attribution.
 
-- 4 observations require review. Status conflicts remain visible and are excluded from assessment-rate denominators.
+- 2 observations require review. Status conflicts remain visible and are excluded from assessment-rate denominators.
 
 - The source review documentation records three raw printed-total discrepancies and pending human decisions. Arithmetic validation does not resolve those source discrepancies.
