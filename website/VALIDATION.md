@@ -37,7 +37,7 @@ Strategic Heritage Plan recommendations and their linked histories are excluded.
 
 ## PDF links and verification
 
-Dashboard citations open official PDFs on `documents.un.org` with one-based `#page=N` positions. These links require internet access and depend on the external service and PDF viewer. Printed page labels are displayed separately.
+Dashboard citations open official PDFs on `documents.un.org` with one-based `#page=N` positions. These links require internet access and depend on the external service and PDF viewer. Recommendation details show PDF page numbers in the citation link without printed-page labels or page-match warnings. Printed-page labels and verification flags remain in the exported evidence.
 
 The site also retains bundled PDF copies for checksum and locator verification. Their paths and SHA-256 values are recorded in [data/reports.json](data/reports.json). The current UI does not automatically fall back to bundled copies when an official link is unavailable.
 

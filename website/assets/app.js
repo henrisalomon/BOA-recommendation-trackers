@@ -15,7 +15,7 @@ function citation(h,field){
  if(!ev?.pages?.length)return '<span class="source">PDF page unverified</span>';
  const rec=data.byId.get(h.recommendation_id);
  const locator=h.kind==='issuance'?`para. ${h.source_paragraph||rec?.paragraph||'unverified'}`:h.kind==='annex'?`${h.annex||'Annex'} · rec. para. ${rec?.paragraph||'unverified'}`:ev.paragraphs.length?`para. ${ev.paragraphs.join(', ')}`:`section para. ${h.source_paragraph||'unverified'}`;
- return `<span class="source">${esc(r.source_type==='BOA'?'BOA':'Secretary-General')} · ${esc(r.symbol)} · ${esc(locator)}<br>${`<a href="${esc(r.download_url.split("#")[0])}#page=${ev.pages[0]}" target="_blank" rel="noopener">PDF ${ev.pages.length===1?'page':'pages'} ${ev.pages.join(', ')} ↗</a><span>(printed ${ev.pages.map(p=>esc(ev.printedPages[p]??'unverified')).join(', ')})</span>`}${ev.verified?'':' · <span class="citation-warning">Page match unverified</span>'}</span>`;
+ return `<span class="source">${esc(r.source_type==='BOA'?'BOA':'Secretary-General')} · ${esc(r.symbol)} · ${esc(locator)}<br><a href="${esc(r.download_url.split("#")[0])}#page=${ev.pages[0]}" target="_blank" rel="noopener">PDF ${ev.pages.length===1?'page':'pages'} ${ev.pages.join(', ')} ↗</a></span>`;
 }
 async function loadDetail(el){
  try{
@@ -29,7 +29,7 @@ async function loadDetail(el){
  }catch(e){el.querySelector('.detail').innerHTML='<p class="gap">Could not load this recommendation’s evidence. Close and reopen to retry.</p>';console.error(e)}
 }
 function comments(hs,field,empty){const rows=hs.filter(h=>h[field]);return rows.map(h=>`<div class="comment"><p>${new Set(hs.filter(x=>x.board_assessment||x.administration_response||x.sg_progress).map(x=>x.report_id)).size>1?`<span class="muted">${esc(data.reports[h.report_id].symbol)}</span><br>`:''}${esc(h[field])}</p></div>`).join('')||(empty?`<p class="muted">${empty}</p>`:'')}
-// Share each report citation across both comment columns, retaining every page and warning.
+// Share each report citation across both comment columns, retaining every PDF page in the link.
 function commentSources(hs){
  const reports=new Map();
  for(const h of hs)for(const field of ['board_assessment','administration_response','sg_progress']){
