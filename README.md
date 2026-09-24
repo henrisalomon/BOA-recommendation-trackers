@@ -1,12 +1,12 @@
 # BOA recommendation trackers
 
-An **unofficial, source-linked dashboard** for exploring United Nations Board of Auditors recommendations, follow-up assessments and trends.
+United Nations Board of Auditors recommendations are spread across reports and years, making their follow-up difficult to trace. This unofficial dashboard brings together **1,360 recommendations from 55 source reports** covering the available 2015–2025 audit years. On the live site, you can search and filter recommendations, inspect status changes and trends, and open citations to the original reports.
 
 **[Open the dashboard](https://henrisalomon.github.io/BOA-recommendation-trackers/)**
 
-The dashboard brings together recommendations from BOA and Secretary-General reports. Search the recommendation register, filter by year, entity, status and priority, inspect annual changes, and follow links back to the source reports. The published data covers the available 2015–2025 audit years; coverage and review limits are described in the [data gaps](website/DATA_GAPS.md).
+![BOA dashboard showing filters, annual register figures and source-linked recommendations](docs/dashboard-preview.png)
 
-This is an independent research project. Its data were extracted with AI and remain subject to human review. Check the cited reports before relying on a recommendation or status. The project is not affiliated with or endorsed by the United Nations.
+Data were extracted with AI and remain subject to human review. Check the cited reports before relying on a recommendation or status; see the [data gaps](website/DATA_GAPS.md) for coverage limits. This independent project is not affiliated with or endorsed by the United Nations.
 
 ## Explore the project
 
@@ -15,7 +15,7 @@ This is an independent research project. Its data were extracted with AI and rem
 - [Data gaps and limitations](website/DATA_GAPS.md)
 - [Published data dictionary](website/data/DATA_DICTIONARY.md)
 
-## Run locally
+## Local development
 
 From the repository root, run:
 
