@@ -721,6 +721,44 @@
     "text": "Total number of recommendations 53 14 38 0 1"
   },
   {
+    "report_id": "BOA_2025_Vol_I",
+    "annex": "Annex I",
+    "stream": "UN",
+    "pdf_page": 159,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "137",
+      "Implemented": "94",
+      "Under implementation": "37",
+      "Not implemented": "0",
+      "Overtaken by events": "6"
+    },
+    "text": "Total 137 94 37 0 6"
+  },
+  {
+    "report_id": "BOA_2025_Vol_I",
+    "annex": "Annex II",
+    "stream": "Umoja",
+    "pdf_page": 161,
+    "values": {
+      "row_number": "",
+      "audit_year_raw": "Total",
+      "reference": "",
+      "recommendation_text": "",
+      "administration_response": "",
+      "board_assessment": "2",
+      "Implemented": "2",
+      "Under implementation": "0",
+      "Not implemented": "0",
+      "Overtaken by events": "0"
+    },
+    "text": "Total 2 2 0 0 0"
+  },
+  {
     "report_id": "BOA_A_80_5_VolII",
     "annex": "Annex II",
     "stream": "UNPKO",

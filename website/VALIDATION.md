@@ -6,7 +6,7 @@ The 2025 report extension passed local validation. Publication is performed thro
 
 - 13 Node model tests: all 53 PDF checksums, stable IDs, evidence page ranges, year/volume/entity register balances and continuity, rates, BOA/SG separation, SHP exclusions and the 38/19 new-recommendation populations.
 - Nine Python build/helper tests: repository, root and local URL paths; invalid paths; PDF page labels.
-- 26 source regression tests; database integrity, foreign keys and isolated repeat-build idempotence.
+- 27 source regression tests; database integrity, foreign keys and isolated repeat-build idempotence.
 - Chrome desktop and 768/390/320px checks, keyboard navigation, filters/search/reset, source histories, SG target dates, 200% text resizing and methodology navigation. No uncaught JavaScript errors.
 - Nine axe-core scans with zero detected WCAG 2 A/AA or WCAG 2.1 A/AA violations. These do not replace a full assistive-technology audit.
 - Non-root `/boa-pages-preview/` browser check passed for assets, data, details, navigation and official PDF citations.
@@ -14,7 +14,7 @@ The 2025 report extension passed local validation. Publication is performed thro
 
 ## Dataset
 
-Exported **2026-09-24T12:12:55.187538+00:00**, version `2026-09-24-2025-coverage-v5`. Logical database SHA-256: `70ab1fc9218fafa39b789664e8ff3f0b16d1cff369ff98e75f5c774df0d7e92a`.
+Exported **2026-09-24T12:45:48.060504+00:00**, version `2026-09-24-2025-coverage-v5`. Logical database SHA-256: `3def21e022f76869beb38705f2de594415c1dc9bb1f590dea4d1c9f6524437e0`.
 
 | Measure | Count |
 | --- | ---: |
