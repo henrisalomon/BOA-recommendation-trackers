@@ -9,3 +9,5 @@
 .register{margin-bottom:16px}.register h3{margin-bottom:4px}.register strong{margin-bottom:0}
 
 .pill-priority{background:var(--pale);color:var(--ink)}
+
+.pill-priority.priority-high{background:#fff0d1;color:#794600}.pill-priority.priority-medium{background:#e1f2fc;color:#075a80}.pill-priority.priority-unavailable{background:#edf0f3;color:#4b5966}

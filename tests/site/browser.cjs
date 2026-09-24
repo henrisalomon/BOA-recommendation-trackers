@@ -23,16 +23,16 @@ const axePath=require.resolve('../../website/node_modules/axe-core/axe.min.js');
  assert(await recovered.locator('a[href*="A%2F70%2F338"]').count()>0);
  await page.click('#reset');
  await page.selectOption('#priority','High');
- assert((await page.locator('.pill-priority').allTextContents()).every(s=>s==='Priority: High'));
+ assert((await page.locator('.pill-priority').allTextContents()).every(s=>s==='High'));
  const highCount=await page.locator('#register-count').innerText();
  for(const tab of ['analysis','trends','recommendations']){
   await page.click('#tab-'+tab);assert.equal(await page.locator('#priority').inputValue(),'High');assert.equal(await page.locator('#register-count').innerText(),highCount);
  }
  await page.reload();await page.waitForSelector('.recommendation');assert.equal(await page.locator('#priority').inputValue(),'High');
  await page.selectOption('#priority','unavailable');assert.equal(await page.locator('#register-count').innerText(),'38');
- assert((await page.locator('.pill-priority').allTextContents()).every(s=>s==='Priority: Not available'));
+ assert((await page.locator('.pill-priority').allTextContents()).every(s=>s==='Not available'));
  await page.selectOption('#volume','II');assert.equal(await page.locator('#register-count').innerText(),'48');
- await page.selectOption('#priority','Medium');assert((await page.locator('.pill-priority').allTextContents()).every(s=>s==='Priority: Medium'));
+ await page.selectOption('#priority','Medium');assert((await page.locator('.pill-priority').allTextContents()).every(s=>s==='Medium'));
  await page.click('#reset');assert.equal(await page.locator('#priority').inputValue(),'all');
  assert.equal(await page.locator('#volume').inputValue(),'I');assert.deepEqual(await page.locator('#volume option').allTextContents(),['Volume I','Volume II']);assert.equal(await page.locator('#year option:checked').textContent(),'2025');await page.selectOption('#status','closed');assert(await page.locator('.recommendation').count()>0);assert((await page.locator('.recommendation .badge').allTextContents()).every(s=>s==='Closed'));assert.equal((await page.locator('#status option').allTextContents()).filter(s=>s==='Closed').length,1);await page.click('#reset');assert.equal(await page.locator('[role=tab]').count(),3);assert.equal(await page.locator('#provenance').count(),0);assert.equal(await page.locator('#data-quality').count(),0);const entityOptions=await page.locator('#entity option').allTextContents();assert(entityOptions.includes('DMSPC'));assert(!entityOptions.some(x=>x.includes(' and ')||x.includes(';')||x.includes('DMSPC/')));await page.selectOption('#entity','DMSPC');assert(await page.locator('.recommendation').count()>0);await page.click('#reset');
  assert.deepEqual(await page.locator('.scope label').evaluateAll(x=>x.map(e=>e.childNodes[0].textContent)),['Volume','Reporting year','Entity','Responsibility','Priority']);
