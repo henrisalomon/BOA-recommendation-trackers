@@ -72,7 +72,8 @@ def main():
   rid=rec['recommendation_id'];hist=sorted(byrec[rid],key=lambda h:(order(reports[h['report_id']]),h['history_id']))
   report=reports[rec['original_report_id']]
   item={'id':rid,'reportId':rec['original_report_id'],'symbol':rec['original_report_symbol'],'paragraph':rec['paragraph'],'chapter':rec['chapter'],'text':rec['original_text'],'textBasis':rec['original_text_basis'],'year':rec['audit_year'],'auditPeriod':rec['audit_period'],'volume':report['volume'],'population':rec['population'],'identityReview':rec['identity_review']}
-  index.append(item)
+  priority=next((h['priority_raw'].strip() for h in reversed(hist) if h.get('priority_raw') and h['priority_raw'].strip()),None)
+  index.append({**item,'priority':priority})
   dump(OUT/'details'/f'{rid}.json',{'recommendation':item,'history':hist})
   for year in range(max(FIRST_COHORT_YEAR-1,rec['audit_year']),LAST_COHORT_YEAR+1):
    eligible=[h for h in hist if (reports[h['report_id']]['audit_year'] or 9999)<=year]

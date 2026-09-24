@@ -97,3 +97,7 @@ Trends combines `implemented`, `overtaken_by_events` and `closed_other` under â€
 Strategic Heritage Plan recommendations and all their BOA/SG history are excluded at database build time by `scripts/study_scope.py`. This scope applies to every dashboard view, balance, rate, filter, detail and Excel/CSV export. Source PDFs and raw extraction caches remain intact. Stale detail assets for excluded IDs are removed during export. Excel reconciles published issuance totals to the scoped totals with a separate SHP deduction. HUM-06 remains approved as Implemented; HUM-02 is approved as Under implementation.
 
 SG progress comments include their own report and PDF-page citation directly below the text in the right-hand administration column. The BOA citation remains in the left column and covers the combined assessment/administration-response pages.
+
+### Priority
+
+The shared Priority filter applies to Recommendations, Analysis and Trends, including all counts, charts and rates. Cards show priority beside responsibility. Priority uses the latest non-empty reported value across the available history, including follow-up after the selected reporting year; it is not a historical as-of classification. This fixed classification keeps annual balances and trends consistent. The 24 September 2026 export has 484 High, 778 Medium and 98 Not available recommendations. Missing priority is not treated as low priority. The compact index derives this field from the frozen detail histories; future exports reproduce the same rule.

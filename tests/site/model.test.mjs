@@ -135,3 +135,26 @@ test('2025 is available for both volumes with source-controlled new issuance',()
   }
  }
 });
+
+
+test('Priority coverage, source values and filtered annual balances',()=>{
+ const counts={High:0,Medium:0,unavailable:0};
+ for(const r of recommendations){
+  const h=load('details/'+r.id).history.filter(h=>h.priority_raw?.trim()).at(-1);
+  assert.equal(r.priority,h?.priority_raw.trim()||null);
+  counts[r.priority||'unavailable']++;
+ }
+ assert.deepEqual(counts,{High:484,Medium:778,unavailable:98});
+ for(const volume of ['all','I','II'])for(const priority of Object.keys(counts)){
+  let previous;
+  for(const year of load('metadata').years){
+   const rows=scope(data,year,volume,'all',year,'all',priority);
+   assert(rows.every(s=>(data.byId.get(s.id).priority||'unavailable')===priority));
+   const m=movement(data,year,volume,'all',year,'all',priority);
+   assert.equal(m.opening+m.issued+m.reopened-m.implemented-m.other,m.closing);
+   if(previous)assert.equal(previous.closing,m.opening);
+   previous=m;
+   assert.equal(Object.keys(counts).reduce((n,p)=>n+scope(data,year,volume,'all',year,'all',p).length,0),scope(data,year,volume).length);
+  }
+ }
+});
