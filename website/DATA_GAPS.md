@@ -18,7 +18,7 @@
 
 - Unnumbered annex comments cite their annex and originating recommendation paragraph. SG source paragraphs may anchor the recommendation section; exact comment paragraphs are marked unverified where not recovered.
 
-- 1220 of 8558 comments do not pass complete PDF text-fragment verification; their proposed pages are labelled unverified. Even a matched PDF locator is not a human certification of extraction or attribution.
+- 1220 of 8576 comments do not pass complete PDF text-fragment verification; their proposed pages are labelled unverified. Even a matched PDF locator is not a human certification of extraction or attribution.
 
 - 2 observations require review. Status conflicts remain visible and are excluded from assessment-rate denominators.
 

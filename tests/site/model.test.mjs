@@ -144,7 +144,7 @@ test('Priority coverage, source values and filtered annual balances',()=>{
   assert.equal(r.priority,h?.priority_raw.trim()||null);
   counts[r.priority||'unavailable']++;
  }
- assert.deepEqual(counts,{High:484,Medium:778,unavailable:98});
+ assert.deepEqual(counts,{High:492,Medium:782,unavailable:86});
  for(const volume of ['all','I','II'])for(const priority of Object.keys(counts)){
   let previous;
   for(const year of load('metadata').years){

@@ -11,6 +11,17 @@ const axePath=require.resolve('../../website/node_modules/axe-core/axe.min.js');
  const audit=async name=>{await page.addScriptTag({path:axePath});const result=await page.evaluate(async()=>axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}));results.push({name,violations:result.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target)}))});assert.equal(result.violations.length,0,JSON.stringify(results.at(-1)))};
  await page.goto(base);await page.waitForSelector('.recommendation');await page.evaluate(()=>document.fonts.ready);await audit('desktop recommendations');await shot('desktop');
 
+
+ await page.fill('#search','contract management responsibility');
+ const recovered=page.locator('.recommendation[data-id="R_dcf6b18e4d8bc91079"]');
+ await recovered.locator('summary').click();await recovered.locator('.sg-status').waitFor();
+ assert((await recovered.innerText()).includes('Department of Management'));
+ assert((await recovered.innerText()).includes('Fourth quarter of 2015'));
+ assert((await recovered.innerText()).includes('In progress'));
+ assert((await recovered.locator('.ref').innerText()).includes('Audit year 2011'));
+ assert((await recovered.locator('.comment-year h4').allTextContents()).every(t=>t.startsWith('Published in ')));
+ assert(await recovered.locator('a[href*="A%2F70%2F338"]').count()>0);
+ await page.click('#reset');
  await page.selectOption('#priority','High');
  assert((await page.locator('.pill-priority').allTextContents()).every(s=>s==='Priority: High'));
  const highCount=await page.locator('#register-count').innerText();
@@ -18,7 +29,7 @@ const axePath=require.resolve('../../website/node_modules/axe-core/axe.min.js');
   await page.click('#tab-'+tab);assert.equal(await page.locator('#priority').inputValue(),'High');assert.equal(await page.locator('#register-count').innerText(),highCount);
  }
  await page.reload();await page.waitForSelector('.recommendation');assert.equal(await page.locator('#priority').inputValue(),'High');
- await page.selectOption('#priority','unavailable');assert.equal(await page.locator('#register-count').innerText(),'50');
+ await page.selectOption('#priority','unavailable');assert.equal(await page.locator('#register-count').innerText(),'38');
  assert((await page.locator('.pill-priority').allTextContents()).every(s=>s==='Priority: Not available'));
  await page.selectOption('#volume','II');assert.equal(await page.locator('#register-count').innerText(),'48');
  await page.selectOption('#priority','Medium');assert((await page.locator('.pill-priority').allTextContents()).every(s=>s==='Priority: Medium'));

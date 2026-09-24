@@ -10,7 +10,7 @@ from study_scope import SCOPE_NOTE, FIRST_COHORT_YEAR, LAST_COHORT_YEAR
 ROOT=Path(__file__).resolve().parents[2]
 OUT=ROOT/'website/data'
 DB=ROOT/'outputs/boa-2015-2024/boa_recommendations.sqlite'
-FIELDS=['board_assessment','administration_response','sg_progress','initial_target_raw','target_raw','revised_target_raw','recommendation_text']
+FIELDS=['board_assessment','administration_response','sg_progress','initial_target_raw','target_raw','revised_target_raw','recommendation_text','entities_raw','status_raw']
 def dump(path,obj):
  path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(obj,ensure_ascii=False,separators=(',',':'))+'\n')
 def norm(s):return re.sub(r'[^a-z0-9]','',unicodedata.normalize('NFKD',s or '').lower())
