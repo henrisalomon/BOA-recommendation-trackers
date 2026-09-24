@@ -1,29 +1,26 @@
-# BOA Recommendations
+# BOA recommendation trackers
 
-The working static dashboard is in [`website/`](website/README.md). Existing source reports, extraction scripts, databases and review outputs are retained separately.
+An **unofficial, source-linked dashboard** for exploring United Nations Board of Auditors recommendations, follow-up assessments and trends.
+
+**[Open the dashboard](https://henrisalomon.github.io/BOA-recommendation-trackers/)**
+
+The dashboard brings together recommendations from BOA and Secretary-General reports. Search the recommendation register, filter by year, entity, status and priority, inspect annual changes, and follow links back to the source reports. The published data covers the available 2015–2025 audit years; coverage and review limits are described in the [data gaps](website/DATA_GAPS.md).
+
+This is an independent research project. Its data were extracted with AI and remain subject to human review. Check the cited reports before relying on a recommendation or status. The project is not affiliated with or endorsed by the United Nations.
+
+## Explore the project
+
+- [Dashboard and data documentation](website/README.md)
+- [Validation notes](website/VALIDATION.md)
+- [Data gaps and limitations](website/DATA_GAPS.md)
+- [Published data dictionary](website/data/DATA_DICTIONARY.md)
+
+## Run locally
+
+From the repository root, run:
 
 ```sh
 python3 -m http.server 4173 --bind 127.0.0.1 --directory website
 ```
 
-Local preview: http://127.0.0.1:4173/
-
-- [Website documentation and data updates](website/README.md)
-- [Validation results](website/VALIDATION.md)
-- [Data gaps](website/DATA_GAPS.md)
-- [Prepared manual-only GitHub Pages workflow](.github/workflows/pages.yml)
-
-Repository: https://github.com/henrisalomon/BOA-recommendation-trackers
-
-GitHub Pages: https://henrisalomon.github.io/BOA-recommendation-trackers/
-
-Publication uses the manual workflow with `publish` enabled; pushes alone do not deploy.
-
-## Review and local archives
-
-- [Pending human review](outputs/boa-2015-2024/HUMAN_REVIEW_REGISTER.md)
-- [Review follow-up and evidence](outputs/boa-2015-2024/HUMAN_REVIEW_FOLLOWUP.md)
-- [Entity-mapping review](outputs/boa-2015-2024/entity_mapping_review.csv)
-- [Cleanup archive and restore instructions](archives/cleanup-2026-09-22/README.md)
-
-Active review material remains unpacked. Historical staging copies and diagnostics are compressed under `archives/`; validation baselines stay at their original paths.
+Then open <http://127.0.0.1:4173/>. The dashboard needs HTTP to load its local JSON files. See the [website documentation](website/README.md) for data updates, tests and the manual GitHub Pages publishing workflow.
