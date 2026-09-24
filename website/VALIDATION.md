@@ -1,48 +1,39 @@
-# Website validation — 23 September 2026
+# Website validation — 24 September 2026
 
-Validated the local static website and the [public GitHub Pages site](https://henrisalomon.github.io/BOA-recommendation-trackers/). The deployed summary cards match the local version: five cards on Recommendations, hidden on Analysis and Trends. The [deployment of commit 6b46319](https://github.com/henrisalomon/BOA-recommendation-trackers/actions/runs/35800489300) passed the workflow checks and publication step.
+The 2025 report extension passed local validation. Publication is performed through the manual GitHub Pages workflow, which repeats model, browser, accessibility and build checks before deployment.
 
 ## Checks completed
 
-- 11 Node model tests passed: stable IDs, all 52 bundled PDF checksums, evidence page ranges, exhaustive year/volume/entity register balances and continuity, rate denominators and zero cases, transitions versus repeated terminal assessments, filters/search, BOA versus SG status handling and Strategic Heritage Plan exclusions.
-- 9 Python build/helper checks passed: local/project/user-site/custom-domain base paths, invalid paths, printed-page footers versus document symbols, and missing labels.
-- 24 source-pipeline Python regression tests passed with the bundled Python runtime, including entity mappings, review-decision handling, mitigation and study scope. System Python lacked `pdfplumber`; this dependency is needed for the source-PDF regression check.
-- Chrome browser checks passed against both local and public sites: keyboard tab navigation; search, no-results, reset, status, volume, year and responsibility filters; shared-filter URL restoration; target fields; source history; methodology navigation; desktop and 768/390/320px layouts; and 200% text resizing. No uncaught JavaScript errors were detected.
-- Each browser run passed 9 axe-core scans with zero detected WCAG 2 A/AA and WCAG 2.1 A/AA violations. This is not a complete assistive-technology certification; Safari and Firefox were not tested.
-- The deployment workflow passed the non-root `/boa-pages-preview/` browser check for HTML, modules, styles, JSON, recommendation details, methodology navigation and official PDF link construction.
-- Visually inspected Recommendations, Analysis, Trends and the mobile landing layout. Earlier source-page spot checks distinguished printed page labels from PDF positions; missing printed labels are not replaced with PDF positions.
-- Browser tests verify official `documents.un.org` PDF URLs and their `#page=N` fragments, not every external PDF response. A separate download of A/71/5 (Vol. I) returned a PDF whose SHA-256 matched the bundled source. External availability and page opening in individual PDF viewers remain outside the automated checks.
+- 13 Node model tests: all 53 PDF checksums, stable IDs, evidence page ranges, year/volume/entity register balances and continuity, rates, BOA/SG separation, SHP exclusions and the 38/19 new-recommendation populations.
+- Nine Python build/helper tests: repository, root and local URL paths; invalid paths; PDF page labels.
+- 26 source regression tests; database integrity, foreign keys and isolated repeat-build idempotence.
+- Chrome desktop and 768/390/320px checks, keyboard navigation, filters/search/reset, source histories, SG target dates, 200% text resizing and methodology navigation. No uncaught JavaScript errors.
+- Nine axe-core scans with zero detected WCAG 2 A/AA or WCAG 2.1 A/AA violations. These do not replace a full assistive-technology audit.
+- Non-root `/boa-pages-preview/` browser check passed for assets, data, details, navigation and official PDF citations.
+- Desktop and mobile layouts visually inspected with 2025 selected. The existing review-workbook exporter passed all 381,532 displayed-cell comparisons and formula checks; native Excel was not tested.
 
-## Dataset and source limitations
+## Dataset
 
-Counts below match [data/metadata.json](data/metadata.json), exported at **2026-09-22 23:33:41 UTC** (23 September in Europe/Paris), exporter version `2026-09-23-global-scope-v4`:
+Exported **2026-09-24T12:12:55.187538+00:00**, version `2026-09-24-2025-coverage-v5`. Logical database SHA-256: `70ab1fc9218fafa39b789664e8ff3f0b16d1cff369ff98e75f5c774df0d7e92a`.
 
 | Measure | Count |
 | --- | ---: |
-| Recommendations | 1,303 |
-| Observations | 6,822 |
-| Reports | 52 |
-| Separately labelled comments | 8,265 |
-| Comments passing automated PDF text-fragment location checks | 7,106 |
-| Comments with unverified PDF locators | 1,159 |
-| Recommendations without an explicitly extracted original target | 908 |
-| Recommendations without an explicitly extracted revised target | 913 |
-| Reports missing an exact publication date | 5 |
-| Reports also missing a publication year | 2 |
+| Recommendations | 1,360 |
+| Observations | 7,035 |
+| Reports | 53 |
+| Comments | 8,558 |
+| Comments passing PDF location checks | 7,338 |
+| Comments with unverified locators | 1,220 |
+| Recommendations without an explicit original target | 965 |
+| Recommendations without an explicit revised target | 970 |
 | Observations requiring review | 2 |
 
-Strategic Heritage Plan recommendations and their linked histories are excluded. Comparable dashboard years remain 2015–2024, with an opening baseline and supplementary 2025 Volume II follow-up in the available history. See [DATA_GAPS.md](DATA_GAPS.md) for interpretation limits.
+Both volumes now cover 2015–2025 (Volume II 2025 is fiscal 2024–25). A/81/5 (Vol. I) contributes 38 new recommendations and 137 in-scope annex assessments. A/80/5 (Vol. II) contributes 19 new recommendations with their SG updates from A/80/629. The corresponding Volume I SG report was not located as of 24 September 2026; publication status is unconfirmed and missing SG fields remain blank.
 
-“Locator matched” is an automated text check, not human certification of attribution or paragraph boundaries. Annual rates describe the available BOA assessment population; they are not official or certified complete-population performance measures.
+All previous recommendation IDs and source fields, and all 6,822 previous history records, are preserved. The cohort label expands to 2015–2025. SHP exclusions and approved human decisions remain in force. Earlier snapshots retain their previous assessments.
 
-## PDF links and verification
+## Limits and reproduction
 
-Dashboard citations open official PDFs on `documents.un.org` with one-based `#page=N` positions. These links require internet access and depend on the external service and PDF viewer. Recommendation details show PDF page numbers in the citation link without printed-page labels or page-match warnings. Printed-page labels and verification flags remain in the exported evidence.
+See [DATA_GAPS.md](DATA_GAPS.md) for source gaps and [README.md](README.md) for reproduction. Automated locator matching does not certify interpretation or attribution. Rates describe observed BOA assessments, not official performance measures. The two pre-existing review flags remain.
 
-The site also retains bundled PDF copies for checksum and locator verification. Their paths and SHA-256 values are recorded in [data/reports.json](data/reports.json). The current UI does not automatically fall back to bundled copies when an official link is unavailable.
-
-## Reproduce and maintain
-
-See [README.md](README.md) for export/build and test commands. Detailed browser results and screenshots are stored locally in `tmp/site/`; website tests are checked in under `tests/site/`. The workflow runs model, base-path, browser and accessibility checks before creating a Pages artifact, and deploys only on a manual run with `publish` enabled.
-
-After a data export, refresh the timestamp and counts here from `data/metadata.json`. Update validation claims only from completed checks. The source-pipeline tests are local research-workspace checks; they are separate from the website deployment workflow.
+PDF links use official `documents.un.org` URLs with one-based `#page=N` fragments. Bundled copies are checksum-verified; tests do not verify every external response or viewer behaviour. Safari and Firefox were not tested. Detailed local logs and screenshots are under `tmp/site/`.

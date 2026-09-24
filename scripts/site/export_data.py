@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 from pypdf import PdfReader
 from locators import printed_page
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from study_scope import SCOPE_NOTE
+from study_scope import SCOPE_NOTE, FIRST_COHORT_YEAR, LAST_COHORT_YEAR
 ROOT=Path(__file__).resolve().parents[2]
 OUT=ROOT/'website/data'
 DB=ROOT/'outputs/boa-2015-2024/boa_recommendations.sqlite'
@@ -67,14 +67,14 @@ def main():
    stats['observations']+=1
   print('Verified PDF locators:',rid,flush=True)
  # Create stable, small index; full evidence/history fetched only when a recommendation opens.
- index=[];snapshots={str(y):[] for y in range(2014,2026)}
+ index=[];snapshots={str(y):[] for y in range(FIRST_COHORT_YEAR-1,LAST_COHORT_YEAR+1)}
  for rec in recs:
   rid=rec['recommendation_id'];hist=sorted(byrec[rid],key=lambda h:(order(reports[h['report_id']]),h['history_id']))
   report=reports[rec['original_report_id']]
   item={'id':rid,'reportId':rec['original_report_id'],'symbol':rec['original_report_symbol'],'paragraph':rec['paragraph'],'chapter':rec['chapter'],'text':rec['original_text'],'textBasis':rec['original_text_basis'],'year':rec['audit_year'],'auditPeriod':rec['audit_period'],'volume':report['volume'],'population':rec['population'],'identityReview':rec['identity_review']}
   index.append(item)
   dump(OUT/'details'/f'{rid}.json',{'recommendation':item,'history':hist})
-  for year in range(max(2014,rec['audit_year']),2026):
+  for year in range(max(FIRST_COHORT_YEAR-1,rec['audit_year']),LAST_COHORT_YEAR+1):
    eligible=[h for h in hist if (reports[h['report_id']]['audit_year'] or 9999)<=year]
    boa=[h for h in eligible if h['source_type']=='BOA' and h['kind']=='annex']
    last=boa[-1] if boa else None
@@ -94,7 +94,7 @@ def main():
   f"{sum(not r['publication_date'] for r in reports.values())} reports lack an exact publication date; {sum(not r['publication_year'] for r in reports.values())} also lack a publication year. Those histories are grouped by audit year with an explicit warning; exact chronological order is unverified where dates are missing.",
   'This is an extracted register, not a certified complete population or an official implementation measure. Carried-forward statuses are the last observed BOA assessment, not evidence of current status.',
   'Volume I uses calendar years; Volume II displays PKO fiscal periods, for example 2019-20 (1 July 2019 to 30 June 2020). Numeric end years are retained for calculations. These are not a common 31 December snapshot.',
-  '2025 coverage is supplementary Volume II follow-up only, so comparable annual charts stop at 2024. Full available history remains visible in details.',
+  '2025 includes BOA Volume I and Volume II (2024–25), including new recommendations and follow-up assessments. SG A/80/629 is included for Volume II. The corresponding Volume I SG report was not located as of 24 September 2026; its progress, responsibility and target-date fields remain unavailable for new recommendations.',
   f"{stats['missingOriginalTargets']} recommendations have no explicitly extracted original target date; {stats['missingRevisedTargets']} have no explicitly extracted revised target date. Original and revised target dates are shown only when explicitly extracted under those labels. An earliest observed target is not an original deadline. Blank fields mean not extracted, not not-applicable.",
   'Entities are matched conservatively to the supplied Entity/Office list. Original wording is retained. Unmatched names require review; no historical successor is inferred. Joint means more than one responsible entity/office pair; DMSPC/BTAD and DMSPC/OPPFB therefore count as Joint. DCO and UNDCO are merged as DCO. Historical entities absent from the supplied list are retained separately and flagged for review. Incomplete single-unit matches remain Unknown. Entity breakdowns overlap for joint recommendations; their counts must not be added. Trend comparisons hold selected-year entity and responsibility attribution fixed.',
   'Theme, assignment, explicit status-as-of dates and actual completion dates are not systematically coded. No theme breakdown or overdue calculation is inferred.',
@@ -103,7 +103,7 @@ def main():
   f"{sum(h['review_status']=='needs_review' for h in histories)} observations require review. Status conflicts remain visible and are excluded from assessment-rate denominators.",
   'The source review documentation records three raw printed-total discrepancies and pending human decisions. Arithmetic validation does not resolve those source discrepancies.'
  ]
- meta={'schemaVersion':2,'exporterVersion':'2026-09-23-global-scope-v4','exportedAt':datetime.now(timezone.utc).isoformat(),'source':'outputs/boa-2015-2024/boa_recommendations.sqlite','sourceLogicalSha256':hashlib.sha256(json.dumps([recs,[{k:v for k,v in h.items() if k!='evidence'} for h in histories],reports],sort_keys=True).encode()).hexdigest(),'years':list(range(2015,2025)),'counts':dict(stats,recommendations=len(recs),reports=len(reports)),'gaps':gaptexts}
+ meta={'schemaVersion':2,'exporterVersion':'2026-09-24-2025-coverage-v5','exportedAt':datetime.now(timezone.utc).isoformat(),'source':'outputs/boa-2015-2024/boa_recommendations.sqlite','sourceLogicalSha256':hashlib.sha256(json.dumps([recs,[{k:v for k,v in h.items() if k!='evidence'} for h in histories],reports],sort_keys=True).encode()).hexdigest(),'years':list(range(FIRST_COHORT_YEAR,LAST_COHORT_YEAR+1)),'counts':dict(stats,recommendations=len(recs),reports=len(reports)),'gaps':gaptexts}
  # Remove only explicitly excluded detail assets so old URLs cannot expose active out-of-scope records.
  for excluded in json.loads((ROOT/'data/study_scope_exclusions.json').read_text()):
   (OUT/'details'/f"{excluded['recommendation_id']}.json").unlink(missing_ok=True)

@@ -117,3 +117,21 @@ test('target dates preserve earliest fallback, explicit original precedence and 
  assert.deepEqual(targetDates([a,b,c,d]),{original:{history:c,field:'initial_target_raw'},revised:{history:d,field:'revised_target_raw'}});
  assert.deepEqual(targetDates([{source_type:'BOA',target_raw:'2018'}]),{original:null,revised:null});
 });
+
+
+test('2025 is available for both volumes with source-controlled new issuance',()=>{
+ assert.equal(load('metadata').years.at(-1),2025);
+ for(const [volume,count] of [['I',38],['II',19]]){
+  const issued=recommendations.filter(r=>r.volume===volume&&r.year===2025);
+  assert.equal(issued.length,count);
+  for(const r of issued){
+   const state=snapshots['2025'].find(s=>s.id===r.id);
+   assert.equal(state.status,'newly_issued');assert.equal(state.assessment,null);
+   const detail=load('details/'+r.id);
+   const sg=detail.history.filter(h=>h.source_type==='SG');
+   assert.equal(sg.length,volume==='II'?1:0);
+   if(volume==='II')assert.equal(sg[0].report_id,'SG_A_80_629');
+   assert(!snapshots['2024'].some(s=>s.id===r.id));
+  }
+ }
+});

@@ -239,13 +239,13 @@ Evidence: {"reference": "MITIGATION_PLAN.md, release gates 1–7"}
 
 ## HUM-06 — A/70/5 (Vol. II), row 57: assessment says As above
 
-**Status:** Resolved — Henri decision applied
+**Status:** Resolved — explanatory note, not an error or conflict
 
-**Decision needed:** Confirm how the As above assessment inherits the contradictory preceding row 56; decide whether implementation, closure/reissue or unresolved is supported by authoritative evidence.
+**Decision needed:** None. As above refers to paragraph 373; Implemented remains unchanged.
 
 **Until resolved:** Decision applied as Implemented; printed evidence retained.
 
-Full-row PDF image and column alignment checked; raw source retained. Collected corrigenda and subsequent collected observations do not resolve the contradiction.
+As above inherits the preceding management response and Board assessment. This is an explanatory note, not an error or conflict.
 
 Evidence: {"history_id": "H_2454d779376535dff63e", "recommendation_id": "R_090f16c406e66a69f9", "source_symbol": "A/70/5 (Vol. II)", "source_pdf": "reports/BOA/BOA_A_70_5_2015_Vol_II.pdf", "pdf_pages": [145], "printed_status": "Implemented", "eligible_for_confirmation": true, "current_qualifying_confirmation": {}}
 

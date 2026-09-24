@@ -1,6 +1,11 @@
 """Authoritative analytical scope; raw PDFs and extraction caches stay intact."""
 import re
 
+FIRST_COHORT_YEAR = 2015
+LAST_COHORT_YEAR = 2025
+COHORT_NAME = 'cohort_2015_2025'
+COLLECTION_CUTOFF = '2026-09-24'
+
 # Verified SHP body sections, including recommendations whose wording omits SHP.
 # Symbol and paragraph boundaries prevent keyword-based false exclusions.
 SHP_SECTIONS = {
