@@ -86,7 +86,7 @@ The Analysis tab also shows the shared recommendation list beneath its charts, i
 
 ### Main status and SG updates
 
-The main status uses the latest available BOA follow-up assessment through the selected reporting year. Recommendations issued in that year without a BOA follow-up assessment are labelled “Newly issued”; this does not imply an implementation status. Details show the latest available SG-reported status and the full report history, including later follow-up. SG updates do not replace the main BOA status, and “Closure requested” does not mean the Board has confirmed closure. Implementation rates use eligible BOA assessments only; newly issued recommendations without an assessment are excluded.
+The main status uses the latest available BOA follow-up assessment through the selected reporting year. Recommendations issued in that year without a BOA follow-up assessment are labelled “Newly issued”; the 38 Volume I 2025 recommendations without a corresponding SG report display “Unknown/newly issued” because entity, responsibility and priority have not been reported. Neither label implies an implementation status. Details show the latest available SG-reported status and the full report history, including later follow-up. SG updates do not replace the main BOA status, and “Closure requested” does not mean the Board has confirmed closure. Implementation rates use eligible BOA assessments only; newly issued recommendations without an assessment are excluded.
 
 Older records without a BOA follow-up assessment retain “No assessment in data”; identity and assessment review flags remain visible. “Newly issued” applies to the selected issuance year in historical snapshots as well as the latest year. It remains non-terminal in register counts.
 

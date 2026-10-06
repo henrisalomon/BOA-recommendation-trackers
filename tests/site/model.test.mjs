@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
-import {labels,rate,scope,movement,trendMovement,searchRows,terminal,entityKeys,periodLabel,waterfallSteps,targetDates} from '../../website/assets/model.js';
+import {labels,rate,scope,movement,trendMovement,searchRows,statusKey,presentStatuses,terminal,entityKeys,periodLabel,waterfallSteps,targetDates} from '../../website/assets/model.js';
 const root=new URL('../../website/',import.meta.url),load=n=>JSON.parse(readFileSync(new URL(`data/${n}.json`,root),'utf8'));
 const recommendations=load('recommendations'),snapshots=load('snapshots'),reports=load('reports');
 const data={recommendations,snapshots,reports,byId:new Map(recommendations.map(r=>[r.id,r]))};
@@ -77,6 +77,16 @@ test('Main status follows BOA assessments; only unassessed issuance-year records
  }
  const example=snapshots['2024'].find(s=>s.id==='R_1d330d1cf2fdb7a898');
  assert.equal(example.status,'newly_issued');assert.equal(rate([example]).denominator,0);
+});
+
+test('2025 Volume I recommendations without SG fields display Unknown/newly issued',()=>{
+ const rows=scope(data,2025,'I').filter(s=>data.byId.get(s.id).year===2025);
+ assert.equal(rows.length,38);
+ assert(rows.every(s=>statusKey(s,data.byId.get(s.id))==='unknown_newly_issued'));
+ assert.equal(searchRows(data,rows,'','unknown_newly_issued').length,38);
+ assert(presentStatuses(rows,'status',data.byId).some(([key,label])=>key==='unknown_newly_issued'&&label==='Unknown/newly issued'));
+ const earlier=scope(data,2024,'I').find(s=>s.status==='newly_issued');
+ assert.equal(statusKey(earlier,data.byId.get(earlier.id)),'newly_issued');
 });
 
 test('Trends combine implementation and Board closures without recounting continuing terminal states',()=>{
