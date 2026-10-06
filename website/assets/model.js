@@ -1,4 +1,4 @@
-export const labels={under_implementation:'Under implementation',not_implemented:'Not implemented',implemented:'Implemented',overtaken_by_events:'Closed',closed_other:'Closed',newly_issued:'Newly issued',unknown_newly_issued:'Unknown/newly issued',unassessed:'No assessment in data',needs_review:'Review pending'};
+export const labels={under_implementation:'Under implementation',not_implemented:'Not implemented',implemented:'Implemented',overtaken_by_events:'Closed',closed_other:'Closed',closed:'Closed',newly_issued:'Newly issued',unknown_newly_issued:'Unknown/newly issued',unassessed:'No assessment in data',needs_review:'Review pending'};
 // Display only categories present in the selected population; retain all source codes.
 export const displayStatus=status=>['overtaken_by_events','closed_other'].includes(status)?'closed':status;
 export const statusKey=(row,recommendation)=>row.status==='newly_issued'&&recommendation?.volume==='I'&&recommendation.year===2025&&row.responsibility==='Unknown'&&!row.entities?.length&&!recommendation.priority?'unknown_newly_issued':displayStatus(row.status);
