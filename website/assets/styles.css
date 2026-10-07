@@ -11,3 +11,5 @@
 .pill-priority{background:var(--pale);color:var(--ink)}
 
 .pill-priority.priority-high{background:#fff0d1;color:#794600}.pill-priority.priority-medium{background:#e1f2fc;color:#075a80}.pill-priority.priority-unavailable{background:#edf0f3;color:#4b5966}
+.header-actions{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}.official-site{display:inline-flex;align-items:center;min-height:44px;padding:9px 14px;border:1px solid var(--link);border-radius:6px;color:var(--link);font-size:.875rem;font-weight:600;text-decoration:none;white-space:nowrap}.official-site:hover{background:var(--pale)}@media(max-width:800px){.header-actions{justify-content:flex-start}}
+.trend-filter-warning{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 16px;border:1px solid #ecd8a9;border-radius:6px;background:#fff8e9;color:var(--ink);font-size:.875rem}.trend-filter-warning button{min-height:36px;padding:6px 10px;color:var(--link);border-color:var(--link)}
