@@ -52,6 +52,18 @@ const axePath=require.resolve('../../website/node_modules/axe-core/axe.min.js');
  const issued=page.locator('.recommendation');assert.equal(await issued.locator('.report-year[open]').count(),1);await issued.locator('[data-jump-year="2024"]').click();const issuedYear=issued.locator('.report-year[data-year="2024"]');assert((await issuedYear.innerText()).includes('Newly issued'));assert((await issuedYear.innerText()).includes('Under implementation'));assert((await issuedYear.innerText()).includes('A/80/353'));assert((await issuedYear.innerText()).includes('Reported target date'));assert((await issuedYear.innerText()).includes('Fourth quarter of 2025'));await page.selectOption('#status','newly_issued');assert.equal(await page.locator('.recommendation').count(),1);await page.click('#reset');
  await page.fill('#search','R_454bc57cfe25e6fdfa');await page.locator('.recommendation > summary').click();await page.waitForSelector('.recommendation[data-loaded=true]');
  const detail=await page.locator('.detail').innerText();assert(detail.includes('BOA report'));assert(detail.includes('SG report'));assert(detail.includes('PDF page'));assert(!detail.includes('(printed '));assert(!detail.includes('Stable ID:'));assert(!detail.includes('wording basis'));assert(!detail.includes('cohort 2015'));
+ const [download]=await Promise.all([page.waitForEvent('download'),page.click('#export-excel')]);
+ const exportPath='tmp/site/filtered-recommendations.xlsx';await download.saveAs(exportPath);
+ const {spawnSync}=require('node:child_process');
+ const inspect=spawnSync('python3',['-c',`import zipfile,xml.etree.ElementTree as ET,json,sys
+z=zipfile.ZipFile(sys.argv[1]); ns={'x':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
+out=[]
+for i in range(1,4):
+ root=ET.fromstring(z.read(f'xl/worksheets/sheet{i}.xml'))
+ rows=root.findall('.//x:sheetData/x:row',ns)
+ out.append({'count':len(rows)-1,'text':' '.join(t.text or '' for t in root.findall('.//x:t',ns))})
+print(json.dumps(out))`,exportPath],{encoding:'utf8'});
+ assert.equal(inspect.status,0,inspect.stderr);const exported=JSON.parse(inspect.stdout);assert.equal(exported[0].count,1);assert(exported[0].text.includes('R_454bc57cfe25e6fdfa'));assert(exported[1].count>1);assert(exported[1].text.includes('board_assessment'));assert(exported[1].text.includes('documents.un.org'));assert(exported[2].text.includes('R_454bc57cfe25e6fdfa'));assert((await page.locator('#export-status').innerText()).includes('Downloaded 1 recommendation'));
  const years=await page.locator('.report-year').evaluateAll(nodes=>nodes.map(n=>Number(n.dataset.year)));assert.deepEqual(years,[...years].sort((a,b)=>b-a));
  const href=await page.locator('.detail a[href*="#page="]').first().getAttribute('href');const links=await page.locator('.detail a[href*="#page="]').evaluateAll(nodes=>nodes.map(a=>({href:a.href,text:a.textContent})));for(const link of links){const url=new URL(link.href);assert.equal(url.origin,"https://documents.un.org");assert.equal(url.searchParams.get("t"),"pdf");assert.equal(url.hash,"#page="+link.text.match(/PDF page (\d+)/)[1]);}
  await audit('expanded evidence');await shot('details');

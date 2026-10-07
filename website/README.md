@@ -84,6 +84,8 @@ The extractor and database retain the original BOA categories and source wording
 
 The Analysis tab also shows the shared recommendation list beneath its charts, including search, status filtering, pagination and source details. Switching tabs preserves list filters. Chart values retain screen-reader tables without a visible table toggle.
 
+The recommendation list's **Download Excel** button exports every result matching the current volume, reporting year, entity, responsibility, priority, status and search filters, including results beyond the visible page. The workbook contains a Recommendations sheet with selected-year BOA status and summary fields, a History sheet with every available BOA/SG observation and source report links, and a Selection sheet recording the filters and source export timestamp. History and SG target/status fields can include follow-up after the selected reporting year; the Selection sheet calls this out. The file is assembled locally in the browser from the published JSON assets and may take longer for large selections.
+
 ### Main status and SG updates
 
 `recommendation-preview.html` is a local review page using the same details renderer as the dashboard. It defaults to A/71/5 (Vol. I), paragraph 256 and accepts `?id=R_...` to inspect another extracted recommendation, including HUM decisions. The site build allowlist does not publish this preview.

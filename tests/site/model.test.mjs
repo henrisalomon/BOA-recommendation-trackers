@@ -4,9 +4,17 @@ import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {labels,rate,scope,movement,trendMovement,searchRows,statusKey,presentStatuses,terminal,entityKeys,periodLabel,waterfallSteps,targetDates} from '../../website/assets/model.js';
+import {selectedRows} from '../../website/assets/export.js';
 const root=new URL('../../website/',import.meta.url),load=n=>JSON.parse(readFileSync(new URL(`data/${n}.json`,root),'utf8'));
 const recommendations=load('recommendations'),snapshots=load('snapshots'),reports=load('reports');
 const data={recommendations,snapshots,reports,byId:new Map(recommendations.map(r=>[r.id,r]))};
+test('Excel selection uses every matching row, including rows beyond the visible page',()=>{
+ const filters={year:2025,volume:'I',entity:'all',responsibility:'all',priority:'High',search:'',status:'all'};
+ const rows=selectedRows(data,filters);
+ assert(rows.length>8);
+ assert.deepEqual(rows,searchRows(data,scope(data,2025,'I','all',2025,'all','High'),'','all').sort((a,b)=>data.byId.get(b.id).year-data.byId.get(a.id).year||a.id.localeCompare(b.id)));
+ assert(selectedRows(data,{...filters,search:'R_454bc57cfe25e6fdfa',priority:'all'}).every(row=>row.id==='R_454bc57cfe25e6fdfa'));
+});
 test('PKO display and individual entity filters preserve distinct joint recommendations',()=>{
  assert.equal(periodLabel(2020,'II'),'2019-20');assert.equal(periodLabel(2023,'II'),'2022-23');
  const fixture={byId:new Map([['a',{id:'a',volume:'II'}]]),snapshots:{2020:[],2021:[{id:'a',entities:['DMSPC'],offices:[{entity:'DMSPC',office:'BTAD'},{entity:'DMSPC',office:'OPPFB'}],responsibility:'Joint',status:'under_implementation'}]}};
