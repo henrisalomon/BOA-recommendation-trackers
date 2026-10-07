@@ -1,4 +1,4 @@
-import {labels,statusKey,scope,searchRows,periodLabel} from './model.js';
+import {labels,statusKey,registerStatusLabel,scope,searchRows,periodLabel} from './model.js';
 import {workbook} from './xlsx.js';
 
 const recommendationFields=['id','reportId','symbol','paragraph','chapter','text','textBasis','year','auditPeriod','volume','population','identityReview','priority'];
@@ -19,8 +19,8 @@ export function exportRecommendations(data,filters){
  const recommendations=[['Recommendation ID','Display status','Reporting period',...recommendationFields.slice(1),...snapshotFields,'Original report URL']];
  for(const s of selected){
   const r=data.byId.get(s.id);
-  recommendations.push([r.id,labels[statusKey(s,r)],periodLabel(filters.year,filters.volume),...recommendationFields.slice(1).map(k=>value(r[k])),...snapshotFields.map(k=>value(s[k])),sourceUrl(data.reports[r.reportId])]);
+  recommendations.push([r.id,filters.fullRegister?registerStatusLabel(s):labels[statusKey(s)],periodLabel(filters.year,filters.volume),...recommendationFields.slice(1).map(k=>value(r[k])),...snapshotFields.map(k=>value(s[k])),sourceUrl(data.reports[r.reportId])]);
  }
- const selection=[['Selection','Value'],['Volume',`Volume ${filters.volume}`],['Reporting period',periodLabel(filters.year,filters.volume)],['Register view',filters.fullRegister?'Full register':'Assessed in selected BOA report'],['Entity',filters.entity],['Responsibility',filters.responsibility],['Priority',filters.priority==='unavailable'?'Not available':filters.priority],['Status',filters.status==='all'?'All statuses':labels[filters.status]||filters.status],['Search',filters.search],['Recommendations',selected.length],['Source export timestamp',data.metadata.exportedAt||''],['Data scope','Strategic Heritage Plan recommendations excluded'],['Status basis','BOA status as of selected reporting period'],['Priority basis','Latest reported value, including later follow-up']];
+ const selection=[['Selection','Value'],['Volume',`Volume ${filters.volume}`],['Reporting period',periodLabel(filters.year,filters.volume)],['Register view',filters.fullRegister?'Full register':'Assessed in selected BOA report'],['Entity',filters.entity],['Responsibility',filters.responsibility],['Priority',filters.priority==='unavailable'?'Not available':filters.priority],['Status',filters.status==='all'?'All statuses':filters.fullRegister&&filters.status==='unassessed'?'No BOA assessment available':labels[filters.status]||filters.status],['Search',filters.search],['Recommendations',selected.length],['Source export timestamp',data.metadata.exportedAt||''],['Data scope','Strategic Heritage Plan recommendations excluded'],['Status basis',filters.fullRegister?'Latest BOA assessment by selected reporting period':'BOA assessment in selected report'],['Priority basis','Latest reported value, including later follow-up']];
  return {blob:workbook([{name:'Recommendations',rows:recommendations},{name:'Selection',rows:selection}]),count:selected.length};
 }

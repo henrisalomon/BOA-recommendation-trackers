@@ -48,4 +48,4 @@ All twelve formerly missing Volume I recommendations have responsible entities, 
 
 ## 7 October 2026 report-presence update
 
-The selected-report status now comes only from an assessment in that BOA report; absent recommendations show “Not assessed in selected BOA report”. A separate last-observed status supports the derived cumulative register. HUM-02 follows the A/71/5 (Vol. II) Implemented mark while preserving the conflicting Board and SG text. The report-presence audit covers both volumes. Local model, build, browser and accessibility checks passed before publication.
+The selected-report status now comes only from an assessment in that BOA report; absent recommendations are omitted from the assessed view. Full-register cards show the latest available BOA assessment through the selected year, with its year. A separate last-observed status supports the derived cumulative register. HUM-02 follows the A/71/5 (Vol. II) Implemented mark while preserving the conflicting Board and SG text. The report-presence audit covers both volumes. Local model, build, browser and accessibility checks passed before publication.

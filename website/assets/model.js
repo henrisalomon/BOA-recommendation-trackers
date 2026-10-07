@@ -1,4 +1,5 @@
-export const labels={under_implementation:'Under implementation',not_implemented:'Not implemented',implemented:'Implemented',overtaken_by_events:'Closed',closed_other:'Closed',closed:'Closed',newly_issued:'Newly issued',unassessed:'Not assessed in selected BOA report',needs_review:'Review pending'};
+export const labels={under_implementation:'Under implementation',not_implemented:'Not implemented',implemented:'Implemented',overtaken_by_events:'Closed',closed_other:'Closed',closed:'Closed',newly_issued:'Newly issued',unassessed:'Not listed in selected report',needs_review:'Review pending'};
+export const registerStatusLabel=row=>latestStatusKey(row)==='unassessed'?'No BOA assessment available':labels[latestStatusKey(row)];
 // Display only categories present in the selected population; retain all source codes.
 export const displayStatus=status=>['overtaken_by_events','closed_other'].includes(status)?'closed':status;
 export const statusKey=(row)=>displayStatus(row.status);

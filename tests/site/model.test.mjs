@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
-import {labels,rate,scope,movement,trendMovement,searchRows,statusKey,presentStatuses,terminal,entityKeys,periodLabel,waterfallSteps,targetDates} from '../../website/assets/model.js';
+import {labels,rate,scope,movement,trendMovement,searchRows,statusKey,registerStatusLabel,presentStatuses,terminal,entityKeys,periodLabel,waterfallSteps,targetDates} from '../../website/assets/model.js';
 import {selectedRows} from '../../website/assets/export.js';
 const root=new URL('../../website/',import.meta.url),load=n=>JSON.parse(readFileSync(new URL(`data/${n}.json`,root),'utf8'));
 const recommendations=load('recommendations'),snapshots=load('snapshots'),reports=load('reports');
@@ -70,6 +70,7 @@ test('Filtering is exact for volume and entities; search includes stable IDs and
  const e=all.flatMap(entityKeys).find(e=>e!=='Unmapped / not reported');assert(scope(data,2024,'all',e).every(s=>entityKeys(s).includes(e)));assert(scope(data,2024,'all',e).length>0);assert.equal(scope(data,2024,'all','nonexistent').length,0);
  const id=all[0].id;assert.equal(searchRows(data,all,id,'all')[0].id,id);assert(searchRows(data,all,'','implemented').every(s=>(s.lastObservedStatus??s.status)==='implemented'));assert.equal(searchRows(data,all,'xxxxxxxx-no-match','all').length,0);
  const historical=all.find(s=>s.status==='unassessed'&&s.lastObservedStatus==='implemented');assert(historical);assert(searchRows(data,[historical],'','implemented').length===1);
+ assert.equal(registerStatusLabel(historical),'Implemented');
 });
 
 test('Waterfall hides a zero reopening step without changing balances or connectors',()=>{

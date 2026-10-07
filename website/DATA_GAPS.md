@@ -1,10 +1,8 @@
 # Data gaps and interpretation
 
-- 5 reports have no recorded exact publication date. Two also lack a publication year in the data, although their PDF covers say 2015 and 2016. Audit years are used to group them; exact publication order remains unverified.
-
-- Source coverage needs a dated check of reports and corrigenda at the official Board of Auditors website before any release is called exhaustive.
-
 - Volume I uses calendar years; Volume II uses July–June peacekeeping fiscal years. Charts use the fiscal end year for Volume II, so a shared year is not a common 31 December snapshot.
+
+- The report list uses audit years for grouping. Consult the official Board of Auditors website for the reports and corrigenda; source coverage still needs a dated catalogue check before it can be described as exhaustive.
 
 - Coverage as of 7 October 2026: the dataset includes 2025 BOA Volumes I and II and SG A/80/629 for Volume II. A matching Volume I SG report was not located in the source review; its progress, responsibility and target dates are unavailable here.
 
@@ -16,6 +14,6 @@
 
 - Some source comments have a report section or recommendation paragraph as their citation rather than an exact comment paragraph. Check the linked PDF when paragraph-level attribution matters.
 
-- 1220 of 8576 extracted comments did not pass the automated PDF text check. Improved automated matching may resolve some; remaining mismatches need a person to check wording, attribution and page against the PDF.
+- Some BOA annex comments cite the recommendation’s original paragraph rather than a separate paragraph number for the comment. For example, an assessment in A/77/5 (Vol. I) cites chapter II, paragraph 581 of the original recommendation. Its source page is linked, but that paragraph reference does not identify the comment itself.
 
-- The dashboard’s yellow notice warns that AI extraction can contain errors. A few recommendation statuses were corrected after human review; the original marks and decisions remain in the review register.
+- 1220 of 8576 extracted comments did not pass the automated PDF text check. The check looks for all normalized text fragments on the cited PDF pages; the other 7356 passed that text-presence check. A mismatch may reflect page-spanning text, PDF text extraction or an incorrect extraction or locator. These cases still need review against the PDF; a pass does not independently verify attribution or meaning.
