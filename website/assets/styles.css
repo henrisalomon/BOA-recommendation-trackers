@@ -23,7 +23,7 @@
 .filter-grid > .filter-volume,.filter-grid > .filter-year,.filter-grid > .filter-status,.filter-grid > .entity-label,.filter-grid > .filter-responsibility,.filter-grid > .filter-priority{grid-column:span 2}
 .filter-grid > .search-label{grid-column:span 5}
 .filter-grid > .register-toggle{grid-column:span 3}
-.filter-grid > #reset,.filter-grid > #export-excel{grid-column:span 2;width:100%;white-space:nowrap}
+.filter-grid > #reset,.filter-grid > #export-excel{grid-column:span 2;width:100%;white-space:normal;overflow-wrap:anywhere}
 .filter-grid > #reset:not(:disabled):hover{background:#e7f4fb}
 .filter-grid > #export-excel{border-color:var(--link);background:var(--link);color:#fff;font-weight:600}
 .filter-grid > #export-excel:not(:disabled):hover{background:var(--navy)}
@@ -36,7 +36,7 @@
 .register-toggle input:checked+.toggle-track::after{transform:translateX(17px)}
 .register-toggle input:focus-visible+.toggle-track{outline:3px solid var(--link);outline-offset:3px}
 .register-toggle input:disabled+.toggle-track{opacity:.55}
-.toggle-copy{display:flex;flex-direction:column;line-height:1.25}
+.toggle-copy{display:flex;flex-direction:column;min-width:0;overflow-wrap:anywhere;line-height:1.25}
 .toggle-copy strong{font-size:.8125rem;font-weight:600}
 .toggle-copy small{margin-top:2px;font-size:.6875rem;color:var(--muted)}
 #export-status:not(:empty){margin-top:12px}
