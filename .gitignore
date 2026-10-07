@@ -8,3 +8,10 @@ __pycache__/
 
 # Local compressed historical material; never publish.
 /archives/
+
+# Source research and build products stay local. Existing tracked data files
+# remain tracked; the published dataset lives in website/data/.
+/reports/
+/outputs/
+/data/
+/*.xlsx
