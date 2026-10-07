@@ -1,5 +1,8 @@
 name: Prepare or publish BOA dashboard
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       publish:
@@ -10,8 +13,8 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: boa-pages
-  cancel-in-progress: false
+  group: boa-pages-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build:
     permissions:
@@ -47,14 +50,14 @@ jobs:
           python3 scripts/site/build.py --base-path /boa-pages-preview/ --output tmp/site/prefix-build
           node tests/site/prefix.cjs
       - name: Read actual Pages base path
-        if: inputs.publish
+        if: ${{ github.event_name == 'push' || inputs.publish }}
         id: pages
         uses: actions/configure-pages@v5
       - name: Build for repository path (preview only)
-        if: ${{ !inputs.publish }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.publish }}
         run: python3 scripts/site/build.py
       - name: Build for configured Pages path
-        if: inputs.publish
+        if: ${{ github.event_name == 'push' || inputs.publish }}
         env:
           PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
         run: python3 scripts/site/build.py --base-path "$PAGES_BASE_PATH"
@@ -62,7 +65,7 @@ jobs:
         with:
           path: dist
   deploy:
-    if: inputs.publish
+    if: ${{ github.event_name == 'push' || inputs.publish }}
     needs: build
     runs-on: ubuntu-latest
     permissions:

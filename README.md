@@ -23,4 +23,4 @@ From the repository root, run:
 python3 -m http.server 4173 --bind 127.0.0.1 --directory website
 ```
 
-Then open <http://127.0.0.1:4173/>. The dashboard needs HTTP to load its local JSON files. See the [website documentation](website/README.md) for data updates, tests and the manual GitHub Pages publishing workflow.
+Then open <http://127.0.0.1:4173/>. The dashboard needs HTTP to load its local JSON files. See the [website documentation](website/README.md) for data updates, tests and automatic GitHub Pages publication from `main`.

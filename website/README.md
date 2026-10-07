@@ -1,6 +1,6 @@
 # BOA recommendation trackers
 
-Static, unofficial dashboard ported from the latest `boa-recommendations.html` mockup dated 19 September 2026. White background, Roboto, UN-blue accents and the Recommendations / Analysis / Trends tabs are retained. No account, service, database server or build framework is needed at runtime. Publication is controlled by the manual GitHub Pages workflow.
+Static, unofficial dashboard ported from the latest `boa-recommendations.html` mockup dated 19 September 2026. White background, Roboto, UN-blue accents and the Recommendations / Analysis / Trends tabs are retained. No account, service, database server or build framework is needed at runtime. Pushes to `main` publish through GitHub Pages after validation.
 
 ## Local preview
 
@@ -59,10 +59,10 @@ The exporter does not remove stale detail files/PDFs after an upstream deletion.
 
 Repository: https://github.com/henrisalomon/BOA-recommendation-trackers. Public site: https://henrisalomon.github.io/BOA-recommendation-trackers/. No repository is needed for the local preview. The repository root should contain `.github/workflows/pages.yml`, `website/`, `scripts/site/` and `tests/site/`. Only `dist/` is uploaded to Pages: no original SQLite database, scratch files, credentials or analysis packages are published. The source repository may be separately scoped to these website files to avoid uploading the full research workspace. Keep individual PDFs as ordinary files; the website is about 158 MB. Do not put PDF assets in LFS without a Pages-compatible materialization step.
 
-The workflow has **only `workflow_dispatch`**, and its `publish` checkbox defaults to false. Pushing files does not run this workflow. A default manual run validates/builds and uploads an artifact without deploying. When publication is explicitly authorized:
+Every push to `main` runs validation, builds the site and deploys it to GitHub Pages. A newer run cancels an older run so the latest commit is published. The `workflow_dispatch` option remains available: its `publish` checkbox defaults to false, allowing a manual validation/build without deployment.
 
 1. Set repository **Settings → Pages → Source → GitHub Actions**.
-2. Run **Prepare or publish BOA dashboard**, and enable `publish` only when publication is intended.
+2. Push to `main` for automatic publication, or run **Prepare or publish BOA dashboard** manually and enable `publish` for a manual deployment.
 3. The publish build uses `actions/configure-pages`'s actual `base_path`, including custom-domain/root sites. Preview-only CI derives `/repository/` from `GITHUB_REPOSITORY` (or `/` for `owner.github.io`). Site assets, JSON, internal links and bundled PDF paths resolve under that base. Citation links use absolute official UN URLs. Nothing hard-codes a guessed repository name.
 4. The deployment job uses the `github-pages` environment and has `pages: write` and `id-token: write` permissions. Configure environment reviewers if desired.
 
