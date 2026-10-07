@@ -8,8 +8,9 @@ const value=x=>x===null||x===undefined?'':typeof x==='object'?JSON.stringify(x):
 const sourceUrl=(report,pages)=>report?.download_url&&pages?.length?`${report.download_url.split('#')[0]}#page=${pages[0]}`:report?.download_url||'';
 
 export function selectedRows(data,filters){
- const {year,volume,entity,responsibility,priority,search,status}=filters;
- return searchRows(data,scope(data,year,volume,entity,year,responsibility,priority),search,status)
+ const {year,volume,entity,responsibility,priority,search,status,fullRegister=false}=filters;
+ const rows=scope(data,year,volume,entity,year,responsibility,priority);
+ return searchRows(data,fullRegister?rows:rows.filter(row=>row.hasAssessment),search,status,fullRegister)
   .sort((a,b)=>data.byId.get(b.id).year-data.byId.get(a.id).year||a.id.localeCompare(b.id));
 }
 
@@ -34,6 +35,6 @@ export async function exportRecommendations(data,filters,onProgress=()=>{},loadD
   recommendations.push([r.id,labels[statusKey(s,r)],periodLabel(filters.year,filters.volume),dates.original?.history[dates.original.field]||'',dates.revised?.history[dates.revised.field]||'',latestSG?.status_raw||'',...recommendationFields.slice(1).map(k=>value(r[k])),...snapshotFields.map(k=>value(s[k])),sourceUrl(data.reports[r.reportId])]);
   for(const h of d.history){const report=data.reports[h.report_id];history.push([r.id,report?.symbol||'',report?.publication_date||report?.publication_year||'',report?.audit_period||report?.audit_year||'',sourceUrl(report,h.evidence?.recommendation_text?.pages||h.evidence?.board_assessment?.pages||h.evidence?.sg_progress?.pages||[h.pdf_page].filter(Boolean)),...historyFields.map(k=>value(h[k]))]);}
  }
- const selection=[['Selection','Value'],['Volume',`Volume ${filters.volume}`],['Reporting period',periodLabel(filters.year,filters.volume)],['Entity',filters.entity],['Responsibility',filters.responsibility],['Priority',filters.priority==='unavailable'?'Not available':filters.priority],['Status',filters.status==='all'?'All statuses':labels[filters.status]||filters.status],['Search',filters.search],['Recommendations',selected.length],['Source export timestamp',data.metadata.exportedAt||''],['Data scope','Strategic Heritage Plan recommendations excluded'],['Status basis','BOA status as of selected reporting period'],['Priority basis','Latest reported value, including later follow-up'],['History coverage','All available reports, including after selected reporting period']];
+ const selection=[['Selection','Value'],['Volume',`Volume ${filters.volume}`],['Reporting period',periodLabel(filters.year,filters.volume)],['Register view',filters.fullRegister?'Full register':'Assessed in selected BOA report'],['Entity',filters.entity],['Responsibility',filters.responsibility],['Priority',filters.priority==='unavailable'?'Not available':filters.priority],['Status',filters.status==='all'?'All statuses':labels[filters.status]||filters.status],['Search',filters.search],['Recommendations',selected.length],['Source export timestamp',data.metadata.exportedAt||''],['Data scope','Strategic Heritage Plan recommendations excluded'],['Status basis','BOA status as of selected reporting period'],['Priority basis','Latest reported value, including later follow-up'],['History coverage','All available reports, including after selected reporting period']];
  return {blob:workbook([{name:'Recommendations',rows:recommendations},{name:'History',rows:history},{name:'Selection',rows:selection}]),count:selected.length,historyCount:history.length-1};
 }
