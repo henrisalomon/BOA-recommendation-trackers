@@ -1,27 +1,21 @@
 # Data gaps and interpretation
 
-- Strategic Heritage Plan recommendations and all linked BOA/SG history are excluded from the analytical database, dashboard and Excel/CSV exports. Original PDFs and extraction caches are retained as source evidence.
+- 5 reports have no recorded exact publication date. Two also lack a publication year in the data, although their PDF covers say 2015 and 2016. Audit years are used to group them; exact publication order remains unverified.
 
-- 5 reports lack an exact publication date; 2 also lack a publication year. Those histories are grouped by audit year with an explicit warning; exact chronological order is unverified where dates are missing.
+- Source coverage needs a dated check of reports and corrigenda at the official Board of Auditors website before any release is called exhaustive.
 
-- A selected-year BOA status is shown only when that report assesses the recommendation. Without a row, the status is Not assessed in selected BOA report. Earlier BOA and SG observations remain in history; absence does not establish implementation, closure, continuing openness or inclusion in the later report. The separate lastObservedStatus supports a derived cumulative register and is not an annual report status.
+- Volume I uses calendar years; Volume II uses July–June peacekeeping fiscal years. Charts use the fiscal end year for Volume II, so a shared year is not a common 31 December snapshot.
 
-- Source coverage will be reviewed manually during the year at the official Board of Auditors website (https://www.un.org/en/united-nations-board-auditors). As of 6 October 2026, the project owner is not aware of a newer applicable report. A dated report and corrigendum check is still needed before describing a release as exhaustive at a specific cutoff.
+- Coverage as of 7 October 2026: the dataset includes 2025 BOA Volumes I and II and SG A/80/629 for Volume II. A matching Volume I SG report was not located in the source review; its progress, responsibility and target dates are unavailable here.
 
-- Volume I uses calendar years; Volume II displays PKO fiscal periods, for example 2019-20 (1 July 2019 to 30 June 2020). Numeric end years are retained for calculations. These are not a common 31 December snapshot.
+- 965 recommendations lack an extracted original target date; 970 lack a revised date. Blank means not extracted, and an earliest observed date is not necessarily the original deadline.
 
-- 2025 includes BOA Volume I and Volume II (2024–25), including new recommendations and follow-up assessments. SG A/80/629 is included for Volume II. The corresponding Volume I SG report was not located as of 24 September 2026; its progress, responsibility and target-date fields remain unavailable for new recommendations.
+- Some responsible-entity names need human review, mainly historical departments and collective labels. See the entity review list for each source wording. A joint recommendation can match more than one entity filter and appear in more than one entity rate; the overall recommendation count includes it once.
 
-- 965 recommendations have no explicitly extracted original target date; 970 have no explicitly extracted revised target date. Original and revised target dates are shown only when explicitly extracted under those labels. An earliest observed target is not an original deadline. Blank fields mean not extracted, not not-applicable.
+- Actual completion dates are not consistently available, so the dashboard does not calculate which recommendations are overdue.
 
-- Entities are matched conservatively to the supplied Entity/Office list. Original wording is retained. Unmatched names require review; no historical successor is inferred. Joint means more than one responsible entity/office pair; DMSPC/BTAD and DMSPC/OPPFB therefore count as Joint. DCO and UNDCO are merged as DCO. Historical entities absent from the supplied list are retained separately and flagged for review. Incomplete single-unit matches remain Unknown. Entity breakdowns overlap for joint recommendations; their counts must not be added. Trend comparisons hold selected-year entity and responsibility attribution fixed.
+- Some source comments have a report section or recommendation paragraph as their citation rather than an exact comment paragraph. Check the linked PDF when paragraph-level attribution matters.
 
-- Theme, assignment, explicit status-as-of dates and actual completion dates are not systematically coded. No theme breakdown or overdue calculation is inferred.
+- 1220 of 8576 extracted comments did not pass the automated PDF text check. Improved automated matching may resolve some; remaining mismatches need a person to check wording, attribution and page against the PDF.
 
-- Unnumbered annex comments cite their annex and originating recommendation paragraph. SG source paragraphs may anchor the recommendation section; exact comment paragraphs are marked unverified where not recovered.
-
-- 1220 of 8576 comments do not pass complete PDF text-fragment verification; their proposed pages are labelled unverified. Even a matched PDF locator is not a human certification of extraction or attribution.
-
-- 0 observations require status review. Raw source marks and approved reviewed statuses remain separately visible; unresolved assessments are excluded from assessment-rate denominators.
-
-- The source review documentation records raw printed-total discrepancies and approved reviewer treatments. A/71/5 (Vol. II), paragraph 342, follows its Implemented mark; its Board narrative says under implementation and SG A/71/801 says In progress. The marked status count differs from the report’s printed aggregate by one. The original evidence remains visible.
+- The dashboard’s yellow notice warns that AI extraction can contain errors. A few recommendation statuses were corrected after human review; the original marks and decisions remain in the review register.
