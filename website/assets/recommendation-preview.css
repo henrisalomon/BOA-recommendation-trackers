@@ -1,0 +1,3 @@
+.preview{max-width:1280px}
+.preview-card{border:1px solid var(--line);border-radius:8px;padding:24px;background:#fff}
+@media(max-width:800px){.preview-card{padding:16px}}

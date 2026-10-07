@@ -1,0 +1,35 @@
+.history-card{min-width:0}
+.columns>*{min-width:0}
+.history-card h2{margin:0 0 12px}
+.recommendation-heading{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px}
+.recommendation-link{font-size:.875rem;font-weight:400;white-space:nowrap}
+.preview-intro{font-size:1.05rem;line-height:1.6;margin-bottom:20px}
+.year-nav{position:sticky;top:0;z-index:2;display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:8px 10px;margin:0 0 14px;box-shadow:0 2px 8px #2336480d}
+.year-nav>span{font-size:.8125rem;font-weight:600;color:var(--muted)}
+.year-nav-years{display:flex;gap:6px;flex:1;min-width:0;overflow-x:auto;padding:2px 0}
+.year-nav button{min-height:34px;padding:4px 9px;font-size:.8125rem;white-space:nowrap}
+.year-nav-actions{display:flex;gap:6px;flex-wrap:wrap}
+.report-year{border-top:1px solid var(--line);padding:0 0 14px;scroll-margin-top:94px}
+.report-year>summary{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;padding:14px 0;list-style:none}
+.report-year>summary::-webkit-details-marker{display:none}
+.report-year>summary::before{content:'▸';color:var(--link)}
+.report-year[open]>summary::before{content:'▾'}
+.year-title{font-weight:600}
+.year-status{font-size:.8125rem;color:var(--muted)}
+.report-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.report-columns>div{min-width:0}
+.report-panel{min-width:0;border:1px solid var(--line);border-radius:7px;padding:18px;height:100%}
+.report-heading{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;margin:0 0 16px}
+.report-reference{font-size:.85rem;font-weight:400;color:var(--muted)}
+.report-reference a{white-space:nowrap}
+.report-status{display:flex;flex-wrap:wrap;gap:4px 10px;margin-bottom:16px}
+.report-status strong,.report-field strong{font-size:.82rem;color:var(--muted);font-weight:600}
+.report-field{margin:0 0 14px;overflow-wrap:anywhere}
+.report-field strong{display:block;margin-bottom:3px}
+.report-field>span{display:block}
+.sg-fields{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.sg-dates.single{grid-template-columns:minmax(0,1fr)}
+.report-empty{color:var(--muted)}
+.review-note{background:#fff4c7;border-left:4px solid #c38b12;padding:12px 14px;margin:12px 0;border-radius:3px}
+@media(max-width:800px){.report-columns{grid-template-columns:1fr}}
+@media(max-width:430px){.sg-fields{grid-template-columns:1fr;gap:0}.report-panel{padding:14px}.year-nav-actions{width:100%}.year-nav-actions button{flex:1}}

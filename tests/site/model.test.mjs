@@ -13,6 +13,10 @@ test('PKO display and individual entity filters preserve distinct joint recommen
  assert.deepEqual(entityKeys(fixture.snapshots[2021][0]),['DMSPC']);assert.equal(scope(fixture,2021,'all','DMSPC',2021,'Joint').length,1);assert.equal(scope(fixture,2021,'all','DMSPC/BTAD',2021,'Joint').length,0);
  assert.equal(scope(fixture,2021,'all','all',2021,'Individual').length,0);
  assert.equal(movement(fixture,2021,'II','DMSPC',2021,'Joint').issued,1);
+ const collective=scope(data,2025,'II').filter(s=>/all peacekeeping missions/i.test(s.entity));
+ assert(collective.length>0);
+ assert(collective.every(s=>entityKeys(s).includes('All peacekeeping missions')));
+ assert.equal(scope(data,2025,'II','All peacekeeping missions').length,collective.length);
  for(const year of load('metadata').years){
   const all=scope(data,year);assert.equal(['Joint','Individual','Unknown'].reduce((n,k)=>n+scope(data,year,'all','all',year,k).length,0),all.length);
   for(const kind of ['Joint','Individual','Unknown'])for(const volume of ['all','I','II']){
@@ -79,12 +83,12 @@ test('Main status follows BOA assessments; only unassessed issuance-year records
  assert.equal(example.status,'newly_issued');assert.equal(rate([example]).denominator,0);
 });
 
-test('2025 Volume I recommendations without SG fields display Unknown/newly issued',()=>{
+test('2025 Volume I recommendations without SG fields display Newly issued',()=>{
  const rows=scope(data,2025,'I').filter(s=>data.byId.get(s.id).year===2025);
  assert.equal(rows.length,38);
- assert(rows.every(s=>statusKey(s,data.byId.get(s.id))==='unknown_newly_issued'));
- assert.equal(searchRows(data,rows,'','unknown_newly_issued').length,38);
- assert(presentStatuses(rows,'status',data.byId).some(([key,label])=>key==='unknown_newly_issued'&&label==='Unknown/newly issued'));
+ assert(rows.every(s=>statusKey(s,data.byId.get(s.id))==='newly_issued'));
+ assert.equal(searchRows(data,rows,'','newly_issued').length,38);
+ assert(presentStatuses(rows,'status',data.byId).some(([key,label])=>key==='newly_issued'&&label==='Newly issued'));
  const earlier=scope(data,2024,'I').find(s=>s.status==='newly_issued');
  assert.equal(statusKey(earlier,data.byId.get(earlier.id)),'newly_issued');
 });

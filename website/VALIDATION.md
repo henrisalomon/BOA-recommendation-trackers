@@ -1,5 +1,9 @@
 # Website validation — 24 September 2026
 
+## UI follow-up — 7 October 2026
+
+The recommendation details layout is now shared by the local preview and the dashboard. Audit periods run newest first, with the latest open by default, a year navigator, and Expand all / Collapse older years controls. BOA and SG text and extracted date values remain unchanged. The 15 Node model tests, nine Python build/helper tests, Chrome browser regression suite, nine axe-core accessibility audits and non-root Pages prefix test passed. The browser suite also checked expanded details at 390 px and 200% text size, with no horizontal overflow or uncaught JavaScript errors. No publication was performed.
+
 The 2025 report extension and historical SG recovery passed local validation. Publication is performed through the manual GitHub Pages workflow, which repeats model, browser, accessibility and build checks before deployment.
 
 ## Checks completed
@@ -40,4 +44,4 @@ PDF links use official `documents.un.org` URLs with one-based `#page=N` fragment
 
 ## Historical SG recovery checks
 
-All twelve formerly missing Volume I recommendations have responsible entities, target wording and SG statuses with verified field-level PDF locators. New source documents: A/70/338 and its reviewed corrigendum. Eighteen SG observations were added; all 1,360 recommendation identities and all prior BOA observations remain unchanged. Zero unmatched observations; the two pre-existing source review flags remain. Browser regressions verify paragraph 95’s recovered fields, PDF links, “Audit year” labels and “Published in” headings. Existing workbook validation above predates this recovery; the SQLite database, CSV/JSON exports and dashboard have been updated.
+All twelve formerly missing Volume I recommendations have responsible entities, target wording and SG statuses with verified field-level PDF locators. New source documents: A/70/338 and its reviewed corrigendum. Eighteen SG observations were added; all 1,360 recommendation identities and all prior BOA observations remain unchanged. Zero unmatched observations; the two pre-existing source review flags remain. Browser regressions verify paragraph 95’s recovered fields, PDF links, “Audit year” labels and audit-period history headings. Existing workbook validation above predates this recovery; the SQLite database, CSV/JSON exports and dashboard have been updated.
