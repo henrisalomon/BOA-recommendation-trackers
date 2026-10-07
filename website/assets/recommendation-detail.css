@@ -4,6 +4,10 @@
 .recommendation-heading{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px}
 .recommendation-link{font-size:.875rem;font-weight:400;white-space:nowrap}
 .preview-intro{font-size:1.05rem;line-height:1.6;margin-bottom:20px}
+.implementation-note{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px;margin:0 0 18px;padding:12px 16px;border-left:4px solid var(--green);border-radius:5px;background:#edf8f2}
+.implementation-note-label{font-size:.875rem;color:var(--muted)}
+.implementation-note strong{color:var(--green)}
+.implementation-note-source{font-size:.8125rem;color:var(--muted)}
 .year-nav{position:sticky;top:0;z-index:2;display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:8px 10px;margin:0 0 14px;box-shadow:0 2px 8px #2336480d}
 .year-nav>span{font-size:.8125rem;font-weight:600;color:var(--muted)}
 .year-nav-years{display:flex;gap:6px;flex:1;min-width:0;overflow-x:auto;padding:2px 0}

@@ -29,6 +29,9 @@ function sg(h,report){
 
 export function renderRecommendationDetail({recommendation:rec,history},reports){
  const initial=history.find(h=>h.source_type==='BOA'&&h.kind==='issuance');
+ const implemented=history.filter(h=>h.source_type==='BOA'&&h.kind!=='issuance'&&(h.reviewed_status_group||h.status_group)==='implemented').sort((a,b)=>(reports[a.report_id]?.audit_year??Infinity)-(reports[b.report_id]?.audit_year??Infinity))[0];
+ const implementationReport=implemented&&reports[implemented.report_id];
+ const implementationNote=implementationReport?`<div class="implementation-note"><span class="implementation-note-label">First recorded as implemented by BOA</span><strong>Audit period ${esc(implementationReport.audit_period||implementationReport.audit_year)}</strong><span class="implementation-note-source">${esc(implementationReport.symbol)}${implementationReport.publication_year?` · published ${esc(implementationReport.publication_year)}`:''} · ${pdfLink(implemented,implementationReport,['status_raw','board_assessment'])}</span></div>`:'';
  const years=[...new Set(history.map(h=>reports[h.report_id]?.audit_year).filter(Number.isFinite))].sort((a,b)=>b-a);
  const navigator=`<nav class="year-nav" aria-label="Jump to audit period"><span>Jump to audit period</span><div class="year-nav-years">${years.map(y=>`<button type="button" data-jump-year="${y}">${esc(reports[history.find(h=>reports[h.report_id]?.audit_year===y).report_id].audit_period||y)}</button>`).join('')}</div><div class="year-nav-actions"><button type="button" data-history-action="expand">Expand all</button><button type="button" data-history-action="collapse">Collapse older years</button></div></nav>`;
  const periods=years.map((year,index)=>{
@@ -37,7 +40,7 @@ export function renderRecommendationDetail({recommendation:rec,history},reports)
   const label=reports[(b[0]||s[0]).report_id].audit_period||year;
   return `<details class="report-year" data-year="${year}"${index===0?' open':''}><summary><span class="year-title">Audit period ${esc(label)}</span><span class="year-status">BOA: ${esc(boaStatus(b.at(-1)))}</span></summary><div class="report-columns"><div>${b.length?b.map(h=>boa(h,reports[h.report_id])).join(''):boa(null,null)}</div><div>${s.length?s.map(h=>sg(h,reports[h.report_id])).join(''):sg(null,null)}</div></div></details>`;
  }).join('');
- return `<article class="history-card"><h2 class="recommendation-heading"><span>${esc(rec.symbol)} · para. ${esc(rec.paragraph)}</span>${initial?`<span class="recommendation-link">${pdfLink(initial,reports[initial.report_id],['recommendation_text'])}</span>`:''}</h2><p class="preview-intro">${esc(rec.text)}</p>${navigator}${periods}</article>`;
+ return `<article class="history-card"><h2 class="recommendation-heading"><span>${esc(rec.symbol)} · para. ${esc(rec.paragraph)}</span>${initial?`<span class="recommendation-link">${pdfLink(initial,reports[initial.report_id],['recommendation_text'])}</span>`:''}</h2><p class="preview-intro">${esc(rec.text)}</p>${implementationNote}${navigator}${periods}</article>`;
 }
 
 export function bindRecommendationDetail(container){
