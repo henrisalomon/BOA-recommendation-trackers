@@ -28,8 +28,8 @@
 .filter-grid select:focus-visible,.filter-grid input:focus-visible{border-color:var(--link)}
 .filter-volume,.filter-year{grid-column:span 2}
 .filter-status{grid-column:span 3}
-.filter-grid .search-label{grid-column:span 5}
-.filter-grid .entity-label{grid-column:span 6}
+.filter-grid .entity-label{grid-column:span 5}
+.filter-grid .search-label{grid-column:span 6}
 .filter-responsibility,.filter-priority{grid-column:span 3}
 .filter-actions{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:20px;padding-top:18px;border-top:1px solid #dbe8f0}
 .filter-actions #export-excel{flex:none;border-color:#8fb8cc;color:var(--link);font-weight:600}
