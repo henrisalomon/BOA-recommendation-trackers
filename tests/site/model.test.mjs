@@ -51,7 +51,7 @@ test('Waterfall balances for every year, volume and observed entity; trends reco
   for(const entity of entities){let last;for(const year of load('metadata').years.filter(y=>y<=anchor)){
    const m=movement(data,year,volume,entity,anchor);assert.equal(m.opening+m.issued+m.reopened-m.implemented-m.other,m.closing,JSON.stringify({year,volume,entity,anchor,m}));
    if(last)assert.equal(last.closing,m.opening);last=m;
-   const rows=scope(data,year,volume,entity,anchor);assert.equal(m.closing,rows.filter(s=>!terminal(s.status)).length);
+   const rows=scope(data,year,volume,entity,anchor);assert.equal(m.closing,rows.filter(s=>!terminal(s.lastObservedStatus??s.status)).length);
    assert(m.value===null||(m.value>=0&&m.value<=100));assert(m.implementedRate<=m.denominator);
   }}
  }
@@ -81,8 +81,10 @@ test('Main status follows BOA assessments; only unassessed issuance-year records
   for(const [year,rows] of Object.entries(snapshots)){
    const s=rows.find(x=>x.id===r.id);if(!s)continue;
    const boa=h.filter(x=>x.source_type==='BOA'&&x.kind==='annex'&&reports[x.report_id].audit_year<=+year).at(-1);
-   const expected=r.identityReview||boa?.review_status==='needs_review'?'needs_review':boa?(boa.reviewed_status_group||boa.status_group||'unassessed'):r.year===+year?'newly_issued':'unassessed';
-   assert.equal(s.status,expected,`${r.id} / ${year}`);
+   const expectedLast=r.identityReview||boa?.review_status==='needs_review'?'needs_review':boa?(boa.reviewed_status_group||boa.status_group||'unassessed'):r.year===+year?'newly_issued':'unassessed';
+   const current=boa&&reports[boa.report_id].audit_year===+year?boa:null;
+   const expected=current?(r.identityReview||current.review_status==='needs_review'?'needs_review':current.reviewed_status_group||current.status_group||'unassessed'):r.year===+year?'newly_issued':'unassessed';
+   assert.equal(s.status,expected,`${r.id} / ${year}`);assert.equal(s.lastObservedStatus,expectedLast,`${r.id} last observed / ${year}`);
    assert.equal(s.historyId,boa?.history_id??null);
    if(s.status==='newly_issued'){assert.equal(s.assessment,null);assert.equal(s.hasAssessment,false);assert.equal(terminal(s.status),false)}
   }
@@ -125,13 +127,15 @@ test('All dashboard views exclude SHP records; HUM-06 remains implemented',()=>{
  assert.equal(excluded.length,31);
  for(const r of excluded){assert(!data.byId.has(r.recommendation_id));assert(!readdirSync(new URL('data/details/',root)).includes(r.recommendation_id+'.json'));}
  for(const [year,issued] of [[2016,53],[2018,71],[2020,126],[2022,80]])assert.equal(movement(data,year,'I').issued,issued);
- for(let year=2015;year<=2025;year++)assert.equal(data.snapshots[year].find(s=>s.id==='R_090f16c406e66a69f9').status,'implemented');
+ for(let year=2015;year<=2025;year++)assert.equal(data.snapshots[year].find(s=>s.id==='R_090f16c406e66a69f9').lastObservedStatus,'implemented');
  assert.equal(trendMovement(data,2015,'II').implementedClosed,48);assert.equal(trendMovement(data,2015,'II').denominator,80);
- assert.equal(trendMovement(data,2024,'II').opening,54);
- assert.equal(data.snapshots[2024].find(s=>s.id==='R_d864098f1c73905723').status,'under_implementation');
+ assert.equal(trendMovement(data,2024,'II').opening,53);
+ assert.equal(data.snapshots[2024].find(s=>s.id==='R_d864098f1c73905723').status,'unassessed');assert.equal(data.snapshots[2024].find(s=>s.id==='R_d864098f1c73905723').lastObservedStatus,'implemented');
 });
 
-test('Approved HUM-02 reconciles 2015–16 assessments without inventing a later closure',()=>{const m=movement(data,2016,'II');assert.equal(m.implementedRate,39);assert.equal(m.implementedClosedRate,46);assert.equal(m.denominator,63);assert.equal(movement(data,2017,'II').opening,72);assert.equal(movement(data,2024,'II').opening,54);});
+test('HUM-02 follows the marked BOA status while retaining conflicting source evidence',()=>{const m=movement(data,2016,'II');assert.equal(m.implementedRate,40);assert.equal(m.implementedClosedRate,47);assert.equal(m.denominator,63);assert.equal(movement(data,2017,'II').opening,71);assert.equal(movement(data,2024,'II').opening,53);});
+
+test('An absent BOA row never supplies a selected-report status',()=>{for(const year of load('metadata').years)for(const s of snapshots[year])if(!s.hasAssessment&&data.byId.get(s.id).year<year)assert.equal(s.status,'unassessed',`${s.id} / ${year}`);});
 
 test('target dates preserve earliest fallback, explicit original precedence and latest revision',()=>{
  const a={source_type:'SG',target_raw:'2020'},b={source_type:'SG',target_raw:'2022'},c={source_type:'SG',initial_target_raw:'2019',revised_target_raw:'2023'},d={source_type:'SG',initial_target_raw:'2021',revised_target_raw:'2025'};

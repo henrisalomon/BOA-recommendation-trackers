@@ -1,5 +1,11 @@
 # BOA recommendations database — review edition
 
+## 7 October 2026 report-presence rule
+
+The `History` table records BOA and SG source observations. A recommendation's status in a selected BOA report is established only by an assessment row in that report. If no row appears, the report-specific status is **Not assessed in selected BOA report**. Absence does not establish implementation, closure, continuing openness or inclusion in the later report. Earlier observations remain in `History`. Website snapshots now separate `status` (selected-report observation) from `lastObservedStatus` (derived cumulative register state); only `hasAssessment` rows count toward that BOA report's assessed population. The cumulative opening/closing waterfall uses the latter state and is not an exact annual report total. See `website/data/REPORT_PRESENCE_AUDIT.md` for the audit and A/71/5 (Vol. II), paragraph 342 conflict.
+
+The dated inventory and review notes below describe the earlier 22 September baseline; current coverage extends through 2025.
+
 Collection cutoff: **22 September 2026**. This is a populated research and review dataset, not a certified implementation-rate study. The full acceptance criteria have **not** yet passed.
 
 Strategic Heritage Plan recommendations and all linked BOA/SG history are excluded from the analytical database, dashboard and Excel/CSV exports. Original PDFs and extraction caches are retained as source evidence.

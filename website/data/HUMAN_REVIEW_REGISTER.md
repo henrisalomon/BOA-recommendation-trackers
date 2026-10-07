@@ -63,6 +63,14 @@ ok, yes HUM-02 should be in under implementation.
 
 Henri approves Under implementation in accordance with the Board narrative and SG progress. This reconciles the printed originating-report subtotal and full 2015/16 annex status totals. The original Implemented mark is retained. No later closure is inferred from disappearance.
 
+### Superseding decision — 7 October 2026
+
+yes, but the mark is under 'implemented' no? what about the SG report for the same year for para.342
+
+ok, so let's consider the official status for a/71 as ' implemented', adding a note that the board comment was 'under implementation' and SG report for same year is also in progress but then, lets remove it, so that we can remove the recommendation from a/72 and align the numbers. does it make sense?
+
+Henri directs that the official A/71/5 (Vol. II) status for paragraph 342 follow the X under **Implemented**. The Board's assessment says “under implementation”, and SG A/71/801, paragraph 165, says “In progress”; retain both as conflicting evidence. The recommendation is no longer carried as open into A/72/5. This makes the marked A/71 counts differ by one from that report's printed status totals. The 23 September treatment above is retained as decision history and is superseded.
+
 ## HUM-03 — A/72/5 (Vol. II): origin A/68/5 (Vol. II), paragraph 93
 
 **Status:** Resolved — Henri decision applied
@@ -94,11 +102,11 @@ Supporting source or reference:
 
 ## HUM-04 — A/79/5 (Vol. I): origin A/77/5 (Vol. I), paragraph 231
 
-**Status:** Investigation complete — awaiting final human decision
+**Status:** Resolved — Henri decision applied
 
 **Decision needed:** If no authoritative correction resolves the contradiction, what analytical treatment should be approved for the conflicting printed status and Board narrative?
 
-**Until resolved:** Preserve both source values. Keep the observation flagged and ineligible for certified confirmation unless resolved. Do not silently change the recommendation denominator.
+**Treatment:** Implemented in reviewed analysis; original Under implementation mark retained.
 
 Full-row PDF image and column alignment checked; raw source retained. Collected corrigenda and subsequent collected observations do not resolve the contradiction.
 
@@ -119,13 +127,18 @@ Supporting source or reference:
 **Evidence supports your proposed Implemented treatment; retained as a proposal because your comment says “lean towards”.** This annex has one overall total, not a subtotal for this origin group. On PDF page 203 (printed page 201), it reports 88 Implemented / 115 Under implementation / 0 Not implemented / 17 Overtaken. Marks give 86 / 117 / 0 / 17. Changing HUM-04 alone gives 87 / 116; changing both HUM-04 and HUM-05 gives the printed 88 / 115 exactly. No matching A/77/5 paragraph 231 appears in following BOA A/80/5 (Vol. I). This corroborates the Board's explicit implemented narrative but is not a separate proof of completion. TECH-11 records this joint reconciliation.
 <!-- /agent-followup:HUM-04 -->
 
+
+### Decision applied — 6 October 2026
+
+Henri approved Implemented for HUM-04. The Board narrative and joint annex reconciliation support this reviewed treatment.
+
 ## HUM-05 — A/79/5 (Vol. I): origin A/78/5 (Vol. I), paragraph 324
 
-**Status:** Investigation complete — awaiting final human decision
+**Status:** Resolved — Henri decision applied
 
 **Decision needed:** If no authoritative correction resolves the contradiction, what analytical treatment should be approved for the conflicting printed status and Board narrative?
 
-**Until resolved:** Preserve both source values. Keep the observation flagged and ineligible for certified confirmation unless resolved. Do not silently change the recommendation denominator.
+**Treatment:** Implemented in reviewed analysis; original Under implementation mark retained.
 
 Full-row PDF image and column alignment checked; raw source retained. Collected corrigenda and subsequent collected observations do not resolve the contradiction.
 
@@ -145,6 +158,11 @@ Supporting source or reference:
 
 **Evidence supports your proposed Implemented treatment; retained for your final decision.** Together with HUM-04, it reconciles the overall total on PDF page 203 from the marks' 86 Implemented / 117 Under implementation to the printed 88 / 115. Changing this case alone is insufficient. I found no matching A/78/5 paragraph 324 in the corresponding SG A/79/328 (audit year 2023, published 2024). The earlier SG A/78/333 does include it at paragraph 90, PDF page 18, as Under implementation; these are different reporting cycles. The later absence is consistent with the implemented BOA narrative, but does not independently prove implementation.
 <!-- /agent-followup:HUM-05 -->
+
+
+### Decision applied — 6 October 2026
+
+Henri approved Implemented for HUM-05. The Board narrative and joint annex reconciliation support this reviewed treatment.
 
 ## TECH-09 — Printed totals differ: A/71/5 (Vol. II), Annex II
 
@@ -191,11 +209,11 @@ Resolved for reviewed analytical counts by Henri's HUM-03 decision. Raw marks re
 
 ## TECH-11 — Printed totals differ: A/79/5 (Vol. I), Annex I
 
-**Status:** Human review required — independent recount agrees with extracted marks; printed totals disagree
+**Status:** Resolved — reviewed counts reconcile through HUM-04 and HUM-05
 
 **Decision needed:** If a complete independent row/column recount still disagrees with the printed totals, which documented denominator/status treatment is acceptable for the proposed analysis?
 
-**Until resolved:** Do not alter statuses to force a match. Keep both printed and independently counted totals; block affected unqualified rates pending a documented treatment.
+**Treatment:** Preserve raw marks and independently counted totals; use the approved reviewed statuses for analytical counts.
 
 See annex_recount.json. Do not move X marks to force the printed totals.
 
@@ -207,9 +225,20 @@ Evidence: {"source_symbol": "A/79/5 (Vol. I)", "source_pdf": "reports/BOA/BOA_A_
 HUM-04 and HUM-05 jointly explain the exact difference: both as Implemented would change raw 86 / 117 to printed 88 / 115. Both proposals remain awaiting final decision; totals alone are not used to rewrite the source.
 <!-- /agent-followup:TECH-11 -->
 
+
+### Decision applied — 6 October 2026
+
+Henri approved both HUM-04 and HUM-05 as Implemented. Reviewed counts are 88 Implemented / 115 Under implementation, matching the printed annex aggregate; raw marks remain 86 / 117.
+
 ## GOV-01 — Approve analytical population and disputed-status policy
 
 **Status:** Open — not adjudicated
+
+### Henri decisions — 6 October 2026
+
+- Annual implementation-rate denominator: count only distinct recommendations with an eligible BOA assessment in that reporting year.
+- A recommendation assigned to multiple entities counts once in the overall total. It may appear in each relevant entity breakdown, whose totals therefore overlap.
+- A recommendation issued under a new report number and paragraph number is a separate recommendation identity, even when it reiterates an older subject. A/69/5 (Vol. II) paragraph 373 and A/70/5 (Vol. II) paragraph 342 are separate recommendations. Each identity is counted at most once per eligible BOA assessment year.
 
 **Decision needed:** Approve the unit of counting, treatment of subparts/reiterations, inherited backlog, unresolved identities, source contradictions, follow-up windows and metric-specific denominator rules.
 
@@ -264,11 +293,15 @@ Henri explicitly confirms that As above inherits paragraph 373’s management re
 
 ## COV-01 — Confirm official catalogue and corrigendum coverage at release cutoff
 
-**Status:** Open — official catalogue returned HTTP 403
+**Status:** Mitigation agreed — manual source review during the year; release-cutoff verification remains open
 
 **Decision needed:** Confirm whether any newer applicable follow-up reports or corrigenda exist. Supply authoritative references for additions, or record a verified cutoff and search scope.
 
 **Until resolved:** Do not describe this as an exhaustively current public release.
+
+### Henri direction — 6 October 2026
+
+To Henri's knowledge, no further applicable report has been issued. Review the official Board of Auditors website manually during the year for new reports and corrigenda. Record each check date, the reports/corrigenda examined, the coverage cutoff and any additions before claiming an exhaustive release. The dashboard header links to the official site for this check. This is a monitoring plan and a statement of current knowledge, not a verified catalogue result.
 
 Evidence: {"file": "catalogue_recheck.json"}
 
@@ -291,4 +324,3 @@ Evidence: {"file": "catalogue_recheck.json"}
 The PKO period and responsibility changes are documented in [ENTITY_PERIOD_REVIEW.md](ENTITY_PERIOD_REVIEW.md). Historical entities are retained separately as instructed. See [the detailed mapping review](entity_mapping_review.csv) for History IDs and source reports. Add entity decisions below, naming the History ID or exact source wording; existing HUM/TECH comments above are unchanged.
 
 Reviewer comments:
-

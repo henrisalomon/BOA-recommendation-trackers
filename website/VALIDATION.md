@@ -45,3 +45,7 @@ PDF links use official `documents.un.org` URLs with one-based `#page=N` fragment
 ## Historical SG recovery checks
 
 All twelve formerly missing Volume I recommendations have responsible entities, target wording and SG statuses with verified field-level PDF locators. New source documents: A/70/338 and its reviewed corrigendum. Eighteen SG observations were added; all 1,360 recommendation identities and all prior BOA observations remain unchanged. Zero unmatched observations; the two pre-existing source review flags remain. Browser regressions verify paragraph 95’s recovered fields, PDF links, “Audit year” labels and audit-period history headings. Existing workbook validation above predates this recovery; the SQLite database, CSV/JSON exports and dashboard have been updated.
+
+## 7 October 2026 report-presence update
+
+The selected-report status now comes only from an assessment in that BOA report; absent recommendations show “Not assessed in selected BOA report”. A separate last-observed status supports the derived cumulative register. HUM-02 follows the A/71/5 (Vol. II) Implemented mark while preserving the conflicting Board and SG text. The report-presence audit covers both volumes. Local model, build, browser and accessibility checks passed before publication.

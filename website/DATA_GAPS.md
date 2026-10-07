@@ -4,7 +4,9 @@
 
 - 5 reports lack an exact publication date; 2 also lack a publication year. Those histories are grouped by audit year with an explicit warning; exact chronological order is unverified where dates are missing.
 
-- This is an extracted register, not a certified complete population or an official implementation measure. Carried-forward statuses are the last observed BOA assessment, not evidence of current status.
+- A selected-year BOA status is shown only when that report assesses the recommendation. Without a row, the status is Not assessed in selected BOA report. Earlier BOA and SG observations remain in history; absence does not establish implementation, closure, continuing openness or inclusion in the later report. The separate lastObservedStatus supports a derived cumulative register and is not an annual report status.
+
+- Source coverage will be reviewed manually during the year at the official Board of Auditors website (https://www.un.org/en/united-nations-board-auditors). As of 6 October 2026, the project owner is not aware of a newer applicable report. A dated report and corrigendum check is still needed before describing a release as exhaustive at a specific cutoff.
 
 - Volume I uses calendar years; Volume II displays PKO fiscal periods, for example 2019-20 (1 July 2019 to 30 June 2020). Numeric end years are retained for calculations. These are not a common 31 December snapshot.
 
@@ -20,6 +22,6 @@
 
 - 1220 of 8576 comments do not pass complete PDF text-fragment verification; their proposed pages are labelled unverified. Even a matched PDF locator is not a human certification of extraction or attribution.
 
-- 2 observations require review. Status conflicts remain visible and are excluded from assessment-rate denominators.
+- 0 observations require status review. Raw source marks and approved reviewed statuses remain separately visible; unresolved assessments are excluded from assessment-rate denominators.
 
-- The source review documentation records three raw printed-total discrepancies and pending human decisions. Arithmetic validation does not resolve those source discrepancies.
+- The source review documentation records raw printed-total discrepancies and approved reviewer treatments. A/71/5 (Vol. II), paragraph 342, follows its Implemented mark; its Board narrative says under implementation and SG A/71/801 says In progress. The marked status count differs from the report’s printed aggregate by one. The original evidence remains visible.

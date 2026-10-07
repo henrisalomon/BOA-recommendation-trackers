@@ -13,7 +13,8 @@ function correction(h){
  if(!h.review_case_id)return '';
  let decision={};try{decision=JSON.parse(h.review_decision_json||'{}')}catch{}
  const corrected=h.reviewed_status&&h.reviewed_status!==h.status_raw;
- return `<aside class="review-note"><strong>Human review ${esc(h.review_case_id)}</strong> · ${corrected?`Displayed status corrected to “${esc(h.reviewed_status)}”; extracted BOA status is “${esc(h.status_raw)}”.`:`Reviewed source status: “${esc(h.status_raw||'not reported')}”.`}${decision.decision_date?` Decision dated ${esc(decision.decision_date)}.`:''}</aside>`;
+ const conflict=h.review_case_id==='HUM-02'?' The BOA mark says Implemented, its written assessment says under implementation, and SG A/71/801 says In progress. The marked BOA status is used for the register.':'';
+ return `<aside class="review-note"><strong>Human review ${esc(h.review_case_id)}</strong> · ${corrected?`Displayed status corrected to “${esc(h.reviewed_status)}”; extracted BOA status is “${esc(h.status_raw)}”.`:`Reviewed source status: “${esc(h.status_raw||'not reported')}”.`}${decision.decision_date?` Decision dated ${esc(decision.decision_date)}.`:''}${conflict}</aside>`;
 }
 function boa(h,report){
  if(!h)return '<div class="report-panel"><h4>BOA report</h4><p class="report-empty">No BOA entry in the available data for this audit period.</p></div>';

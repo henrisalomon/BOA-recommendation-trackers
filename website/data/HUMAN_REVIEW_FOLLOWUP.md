@@ -1,5 +1,9 @@
 # Follow-up on Henri’s review — 22 September 2026
 
+> Update, 7 October 2026: Henri superseded the HUM-02 treatment. The reviewed BOA status now follows the Implemented mark in A/71/5 (Vol. II); the Board comment saying under implementation and SG A/71/801 status In progress remain visible. Paragraph 342 is not assessed in the following A/72/5 (Vol. II) report.
+
+> Update, 6 October 2026: Henri approved HUM-04 and HUM-05 as Implemented. Their joint reviewed treatment resolves TECH-11 analytical counts: 88 Implemented and 115 Under implementation in A/79/5 (Vol. I). The older investigation notes below describe proposals at that time; original PDF marks remain unchanged.
+
 > Update, 23 September 2026: Henri approved HUM-02 as Under implementation and HUM-06 as Implemented. The dated investigation notes below describe earlier pending decisions; those two cases are now resolved. No subsequent closure is inferred for HUM-02.
 
 All source statuses and narratives remain available. Reviewed treatments are separately identified. Year in the renamed filenames means the audit/financial-period end year; SG volume identifies the corresponding BOA volume.
