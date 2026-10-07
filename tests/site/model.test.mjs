@@ -12,8 +12,11 @@ test('Excel selection uses every matching row, including rows beyond the visible
  const filters={year:2025,volume:'I',entity:'all',responsibility:'all',priority:'High',search:'',status:'all'};
  const rows=selectedRows(data,filters);
  assert(rows.length>8);
- assert.deepEqual(rows,searchRows(data,scope(data,2025,'I','all',2025,'all','High').filter(row=>row.hasAssessment),'','all',false).sort((a,b)=>data.byId.get(b.id).year-data.byId.get(a.id).year||a.id.localeCompare(b.id)));
- assert(rows.every(row=>row.hasAssessment));
+ assert.deepEqual(rows,searchRows(data,scope(data,2025,'I','all',2025,'all','High').filter(row=>row.hasAssessment||row.status==='newly_issued'),'','all',false).sort((a,b)=>data.byId.get(b.id).year-data.byId.get(a.id).year||a.id.localeCompare(b.id)));
+ assert(rows.every(row=>row.hasAssessment||row.status==='newly_issued'));
+ const allPriorities=selectedRows(data,{...filters,priority:'all'});
+ assert.equal(allPriorities.filter(row=>row.status==='newly_issued').length,38);
+ assert.equal(allPriorities.length,175);
  assert(selectedRows(data,{...filters,fullRegister:true}).length>rows.length);
  assert(selectedRows(data,{...filters,search:'R_454bc57cfe25e6fdfa',priority:'all'}).every(row=>row.id==='R_454bc57cfe25e6fdfa'));
 });

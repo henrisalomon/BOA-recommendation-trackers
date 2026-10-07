@@ -9,7 +9,7 @@ const sourceUrl=report=>report?.download_url||'';
 export function selectedRows(data,filters){
  const {year,volume,entity,responsibility,priority,search,status,fullRegister=false}=filters;
  const rows=scope(data,year,volume,entity,year,responsibility,priority);
- return searchRows(data,fullRegister?rows:rows.filter(row=>row.hasAssessment),search,status,fullRegister)
+ return searchRows(data,fullRegister?rows:rows.filter(row=>row.hasAssessment||row.status==='newly_issued'),search,status,fullRegister)
   .sort((a,b)=>data.byId.get(b.id).year-data.byId.get(a.id).year||a.id.localeCompare(b.id));
 }
 
@@ -21,6 +21,6 @@ export function exportRecommendations(data,filters){
   const r=data.byId.get(s.id);
   recommendations.push([r.id,filters.fullRegister?registerStatusLabel(s):labels[statusKey(s)],periodLabel(filters.year,filters.volume),...recommendationFields.slice(1).map(k=>value(r[k])),...snapshotFields.map(k=>value(s[k])),sourceUrl(data.reports[r.reportId])]);
  }
- const selection=[['Selection','Value'],['Volume',`Volume ${filters.volume}`],['Reporting period',periodLabel(filters.year,filters.volume)],['Register view',filters.fullRegister?'Full register':'Assessed in selected BOA report'],['Entity',filters.entity],['Responsibility',filters.responsibility],['Priority',filters.priority==='unavailable'?'Not available':filters.priority],['Status',filters.status==='all'?'All statuses':filters.fullRegister&&filters.status==='unassessed'?'No BOA assessment available':labels[filters.status]||filters.status],['Search',filters.search],['Recommendations',selected.length],['Source export timestamp',data.metadata.exportedAt||''],['Data scope','Strategic Heritage Plan recommendations excluded'],['Status basis',filters.fullRegister?'Latest BOA assessment by selected reporting period':'BOA assessment in selected report'],['Priority basis','Latest reported value, including later follow-up']];
+ const selection=[['Selection','Value'],['Volume',`Volume ${filters.volume}`],['Reporting period',periodLabel(filters.year,filters.volume)],['Register view',filters.fullRegister?'Full register':'In selected BOA report'],['Entity',filters.entity],['Responsibility',filters.responsibility],['Priority',filters.priority==='unavailable'?'Not available':filters.priority],['Status',filters.status==='all'?'All statuses':filters.fullRegister&&filters.status==='unassessed'?'No BOA assessment available':labels[filters.status]||filters.status],['Search',filters.search],['Recommendations',selected.length],['Source export timestamp',data.metadata.exportedAt||''],['Data scope','Strategic Heritage Plan recommendations excluded'],['Status basis',filters.fullRegister?'Latest BOA assessment by selected reporting period':'Selected-report BOA assessment or newly issued'],['Priority basis','Latest reported value, including later follow-up']];
  return {blob:workbook([{name:'Recommendations',rows:recommendations},{name:'Selection',rows:selection}]),count:selected.length};
 }

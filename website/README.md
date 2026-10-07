@@ -84,7 +84,7 @@ The extractor and database retain the original BOA categories and source wording
 
 The Analysis tab also shows the shared recommendation list beneath its charts, including search, status filtering, pagination and source details. Switching tabs preserves list filters. Chart values retain screen-reader tables without a visible table toggle.
 
-The recommendation list defaults to BOA assessments in the selected report. **Show all register** includes newly issued recommendations and earlier records without a current-report assessment. **Download Excel** exports every result matching that view and the current filters, including results beyond the visible page. The workbook contains a Recommendations sheet with selected-year BOA status, summary fields and the original report link, plus a Selection sheet recording the filters and source export timestamp. The export uses the already loaded recommendation data and does not load individual history records.
+The recommendation list defaults to recommendations assessed or newly issued in the selected report. **Show all register** also includes earlier records without a current-report assessment. **Download Excel** exports every result matching that view and the current filters, including results beyond the visible page. The workbook contains a Recommendations sheet with selected-year BOA status, summary fields and the original report link, plus a Selection sheet recording the filters and source export timestamp. The export uses the already loaded recommendation data and does not load individual history records.
 
 ### Main status and SG updates
 
