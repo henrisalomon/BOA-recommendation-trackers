@@ -35,9 +35,9 @@ async function downloadExcel(){
  const button=$('#export-excel'),status=$('#export-status');exporting=true;button.disabled=true;status.textContent='Preparing Excel download…';
  try{
   const filters={...state(),search:$('#search').value,status:$('#status').value,fullRegister};
-  const result=await exportRecommendations(data,filters,(done,total)=>{if(done===total||done%25===0)status.textContent=`Loading details ${done} of ${total}…`},id=>detailCache.has(id)?Promise.resolve(detailCache.get(id)):json(`data/details/${id}.json`).then(d=>{detailCache.set(id,d);return d}));
+  const result=exportRecommendations(data,filters);
   const url=URL.createObjectURL(result.blob),link=document.createElement('a');link.href=url;link.download=`BOA-recommendations-Vol-${filters.volume}-${filters.year}.xlsx`;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
-  status.textContent=`Downloaded ${result.count.toLocaleString()} recommendation${result.count===1?'':'s'} and ${result.historyCount.toLocaleString()} history records.`;
+  status.textContent=`Downloaded ${result.count.toLocaleString()} recommendation${result.count===1?'':'s'}.`;
  }catch(e){status.textContent=`Excel download failed: ${e.message}`;console.error(e)}finally{exporting=false;button.disabled=!data||!selectedRows(data,{...state(),search:$('#search').value,status:$('#status').value,fullRegister}).length}
 }
 function tab(name,focus=false){active=name;$('#recommendations-heading').textContent=fullRegister?'Full recommendation register':'Recommendations assessed in selected BOA report';$(name==='analysis'?'#analysis-list-slot':'#recommendations-list-slot').append($('#recommendation-browser'));document.querySelectorAll('[role=tab]').forEach(t=>{const selected=t.id==='tab-'+name;t.setAttribute('aria-selected',selected);t.tabIndex=selected?0:-1;if(selected&&focus)t.focus()});document.querySelectorAll('[role=tabpanel]').forEach(p=>p.hidden=p.id!==name);if(data)render()}

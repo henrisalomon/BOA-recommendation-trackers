@@ -58,12 +58,12 @@ const axePath=require.resolve('../../website/node_modules/axe-core/axe.min.js');
  const inspect=spawnSync('python3',['-c',`import zipfile,xml.etree.ElementTree as ET,json,sys
 z=zipfile.ZipFile(sys.argv[1]); ns={'x':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
 out=[]
-for i in range(1,4):
+for i in range(1,3):
  root=ET.fromstring(z.read(f'xl/worksheets/sheet{i}.xml'))
  rows=root.findall('.//x:sheetData/x:row',ns)
  out.append({'count':len(rows)-1,'text':' '.join(t.text or '' for t in root.findall('.//x:t',ns))})
 print(json.dumps(out))`,exportPath],{encoding:'utf8'});
- assert.equal(inspect.status,0,inspect.stderr);const exported=JSON.parse(inspect.stdout);assert.equal(exported[0].count,1);assert(exported[0].text.includes('R_454bc57cfe25e6fdfa'));assert(exported[1].count>1);assert(exported[1].text.includes('board_assessment'));assert(exported[1].text.includes('documents.un.org'));assert(exported[2].text.includes('R_454bc57cfe25e6fdfa'));assert((await page.locator('#export-status').innerText()).includes('Downloaded 1 recommendation'));
+ assert.equal(inspect.status,0,inspect.stderr);const exported=JSON.parse(inspect.stdout);assert.equal(exported.length,2);assert.equal(exported[0].count,1);assert(exported[0].text.includes('R_454bc57cfe25e6fdfa'));assert(exported[0].text.includes('documents.un.org'));assert(!exported[0].text.includes('board_assessment'));assert(exported[1].text.includes('Full register'));assert((await page.locator('#export-status').innerText()).includes('Downloaded 1 recommendation'));
  const years=await page.locator('.report-year').evaluateAll(nodes=>nodes.map(n=>Number(n.dataset.year)));assert.deepEqual(years,[...years].sort((a,b)=>b-a));
  const href=await page.locator('.detail a[href*="#page="]').first().getAttribute('href');const links=await page.locator('.detail a[href*="#page="]').evaluateAll(nodes=>nodes.map(a=>({href:a.href,text:a.textContent})));for(const link of links){const url=new URL(link.href);assert.equal(url.origin,"https://documents.un.org");assert.equal(url.searchParams.get("t"),"pdf");assert.equal(url.hash,"#page="+link.text.match(/PDF page (\d+)/)[1]);}
  await audit('expanded evidence');await shot('details');
