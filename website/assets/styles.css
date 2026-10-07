@@ -3,7 +3,7 @@
 .chart-toggle{display:inline-flex;align-items:center;gap:10px;cursor:pointer;margin:4px 0 0;color:var(--ink)}.chart-toggle input{width:20px;height:20px;min-height:20px;accent-color:var(--link)}.citation-warning{color:var(--amber)}.quality h1{margin-bottom:24px}.source{margin-bottom:12px}.bar-value{font-weight:500}
 .unofficial details{margin-top:8px}.unofficial details ul{margin:8px 0;padding-left:22px}.unofficial details li{margin:5px 0}
 
-#register-summary{margin-bottom:24px}#register-summary .scope-note{margin:8px 0 16px}.details-action{display:inline-flex;align-items:center;min-height:44px;margin-top:14px;padding:9px 16px;border-radius:6px;background:var(--link);color:#fff;font-size:.875rem;font-weight:600}.recommendation>summary:hover .details-action{background:var(--navy)}.details-less,.recommendation[open] .details-more{display:none}.recommendation[open] .details-less{display:inline}
+#register-summary{margin-bottom:24px}.details-action{display:inline-flex;align-items:center;min-height:44px;margin-top:14px;padding:9px 16px;border-radius:6px;background:var(--link);color:#fff;font-size:.875rem;font-weight:600}.recommendation>summary:hover .details-action{background:var(--navy)}.details-less,.recommendation[open] .details-more{display:none}.recommendation[open] .details-less{display:inline}
 
 .meta{align-items:center;gap:8px}.card-pill{display:inline-flex;align-items:center;min-height:36px;max-width:100%;padding:6px 14px;border-radius:999px;font-size:.875rem;font-weight:600;line-height:1.4}.pill-volume,.pill-responsibility{background:#cbd8e4;color:var(--ink)}.pill-entity{background:#007ba8;color:#fff}.details-action{border-radius:999px;margin-top:0;margin-left:auto;padding:9px 17px;background:#007ba8}.observation-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;font-size:.8125rem;color:var(--muted)}.badge{max-width:100%;white-space:normal}
 
@@ -25,8 +25,8 @@
 .filter-grid > .register-toggle{grid-column:span 3}
 .filter-grid > #reset,.filter-grid > #export-excel{grid-column:span 2;width:100%;white-space:normal;overflow-wrap:anywhere}
 .filter-grid > #reset:not(:disabled):hover{background:#e7f4fb}
-.filter-grid > #export-excel{border-color:var(--link);background:var(--link);color:#fff;font-weight:600}
-.filter-grid > #export-excel:not(:disabled):hover{background:var(--navy)}
+.filter-grid > #export-excel{justify-self:end;width:auto;min-height:40px;padding:7px 12px;border-color:#adc6d7;background:#fff;color:var(--link);font-size:.8125rem;font-weight:500}
+.filter-grid > #export-excel:not(:disabled):hover{background:#e7f4fb}
 .filter-grid > #export-excel:disabled{opacity:.55;cursor:not-allowed}
 .scope .register-toggle{position:relative;display:inline-flex;flex-direction:row;align-items:center;gap:10px;min-height:44px;color:var(--ink);cursor:pointer}
 .register-toggle input{position:absolute;width:1px;height:1px;min-height:0;margin:0;opacity:0}
