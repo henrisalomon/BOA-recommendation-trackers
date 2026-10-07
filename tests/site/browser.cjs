@@ -29,7 +29,7 @@ const axePath=require.resolve('../../website/node_modules/axe-core/axe.min.js');
  for(const tab of ['analysis','trends','recommendations']){
   await page.click('#tab-'+tab);assert.equal(await page.locator('#priority').inputValue(),'High');assert.equal(await page.locator('#count').innerText(),highCount);
  }
- assert(await page.locator('#trend-filter-warning').isHidden());await page.click('#tab-trends');assert(await page.locator('#trend-filter-warning').isVisible());assert((await page.locator('#trend-filter-description').innerText()).includes('Priority: High'));await page.click('#clear-trend-filters');assert.equal(await page.locator('#priority').inputValue(),'all');assert(await page.locator('#trend-filter-warning').isHidden());await page.selectOption('#priority','High');await page.reload();await page.waitForFunction(()=>document.querySelector('#load-status').hidden);assert.equal(await page.locator('#priority').inputValue(),'High');await page.click('#tab-recommendations');
+ assert(await page.locator('#trend-filter-warning').isHidden());await page.click('#tab-trends');assert(await page.locator('#trend-filter-warning').isVisible());assert((await page.locator('#trend-filter-description').innerText()).includes('Priority: High'));await page.click('#clear-trend-filters');assert.equal(await page.locator('#priority').inputValue(),'all');assert(await page.locator('#trend-filter-warning').isHidden());await page.selectOption('#priority','High');await page.reload();await page.waitForFunction(()=>document.querySelector('#load-status').hidden);assert.equal(await page.locator('#priority').inputValue(),'High');await page.click('#tab-recommendations');await page.click('#toggle-register');
  await page.selectOption('#priority','unavailable');assert.equal(await page.locator('#count').innerText(),'38 results');
  assert((await page.locator('.pill-priority').allTextContents()).every(s=>s==='Not available'));
  await page.selectOption('#volume','II');assert.equal(await page.locator('#count').innerText(),'48 results');
@@ -45,7 +45,7 @@ const axePath=require.resolve('../../website/node_modules/axe-core/axe.min.js');
  assert(await page.locator('.recommendation').count()>0);
  assert((await page.locator('.recommendation .meta').allTextContents()).every(t=>t.includes('Joint')));
  assert(new URLSearchParams(new URL(page.url()).hash.slice(1)).get('responsibility')==='Joint');
- await page.reload();await page.waitForSelector('.recommendation');assert.equal(await page.locator('#responsibility').inputValue(),'Joint');
+ await page.reload();await page.waitForSelector('.recommendation');assert.equal(await page.locator('#responsibility').inputValue(),'Joint');await page.click('#toggle-register');
  await page.selectOption('#responsibility','all');
  await page.selectOption('#status','implemented');assert(await page.locator('.recommendation').count()>0);await page.fill('#search','not-a-real-reference-xyz');assert.equal(await page.locator('.recommendation').count(),0);assert(await page.locator('.empty').isVisible());await page.click('#reset');
  await page.selectOption('#year','2024');await page.fill('#search','R_1d330d1cf2fdb7a898');assert.equal(await page.locator('.recommendation .badge').innerText(),'Newly issued');await page.locator('.recommendation > summary').click();await page.waitForSelector('.recommendation[data-loaded=true]');
