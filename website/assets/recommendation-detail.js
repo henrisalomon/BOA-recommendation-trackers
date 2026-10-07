@@ -7,7 +7,7 @@ function pdfLink(h,report,fields){
  return pages.length?`<a href="${esc(report.download_url.split('#')[0])}#page=${pages[0]}" target="_blank" rel="noopener">PDF page ${pages[0]} ↗</a>`:'<span class="report-empty">PDF page unverified</span>';
 }
 const reportHeading=(name,h,report,fields)=>`<h4 class="report-heading"><span>${name}</span><span class="report-reference">${esc(report.symbol)} · ${pdfLink(h,report,fields)}</span></h4>`;
-const boaStatus=h=>!h?'No BOA entry':h.kind==='issuance'?'Newly issued':h.reviewed_status||h.status_raw||'Not reported';
+const boaStatus=h=>!h?'No BOA entry':h.kind==='issuance'?'Newly published':h.reviewed_status||h.status_raw||'Not reported';
 
 function correction(h){
  if(!h.review_case_id)return '';
@@ -18,7 +18,7 @@ function correction(h){
 }
 function boa(h,report){
  if(!h)return '<div class="report-panel"><h4>BOA report</h4><p class="report-empty">No BOA entry in the available data for this audit period.</p></div>';
- const status=h.kind==='issuance'?'Newly issued · no BOA status after verification':boaStatus(h);
+ const status=h.kind==='issuance'?'Newly published · no BOA status after verification':boaStatus(h);
  return `<div class="report-panel">${reportHeading('BOA report',h,report,['status_raw','administration_response','board_assessment','recommendation_text'])}<p class="report-status"><strong>Status after verification</strong> <span>${esc(status)}</span></p>${correction(h)}${field('The Administration’s response',h.administration_response)}${field('The Board’s assessment',h.board_assessment)}</div>`;
 }
 function sg(h,report){

@@ -82,7 +82,7 @@ test('Waterfall hides a zero reopening step without changing balances or connect
  const reopened=waterfallSteps({...zero,reopened:4,closing:89});assert.equal(reopened.length,6);assert.equal(reopened[2].value,'+4');assert.equal(reopened.at(-2).end,89);
 });
 
-test('Main status follows BOA assessments; only unassessed issuance-year records are newly issued',()=>{
+test('Main status follows BOA assessments; only unassessed issuance-year records are newly published',()=>{
  for(const r of recommendations){
   const h=load('details/'+r.id).history;
   for(const [year,rows] of Object.entries(snapshots)){
@@ -100,12 +100,12 @@ test('Main status follows BOA assessments; only unassessed issuance-year records
  assert.equal(example.status,'newly_issued');assert.equal(rate([example]).denominator,0);
 });
 
-test('2025 Volume I recommendations without SG fields display Newly issued',()=>{
+test('2025 Volume I recommendations without SG fields display Newly published',()=>{
  const rows=scope(data,2025,'I').filter(s=>data.byId.get(s.id).year===2025);
  assert.equal(rows.length,38);
  assert(rows.every(s=>statusKey(s,data.byId.get(s.id))==='newly_issued'));
  assert.equal(searchRows(data,rows,'','newly_issued').length,38);
- assert(presentStatuses(rows,'status',data.byId).some(([key,label])=>key==='newly_issued'&&label==='Newly issued'));
+ assert(presentStatuses(rows,'status',data.byId).some(([key,label])=>key==='newly_issued'&&label==='Newly published'));
  const earlier=scope(data,2024,'I').find(s=>s.status==='newly_issued');
  assert.equal(statusKey(earlier,data.byId.get(earlier.id)),'newly_issued');
 });
